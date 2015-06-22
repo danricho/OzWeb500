@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>OzWeb500</title>
+  <link rel="stylesheet" type="text/css" media="all" href="style.css">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/jquery.leanModal.mod.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/jquery.filter_input.mod.js"></script>
+</head>
+<body>
+  <div id="header">
+    <div class="column-left">
+      <i id="users" class="fa fa-fw fa-users"></i>
+      <i id="login_status" class="fa fa-fw fa-user red" title='Not logged in.'></i>
+      <span id="usernameDisp"></span>
+    </div>
+    <div class="column-centre">
+      <span id="title">OzWeb500</span>
+    </div>
+    <div class="column-right">
+      <i id="ws_conn_status" class="fa fa-fw fa-plug red" title='Not Connected to Server.'></i>
+    </div>
+  </div>
+  <div id="content">
+  </div>
+  <div id="loginmodal" style="display:none;">
+    <p class="bigger">Welcome to OzWeb500!</p>
+    <p>Enter your desired username.</p>
+    <input type="text" name="inputUsername" id="inputUsername" tabindex="1" value="" class="grey">
+    <input type="button" name="buttonLogin" id="buttonLogin" value="Log In" tabindex="2">
+    <p id="feedbackLogin" class="red" style="display:none;">&nbsp;</p>
+    
+    <a href="#loginmodal" rel="leanModal" name="loginmodal" style="display:none" id="modaltrigger">a</a>
+    <a href="#loginmodal" rel="leanModal" name="loginmodal" id="hide_modal" style="display:none">a</a>
+  </div>
+  <div id="userList"></div>
+  <script type="text/javascript">
+
+    client_version = 0.1
+
+    function doWsCconnect(){
+      websocket = new WebSocket("ws://"+window.location.hostname+":"+"8000");
+      websocket.onopen = function(evt) { onWebSockOpen(evt) };
+      websocket.onclose = function(evt) { onWebSockClose(evt) };
+      websocket.onmessage = function(evt) { onWebSockMessage(evt) };
+      websocket.onerror = function(evt) { onWebSockError(evt) };
+    }
+    function doWsDisconnect(){
+      websocket.close();
+    }
+    function doWsSend(type, dataIn){
+      message = {header:type, data:dataIn}
+      websocket.send(JSON.stringify(message));
+      console.groupCollapsed("WS Sent: %s.", message.header);
+      console.log("Sent Data: ", message.data);
+      console.groupEnd();
+    }
+    
+    function doLoginRequest(){
+      var desired_username = $("#inputUsername").val();
+      console.groupCollapsed("Attempting Login as '%s'.", desired_username);
+      console.log(desired_username.length)
+      if (desired_username == "") {
+        console.log("Username Empty: Setting Feedback.");
+        $("#feedbackLogin").html("Enter a username!").addClass("red").show();
+        console.groupEnd();
+      }else if(desired_username.length < 3){
+        console.log("Username too short: Setting Feedback.");
+        $("#feedbackLogin").html("Username is too short (min 3).").addClass("red").show();
+        console.groupEnd();
+      }else if(desired_username.length > 10){
+        console.log("Username too long: Setting Feedback.");
+        $("#feedbackLogin").html("Username is too long (max 10).").addClass("red").show();
+        console.groupEnd();
+      }else{
+        console.log("Sending usernameRequest message.");
+        $("#feedbackLogin").html("Requesting username...").removeClass("red").show();
+        console.groupEnd();
+        doWsSend("usernameRequest", desired_username);
+      }
+    }
+    function doModalShow(){
+      //console.log('Displaying login.');
+      $("#modaltrigger").click();
+    }
+    function doModalHide(){
+      //console.log('Hiding login.');
+      $("#feedbackLogin").html("").removeClass("red").hide();
+      $("#hide_modal").click();
+    }
+    
+    function onWebSockOpen(evt){ 
+      console.groupCollapsed("WS connection successfully opened.");
+      console.log("Updating the connection status display.");
+      $("#ws_conn_status").removeClass("red").attr('title', 'Connected to Server.');
+      console.log("Open Event Data:", evt);
+      console.groupEnd();
+    }
+    function onWebSockClose(evt){
+      console.groupCollapsed("WS connection closed.");
+      console.log("Updating the connection status display.");
+      $("#ws_conn_status").addClass("red").attr('title', 'Not Connected to Server.');
+      $("#usernameDisp").text("");
+      document.title = "OzWeb500";
+      $("#login_status").addClass("red").attr('title', 'Not logged in.');
+      
+      console.log("Hiding the login modal.");
+      doModalHide()
+      console.log("Close Event Data",evt)
+      console.groupEnd();
+      
+      setTimeout(function(){ doWsCconnect(); }, 2500);
+      
+    }
+    function onWebSockMessage(evt){
+    
+      message = jQuery.parseJSON(evt.data);
+      console.groupCollapsed("WS Rcvd: %s.", message.header);
+
+      switch (message.header){
+        case "serverVersion":
+          console.log("Updating the title's hover text with the version data.");
+          console.groupEnd();
+          $("#title").attr('title', 'Server v' + message.data + " : Client v" + client_version);
+          break;
+        case "ping":
+          console.log("Sending pong message.");
+          console.groupEnd();
+          doWsSend("pong",message.data);
+          break;
+        case "loginRequest":
+          console.log("Displaying the login modal.");
+          doModalShow();
+          console.groupEnd();
+          break;
+        case "usernameExists":
+          console.log("Displaying login feedback.");
+          $("#feedbackLogin").html($("#inputUsername").val() + " is already logged in!").addClass("red").show();
+          console.log("Clearing the entered username.");
+          $("#inputUsername").val("");
+          console.groupEnd();
+          break;
+        case "loginAccepted":
+          username = message.data;
+          console.log("Setting the user display.");
+          console.log("Setting the feedback to success.");
+          console.log("Hiding the login modal.");
+          console.groupEnd();
+          setTimeout(function(){
+            $("#usernameDisp").text(username);
+            document.title = "OzWeb500: " + username;
+            $("#login_status").removeClass("red").attr('title', 'Logged in.');
+            $("#feedbackLogin").html("Login successful.").removeClass("red").show();
+            setTimeout(function(){ doModalHide(); }, 1500);
+          }, 1000);
+          break;
+        case "userList":
+          console.log("Updating user list.");
+          $("#userList").html("");
+          $.each(message.data, function( index, value ) {
+            $("#userList").append( "<p>"+value+"</p>" );
+          });
+          console.log("Received Data: ", message.data);
+          console.groupEnd();
+          break;
+        
+        default:
+          console.log("Received Data: ", message.data);
+          console.groupEnd();
+      }      
+      
+    }
+    function onWebSockError(evt){
+      console.groupCollapsed("WS connection error.");
+      console.log("Open Event Data:", evt);
+      console.groupEnd();
+    }
+    
+    $(document).ready(function() {
+      doWsCconnect();
+      $("#modaltrigger").leanModal({ top: 200, overlay: 0.7, closeButton: "#hide_modal" });
+      $("#buttonLogin").click(doLoginRequest);
+      $("#inputUsername").filter_input({
+        regex:'[a-zA-Z0-9_]', 
+        disallowed_feedback: function(char) {
+          if (char.charCodeAt(0) == 13){ //enter press
+            $("#buttonLogin").click();
+          }else{
+            if (char==" "){ char = "Spaces" }
+            else { char = "'" + char + "'" }
+            $("#feedbackLogin").html(char + " not allowed.").addClass("red").show();
+          }
+        },
+        allowed_feedback: function(char) {
+          if (char==" "){ char = "Spaces" }
+          else { char = "'" + char + "'" }
+          $("#feedbackLogin").html("").removeClass("red").hide();
+        }
+      });
+      $("#users").hover(function() {
+        if ($("#usernameDisp").text() != ""){$("#userList").show();}
+      }, 
+      function() {
+        $("#userList").hide();
+      });
+    });
+    
+  </script>
+
+</body>
+</html>

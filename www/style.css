@@ -1,0 +1,101 @@
+@import url(http://fonts.googleapis.com/css?family=Lato);
+
+* {
+  margin: 0;
+  padding: 0;
+  cursor:default;
+}
+body { 
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  color: #BBB;
+  line-height: 1;
+  background: #222;
+  font-style: normal;
+}
+
+.column-left{ float: left; width: 33%; text-align: left; }
+.column-right{ float: right; width: 33%; text-align: right; }
+.column-centre{ display: inline-block; width: 33%; text-align: center; }
+
+#header{
+  padding: 8px 8px;
+  display: block;
+  background: #333;
+  color: #CCC;
+  border-bottom: 1px solid #222;
+}
+
+#content{
+  padding: 8px 8px;
+}
+
+.red{
+  color: #F00;
+}
+
+i{
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+}
+
+#userList{
+  position: fixed;
+  z-index:101;
+  top: 34px;
+  left: 2px;
+  background: #333;
+  color: #BBB;
+  padding: 8px 8px;
+  display: none;
+}
+
+#lean_overlay {
+  position: fixed;
+  z-index:100;
+  top: 33px;
+  left: 0px;
+  height:100%;
+  width:100%;
+  background: #000;
+  display: none;
+}
+
+#loginmodal {
+  width: 300px;
+  padding: 8px 8px;
+  background: #CCC;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  color: #333;
+  text-align: center;
+}
+
+#loginmodal input { 
+  background: #333;
+  color: #CCC;
+  padding: 8px 8px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: none;
+  margin: 8px 0px;
+}
+#loginmodal p { 
+  margin: 8px 0px;
+}
+.bigger{
+  font-size: 130%;
+}
+
+.txtfield { 
+  display: block;
+  width: 100%;
+}
+
+.txtfield:focus {
+
+}
+
