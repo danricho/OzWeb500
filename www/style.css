@@ -13,31 +13,62 @@ body {
   background: #222;
   font-style: normal;
 }
-
-.column-left{ float: left; width: 33%; text-align: left; }
-.column-right{ float: right; width: 33%; text-align: right; }
-.column-centre{ display: inline-block; width: 33%; text-align: center; }
-
-#header{
-  padding: 8px 8px;
-  display: block;
-  background: #333;
-  color: #CCC;
-  border-bottom: 1px solid #222;
+input:focus{
+  outline: none
 }
-
-#content{
-  padding: 8px 8px;
+i{
+  width: 17px;
+  height: 17px;
+  display: inline-block;
 }
 
 .red{
   color: #F00;
 }
+.bigger{
+  font-size: 130%;
+}
+.half-column-left{ float: left; width: 49%; text-align: left; padding-left:1% }
+.half-column-right{ float: right; width: 49%; text-align: right; padding-right:1% }
+.third-column-left{ float: left; width: 32%; text-align: left; padding-left:1% }
+.third-column-right{ float: right; width: 32%; text-align: right; padding-right:1% }
+.third-column-centre{ display: inline-block; width: 33%; text-align: center; }
 
-i{
-  width: 17px;
-  height: 17px;
-  display: inline-block;
+#header{
+  position: fixed;
+  z-index:200;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  padding: 8px 0px;
+  display: block;
+  background: #333;
+  color: #CCC;
+  border-bottom: 1px solid #222;
+}
+#content{
+  padding: 8px 8px;
+}
+#footer{
+  position: fixed;
+  z-index:200;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  padding: 8px 0px;
+  display: block;
+  background: #333;
+  color: #CCC;
+  border-top: 1px solid #222;
+}
+#footer input { 
+  background: #222;
+  color: #CCC;
+  padding: 4px 8px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: none;
 }
 
 #userList{
@@ -50,18 +81,16 @@ i{
   padding: 8px 8px;
   display: none;
 }
-
 #lean_overlay {
   position: fixed;
   z-index:100;
-  top: 33px;
+  top: 0px;
   left: 0px;
   height:100%;
   width:100%;
   background: #000;
   display: none;
 }
-
 #loginmodal {
   width: 300px;
   padding: 8px 8px;
@@ -72,7 +101,6 @@ i{
   color: #333;
   text-align: center;
 }
-
 #loginmodal input { 
   background: #333;
   color: #CCC;
@@ -86,16 +114,6 @@ i{
 #loginmodal p { 
   margin: 8px 0px;
 }
-.bigger{
-  font-size: 130%;
-}
 
-.txtfield { 
-  display: block;
-  width: 100%;
-}
 
-.txtfield:focus {
-
-}
 
