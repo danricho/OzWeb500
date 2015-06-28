@@ -3,11 +3,14 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   <title>OzWeb500</title>
-  <link rel="stylesheet" type="text/css" media="all" href="style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/cards.css" />
+  <link rel="stylesheet" type="text/css" href="css/jquery.growl.css" />
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/jquery.leanModal.mod.min.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/jquery.filter_input.mod.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/jquery.growl.js" ></script>
 </head>
 <body>
   <div id="header">
@@ -23,7 +26,529 @@
       <i id="ws_conn_status" class="fa fa-fw fa-plug red" title='Not Connected to Server.'></i>
     </div>
   </div>
-  <div id="content">
+  <div id="table">
+    <div id="table_cards">
+      <div class="table_card red" id="partnerTableCard">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="table_card red" id="previousTableCard">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="table_card red" id="nextTableCard">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="table_card red" id="myTableCard">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+    </div>
+    <figure class="Hand" id="partnerHand">
+      <div class="cardPosition red" id="card_1">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_2">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_3">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_4">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_5">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_6">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_7">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_8">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_9">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_10">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <!-- kitty cards -->
+      <div class="kitty cardPosition red" id="card_11">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="kitty cardPosition red" id="card_12">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="kitty cardPosition red" id="card_13">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <!-- end kitty cards -->
+    </figure>
+    <figure class="Hand" id="previousHand">
+      <div class="cardPosition red" id="card_1">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_2">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_3">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_4">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_5">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_6">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_7">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_8">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_9">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_10">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <!-- kitty cards -->
+      <div class="kitty cardPosition red" id="card_11">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="kitty cardPosition red" id="card_12">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="kitty cardPosition red" id="card_13">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <!-- end kitty cards -->
+    </figure>
+    <figure class="Hand" id="nextHand">
+      <div class="cardPosition red" id="card_1">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_2">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_3">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_4">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_5">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_6">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_7">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_8">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_9">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_10">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <!-- kitty cards -->
+      <div class="kitty cardPosition red" id="card_11">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="kitty cardPosition red" id="card_12">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="kitty cardPosition red" id="card_13">
+        <div class="cardFaces flipped">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <!-- end kitty cards -->
+    </figure>
+    <figure class="Hand" id="myHand">
+      <!-- kitty cards -->
+      <div class="kitty cardPosition red" id="card_11">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="kitty cardPosition red" id="card_12">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="kitty cardPosition red" id="card_13">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <!-- end kitty cards -->
+      <div class="cardPosition red" id="card_1">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_2">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_3">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_4">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_5">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_6">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_7">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_8">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_9">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+      <div class="cardPosition red" id="card_10">
+        <div class="cardFaces">
+          <div class="front">
+            <div class="index"><p>10</p><p>♥</p></div>
+            <div class="big"><p>10</p><p>♥</p></div>
+          </div>
+          <div class="back"><div class="shading"></div></div>
+        </div>
+      </div>
+    </figure>
   </div>
   <div id="footer">
     <div class="half-column-left">
@@ -62,7 +587,7 @@
       message = {header:type, data:dataIn}
       websocket.send(JSON.stringify(message));
       console.groupCollapsed("WS Sent: %s.", message.header);
-      console.log("Sent Data: ", message.data);
+      console.log("Sent Data:", message.data);
       console.groupEnd();
     }
     function doLoginRequest(){
@@ -87,7 +612,9 @@
         doWsSend("usernameRequest", desired_username);
       }
     }
-    
+    function doSendChatMessage(){
+      doWsSend("chat", $('#inputChat').val());
+    }
     function doModal(state){
       if (state){
         $("#modaltrigger").click();
@@ -172,10 +699,8 @@
       
     }
     function onWebSockMessage(evt){
-    
       message = jQuery.parseJSON(evt.data);
       console.groupCollapsed("WS Rcvd: %s.", message.header);
-
       switch (message.header){
         case "serverVersion":
           console.log("Updating the title version data to 'Server v" + message.data + " : Client v" + client_version+ "'.");
@@ -223,7 +748,11 @@
           console.log("Received Data: ", message.data);
           console.groupEnd();
           break;
-        
+        case "chatMessage":
+          console.log("From: "+message.data.fromUser+".");
+          console.log("Message: " +message.data.message+".");
+          console.log("Displaying message.");
+          onIncomingChatMessage(message.data.fromUser, message.data.message);
         default:
           console.log("Received Data: ", message.data);
           console.groupEnd();
@@ -234,6 +763,9 @@
       console.groupCollapsed("WS connection error.");
       console.log("Error Event Data:", evt);
       console.groupEnd();
+    }
+    function onIncomingChatMessage(from, msg){
+      $.growl({ title: from+":", message: msg });
     }
     
     $(document).ready(function() {
@@ -258,10 +790,19 @@
         }
       });
       $("#users").hover(function() {
-        if ($("#usernameDisp").text() != ""){$("#userList").show();}
-      }, 
-      function() {
-        $("#userList").hide();
+          if ($("#usernameDisp").text() != ""){$("#userList").show();}
+        }, function() { $("#userList").hide();
+      });
+      $('#inputChat').keypress(function (e) {
+        if (e.which == 13) {
+          doSendChatMessage();
+          $('#inputChat').val("");
+        }
+      });
+      $( ".cardFaces" ).each(function(index) {
+        $(this).on("click", function(){
+          $(this).toggleClass('flipped');
+        });
       });
     });
     

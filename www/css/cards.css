@@ -1,0 +1,300 @@
+.Hand {
+  width: 478px;
+  height: 270px;
+  position: absolute;
+}
+#myHand {
+  bottom: 0px;
+  left: 50%;
+  margin-left: -239px;
+  margin-bottom: -50px;
+}
+#nextHand{
+  top: 150px;
+  right: -250px;
+  -webkit-transform: rotateZ( -90deg );
+   -moz-transform: rotateZ( -90deg );
+     -o-transform: rotateZ( -90deg );
+        transform: rotateZ( -90deg );
+}
+#partnerHand{
+  top: 0px;
+  left: 50%;
+  margin-left: -239px;
+  margin-top: -160px;
+  -webkit-transform: rotateZ( 180deg );
+   -moz-transform: rotateZ( 180deg );
+     -o-transform: rotateZ( 180deg );
+        transform: rotateZ( 180deg );
+}
+#previousHand{ 
+  top: 150px;
+  left: -250px;
+  -webkit-transform: rotateZ( 90deg );
+   -moz-transform: rotateZ( 90deg );
+     -o-transform: rotateZ( 90deg );
+        transform: rotateZ( 90deg );
+}
+
+.kitty{
+  display: none;
+}
+.cardPosition{
+  float: left;
+  border-radius: 10px;
+  margin-right: 10px;
+  width: 120px;
+  height: 180px;
+  position: absolute;
+}
+.red{
+    color: #ff0000;
+}
+.black{
+    color: #000000;
+}
+
+#table_cards{
+  height: 200px;
+  width: 200px;
+  top: 135px;
+  left: 100px;
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+}
+.table_card {
+  top: 100px;
+  left: 100px;
+  position: absolute;
+  
+}
+#partnerTableCard{
+  -webkit-transform: rotateZ( 180deg );
+   -moz-transform: rotateZ( 180deg );
+     -o-transform: rotateZ( 180deg );
+        transform: rotateZ( 180deg );
+}
+#nextTableCard{
+  -webkit-transform: rotateZ( -90deg );
+   -moz-transform: rotateZ( -90deg );
+     -o-transform: rotateZ( -90deg );
+        transform: rotateZ( -90deg );
+}
+#previousTableCard{
+  -webkit-transform: rotateZ( 90deg );
+   -moz-transform: rotateZ( 90deg );
+     -o-transform: rotateZ( 90deg );
+        transform: rotateZ( 90deg );
+}
+#myTableCard{
+
+}
+
+#card_1{
+  top: 74px;
+  left: 23px;
+  -webkit-transform: rotate(-18deg);
+  -moz-transform: rotate(-18deg);
+  -o-transform: rotate(-18deg);
+  -ms-transform: rotate(-18deg);
+  transform: rotate(-18deg);
+}
+#card_2 {
+  /*display:none;*/
+  top: 65px;
+  left: 57px;
+  -webkit-transform: rotate(-14deg);
+  -moz-transform: rotate(-14deg);
+  -o-transform: rotate(-14deg);
+  -ms-transform: rotate(-14deg);
+  transform: rotate(-14deg);
+}
+#card_3 {
+  /*display:none;*/
+  top: 57px;
+  left: 91px;
+  -webkit-transform: rotate(-10deg);
+  -moz-transform: rotate(-10deg);
+  -o-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+}
+#card_4{
+  /*display:none;*/
+  top: 52px;
+  left: 125px;
+  -webkit-transform: rotate(-6deg);
+  -moz-transform: rotate(-6deg);
+  -o-transform: rotate(-6deg);
+  -ms-transform: rotate(-6deg);
+  transform: rotate(-6deg);
+}
+#card_5{
+  /*display:none;*/
+  top: 50px;
+  left: 160px;
+  -webkit-transform: rotate(-2deg);
+  -moz-transform: rotate(-2deg);
+  -o-transform: rotate(-2deg);
+  -ms-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+}
+#card_6{
+  /*display:none;*/
+  top: 50px;
+  left: 195px;
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+}
+#card_7{
+  /*display:none;*/
+  top: 52px;
+  left: 230px;
+  -webkit-transform: rotate(6deg);
+  -moz-transform: rotate(6deg);
+  -o-transform: rotate(6deg);
+  -ms-transform: rotate(6deg);
+  transform: rotate(6deg);
+}
+#card_8{
+  /*display:none;*/
+  top: 57px;
+  left: 264px;
+  -webkit-transform: rotate(10deg);
+  -moz-transform: rotate(10deg);
+  -o-transform: rotate(10deg);
+  -ms-transform: rotate(10deg);
+  transform: rotate(10deg);
+}
+#card_9{
+  /*display:none;*/
+  top: 65px;
+  left: 299px;
+  -webkit-transform: rotate(14deg);
+  -moz-transform: rotate(14deg);
+  -o-transform: rotate(14deg);
+  -ms-transform: rotate(14deg);
+  transform: rotate(14deg);
+}
+#card_10{
+  /*display:none;*/
+  top: 74px;
+  left: 332px;
+  -webkit-transform: rotate(18deg);
+  -moz-transform: rotate(18deg);
+  -o-transform: rotate(18deg);
+  -ms-transform: rotate(18deg);
+  transform: rotate(18deg);
+}
+#card_11{
+  /*display:none;*/
+  top: 0px;
+  left: 180px;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+#card_12{
+  /*display:none;*/
+  top: 1px;
+  left: 215px;
+  -webkit-transform: rotate(4deg);
+  -moz-transform: rotate(4deg);
+  -o-transform: rotate(4deg);
+  -ms-transform: rotate(4deg);
+  transform: rotate(4deg);
+}
+#card_13{
+  /*display:none;*/
+  top: 3px;
+  left: 250px;
+  -webkit-transform: rotate(8deg);
+  -moz-transform: rotate(8deg);
+  -o-transform: rotate(8deg);
+  -ms-transform: rotate(8deg);
+  transform: rotate(8deg);
+}
+
+.cardFaces {
+  width: 120px;
+  height: 180px;
+  position: absolute;
+  -webkit-transition: -webkit-transform 0.5s;
+     -moz-transition: -moz-transform 0.5s;
+       -o-transition: -o-transform 0.5s;
+          transition: transform 0.5s;
+  -webkit-transform-style: preserve-3d;
+     -moz-transform-style: preserve-3d;
+       -o-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+.cardFaces.flipped {
+  -webkit-transform: rotateY( 180deg );
+     -moz-transform: rotateY( 180deg );
+       -o-transform: rotateY( 180deg );
+          transform: rotateY( 180deg );
+}
+.cardFaces div {
+  background: white;
+  height: 100%;
+  width: 100%;
+  border: solid 1px #DDD;
+  border-radius: 10px;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+     -moz-backface-visibility: hidden;
+       -o-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+.cardFaces .back {
+  -webkit-transform: rotateY( 180deg );
+     -moz-transform: rotateY( 180deg );
+       -o-transform: rotateY( 180deg );
+          transform: rotateY( 180deg );
+}
+.cardFaces .back .shading{
+  margin: 10px;
+  width: 98px;
+  height: 158px;
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQIW2NkgIP//xkYGBkZEQIQFiMDA0QGJoGhAgCu3gQFSmE10wAAAABJRU5ErkJggg==) repeat;
+  border: 1px solid #00F;
+  border-radius: 3px;
+}
+.cardFaces .front {
+  text-align: left;
+}
+.cardFaces .front .index {
+  border: none;
+  height: 176px;
+  display: inline-block;
+  width: 25px;
+  padding: 2px;
+  background: none;
+}
+.cardFaces .front .index p {
+  display: block;
+  clear: both;
+  text-align: center;
+  font: 20px Georgia, serif;
+  font-weight: bold;
+}
+.cardFaces .front .big {
+  border: none;
+  padding-top:40px;
+  height: 130px;
+  background: none;
+}
+.cardFaces .front .big p {
+  display:block;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  font: 50px/50px Georgia, serif;
+}
+

@@ -28,17 +28,23 @@ def usernameRequest(conn, username):
     conn.sendData("usernameExists")
     logger.sockEntry(str(conn.address[0]) + '-' + str(conn.address[1]) + ': Username request denied - exists ('+username +').')
   else:
-    conn.toClient().username = str(username)
+    conn.setUsername(username)
     conn.sendData("loginAccepted", username)
     logger.sockEntry(str(conn.address[0]) + '-' + str(conn.address[1]) + ': Username accepted ('+username +').')
     sendClientData(conn)
     sendUserList(conn)
 
 def pong(conn, pingStampStr):
-  conn.toClient().latency = logger.secondsSinceDateTimeStr(pingStampStr)
+  conn.getClient().latency = logger.secondsSinceDateTimeStr(pingStampStr)
   sendClientData(conn)
+def sendChatOut(conn, msg):
+  chatObject = Object()
+  chatObject.fromUser = conn.getUsername()
+  chatObject.message = msg
+  for client in list(clients):
+    client.connection.sendData("chatMessage",chatObject)
 def sendClientData(conn):
-  userdata = str(conn.toClient().__dict__)
+  userdata = conn.getClient()
   conn.sendData("clientData",userdata)
 def cleanJSONstring(string):
   """ These are regular expressions to correct the format for send client objects """
@@ -62,22 +68,37 @@ class WS_Handler(WebSocket):
     toSend = Object()
     toSend.header = message_type
     if message_data != None:
-      toSend.data = message_data
+      if isinstance(message_data, Object):
+        toSend.data = str(message_data.__dict__)
+      else:
+        toSend.data = message_data
     string = unicode(json.dumps(toSend.__dict__))
     string = cleanJSONstring(string)
+    # print "outgoing", string
     self.sendMessage(string)
-  def toClient(self):
+  def getClient(self):
     for client in list(clients):
       if client.connection == self:
         return client
     return False
+  def getUsername(self):
+    for client in list(clients):
+      if client.connection == self:
+        return client.username
+    return False
+  def setUsername(self, username):
+    for client in list(clients):
+      if client.connection == self:
+        client.username = username
   def handleMessage(self):
+    # print "incoming", self.data
     message = json.loads(self.data)
-    # print self.data
     if message['header'] == "usernameRequest":
       usernameRequest(self, message['data'])
     elif message['header'] == "pong":
       pong(self, message['data'])
+    elif message['header'] == "chat":
+      sendChatOut(self, message['data'])
   def handleConnected(self):
     newUser = Object()
     newUser.connection = self
@@ -89,7 +110,7 @@ class WS_Handler(WebSocket):
     self.sendData("serverVersion",server_version)
     self.sendData("ping", logger.datetime_str())
   def handleClose(self):
-    clients.remove(self.toClient())
+    clients.remove(self.getClient())
     logger.sockEntry(str(self.address[0]) + '-' + str(self.address[1]) + ': Socket connection disconnected.')
 
 class HTTP_Handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
