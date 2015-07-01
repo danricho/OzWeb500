@@ -21,7 +21,7 @@
   top: 0px;
   left: 50%;
   margin-left: -239px;
-  margin-top: -160px;
+  margin-top: -110px;
   -webkit-transform: rotateZ( 180deg );
    -moz-transform: rotateZ( 180deg );
      -o-transform: rotateZ( 180deg );
@@ -57,38 +57,42 @@
 #table_cards{
   height: 200px;
   width: 200px;
-  top: 135px;
-  left: 100px;
-  position: absolute;
-  left: 50%;
-  margin-left: -100px;
-}
-.table_card {
-  top: 100px;
-  left: 100px;
-  position: absolute;
-  
 }
 #partnerTableCard{
-  -webkit-transform: rotateZ( 180deg );
-   -moz-transform: rotateZ( 180deg );
-     -o-transform: rotateZ( 180deg );
-        transform: rotateZ( 180deg );
+  top: 85px;
+  left: 126px;
+  position: absolute;
+  -webkit-transform: rotateZ( 170deg );
+   -moz-transform: rotateZ( 170deg );
+     -o-transform: rotateZ( 170deg );
+        transform: rotateZ( 170deg );
 }
 #nextTableCard{
-  -webkit-transform: rotateZ( -90deg );
-   -moz-transform: rotateZ( -90deg );
-     -o-transform: rotateZ( -90deg );
-        transform: rotateZ( -90deg );
+  top: 115px;
+  left: 138px;
+  position: absolute;
+  -webkit-transform: rotateZ( -86deg );
+   -moz-transform: rotateZ( -86deg );
+     -o-transform: rotateZ( -86deg );
+        transform: rotateZ( -86deg );
 }
 #previousTableCard{
-  -webkit-transform: rotateZ( 90deg );
-   -moz-transform: rotateZ( 90deg );
-     -o-transform: rotateZ( 90deg );
-        transform: rotateZ( 90deg );
+  top: 98px;
+  left: 62px;
+  position: absolute;
+  -webkit-transform: rotateZ( 78deg );
+   -moz-transform: rotateZ( 78deg );
+     -o-transform: rotateZ( 78deg );
+        transform: rotateZ( 78deg );
 }
 #myTableCard{
-
+  top: 120px;
+  left: 113px;
+  position: absolute;
+    -webkit-transform: rotateZ( 12deg );
+   -moz-transform: rotateZ( 12deg );
+     -o-transform: rotateZ( 12deg );
+        transform: rotateZ( 12deg );
 }
 
 #card_1{
@@ -298,3 +302,8 @@
   font: 50px/50px Georgia, serif;
 }
 
+#myHand .cardFaces:hover .front, #myHand .cardFaces:hover .back {
+  background-color: #ddd;
+  -webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.4);
+  box-shadow: 1px 1px 7px rgba(0,0,0,0.4);
+}

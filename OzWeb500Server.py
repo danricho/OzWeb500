@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import signal, json, time, sys, traceback, threading, re, socket
+import signal, json, time, sys, traceback, threading, re, socket, os
+os.system('clear')
 
 import logger
 from SimpleWebSocketServer import WebSocket, SimpleWebSocketServer
@@ -18,11 +19,22 @@ server_hostname = socket.gethostname()
 
 clients = []
 
+def allClients():
+  clientlist = []
+  for client in list(clients):
+    clientlist.append(client)
+  return clientlist
+def allUsers():
+  userlist = []
+  for client in list(clients):
+    if client.username:
+      userlist.append(client)
+  return list(userlist)
 def username2client(username):
   for client in list(clients):
     if client.username == username:
       return client
-  return False
+  return None
 def usernameRequest(conn, username):
   if username2client(username):
     conn.sendData("usernameExists")
@@ -32,7 +44,8 @@ def usernameRequest(conn, username):
     conn.sendData("loginAccepted", username)
     logger.sockEntry(str(conn.address[0]) + '-' + str(conn.address[1]) + ': Username accepted ('+username +').')
     sendClientData(conn)
-    sendUserList(conn)
+    sendUserList()
+    sendLoginNotification(conn)
 
 def pong(conn, pingStampStr):
   conn.getClient().latency = logger.secondsSinceDateTimeStr(pingStampStr)
@@ -41,8 +54,21 @@ def sendChatOut(conn, msg):
   chatObject = Object()
   chatObject.fromUser = conn.getUsername()
   chatObject.message = msg
-  for client in list(clients):
+  for client in allClients():
     client.connection.sendData("chatMessage",chatObject)
+def sendLoginNotification(conn):
+  notificationObject = Object()
+  notificationObject.str = conn.getUsername() + " logged in."
+  for client in allClients():
+    if client.connection != conn:
+      client.connection.sendData("notification",notificationObject) 
+def sendLeftNotification(conn):
+  notificationObject = Object()
+  notificationObject.str = conn.getUsername() + " left."
+  for client in allClients():
+    if client.connection != conn:
+      client.connection.sendData("notification",notificationObject) 
+
 def sendClientData(conn):
   userdata = conn.getClient()
   conn.sendData("clientData",userdata)
@@ -53,8 +79,9 @@ def cleanJSONstring(string):
   string = re.sub(r"'", r'"', string)
   string = re.sub(r'": "{"', r'": {"', string)
   string = re.sub(r'}"', "}", string)
+  string = re.sub(r': None', ": null", string)
   return string
-def sendUserList(conn):
+def sendUserList():
   userList = []
   for client in list(clients):
     if client.username != "":
@@ -102,7 +129,7 @@ class WS_Handler(WebSocket):
   def handleConnected(self):
     newUser = Object()
     newUser.connection = self
-    newUser.username = ""
+    newUser.username = None
     newUser.latency = 0.000
     clients.append(newUser)
     logger.sockEntry(str(self.address[0]) + '-' + str(self.address[1]) + ': New socket connection.')
@@ -110,9 +137,11 @@ class WS_Handler(WebSocket):
     self.sendData("serverVersion",server_version)
     self.sendData("ping", logger.datetime_str())
   def handleClose(self):
+    sendLeftNotification(self)
     clients.remove(self.getClient())
+    sendUserList()
     logger.sockEntry(str(self.address[0]) + '-' + str(self.address[1]) + ': Socket connection disconnected.')
-
+    
 class HTTP_Handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
   def log_message(self, format, *args):
     # override logging output

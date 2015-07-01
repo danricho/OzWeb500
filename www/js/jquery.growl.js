@@ -196,7 +196,8 @@ Copyright 2015 Kevin Sylvestre
       options = {};
     }
     settings = {
-      title: "Error!",
+      title: "",
+      //title: "Error!",
       style: "error"
     };
     return $.growl($.extend(settings, options));
@@ -208,7 +209,8 @@ Copyright 2015 Kevin Sylvestre
       options = {};
     }
     settings = {
-      title: "Notice!",
+      title: "",
+      //title: "Notice!",
       style: "notice"
     };
     return $.growl($.extend(settings, options));
@@ -220,7 +222,8 @@ Copyright 2015 Kevin Sylvestre
       options = {};
     }
     settings = {
-      title: "Warning!",
+      title: "",
+      //title: "Warning!",
       style: "warning"
     };
     return $.growl($.extend(settings, options));
