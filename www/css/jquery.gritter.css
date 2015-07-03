@@ -1,0 +1,66 @@
+/* the norm */
+#gritter-notice-wrapper {
+	position:fixed;
+	top:20px;
+	right:20px;
+	width:250px;
+	z-index:9999;
+}
+#gritter-notice-wrapper.bottom-right {
+    top: auto;
+    left: auto;
+    bottom: 40px;
+    right: 5px;
+}
+#gritter-notice-wrapper.bottom-left {
+    top: auto;
+    right: auto;
+    bottom: 20px;
+    left: 20px;
+}
+.gritter-item-wrapper {
+	position:relative;
+	margin:0 0 5px 0;
+	border-radius: 3px;
+}
+.gritter-top {
+	height:5px;
+}
+.gritter-bottom {
+	height:5px;
+	margin:0;
+}
+.gritter-item {
+	display:block;
+	color: #eee;
+	padding:5px 5px 5px 5px;
+}
+.gritter-item p {
+	padding:0;
+	margin:0;
+	word-wrap: break-word;
+}
+.gritter-title {
+	font-size:14px;
+	font-weight:bold;
+	padding:0 0 7px 0;
+	display:block;
+}
+.gritter-without-image {
+	padding:0;
+}
+.gritter-close{
+	display:none;
+}
+.chatGritter{
+	background-color:rgba(0, 0, 0, 0.7);
+}
+.notificationGritter{
+	background-color:rgba(12, 119, 25, 0.7);
+}
+.alertGritter{
+	background-color:rgba(164, 135, 9, 0.7);
+}
+.errorGritter{
+	background-color:rgba(149, 6, 6, 0.7);
+}

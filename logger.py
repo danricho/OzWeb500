@@ -15,10 +15,10 @@ serverLog = open("logs/"+datetime.datetime.now().strftime('%Y%m%d.%H%M%S')+"_ozW
 
 def time_str():
   return datetime.datetime.now().strftime('%H:%M:%S.%f')
-  
+
 def datetime_str():
   return datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
-  
+
 def mainEntry(entry, serverLogEntry=True):
   print RED + BOLD + "[" + time_str() + " " + "MAIN" + "] " + CLEAR + entry
   if serverLogEntry:
@@ -38,12 +38,9 @@ def dbugEntry(entry, serverLogEntry=True):
   print YELLOW + BOLD + "[" + time_str() + " " + "DBUG" + "] " + CLEAR + entry
   if serverLogEntry:
     serverLog.write("[" + datetime_str() + " " + "DBUG" + "] " + entry + "\n")
-    
+
 def secondsSinceDateTimeStr(str):
   now = datetime.datetime.now()
   since = datetime.datetime.strptime(str, '%Y-%m-%d %H:%M:%S.%f')
   loopback = now - since
   return loopback.total_seconds()
-
-
-  

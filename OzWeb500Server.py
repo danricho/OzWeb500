@@ -38,7 +38,7 @@ def username2client(username):
 def usernameRequest(conn, username):
   if username2client(username):
     conn.sendData("usernameExists")
-    logger.sockEntry(str(conn.address[0]) + '-' + str(conn.address[1]) + ': Username request denied - exists ('+username +').')
+    logger.sockEntry(str(conn.address[0]) + '-' + str(conn.address[1]) + ': Username request denied - exists (' + username + ').')
   else:
     conn.setUsername(username)
     conn.sendData("loginAccepted", username)
@@ -49,11 +49,16 @@ def usernameRequest(conn, username):
 
 def pong(conn, pingStampStr):
   conn.getClient().latency = logger.secondsSinceDateTimeStr(pingStampStr)
+  if conn.getUsername():
+    logger.sockEntry(conn.getUsername() + ': latency updated to ' + str(conn.getClient().latency) + '.')
+  else:
+    logger.sockEntry(str(conn.address[0]) + '-' + str(conn.address[1]) + ': latency updated to ' + str(conn.getClient().latency) + '.')
   sendClientData(conn)
 def sendChatOut(conn, msg):
   chatObject = Object()
   chatObject.fromUser = conn.getUsername()
   chatObject.message = msg
+  logger.sockEntry(chatObject.fromUser + ' said: ' + chatObject.message)
   for client in allClients():
     client.connection.sendData("chatMessage",chatObject)
 def sendLoginNotification(conn):
@@ -61,13 +66,13 @@ def sendLoginNotification(conn):
   notificationObject.str = conn.getUsername() + " logged in."
   for client in allClients():
     if client.connection != conn:
-      client.connection.sendData("notification",notificationObject) 
+      client.connection.sendData("notification",notificationObject)
 def sendLeftNotification(conn):
   notificationObject = Object()
   notificationObject.str = conn.getUsername() + " left."
   for client in allClients():
     if client.connection != conn:
-      client.connection.sendData("notification",notificationObject) 
+      client.connection.sendData("notification",notificationObject)
 
 def sendClientData(conn):
   userdata = conn.getClient()
@@ -141,7 +146,7 @@ class WS_Handler(WebSocket):
     clients.remove(self.getClient())
     sendUserList()
     logger.sockEntry(str(self.address[0]) + '-' + str(self.address[1]) + ': Socket connection disconnected.')
-    
+
 class HTTP_Handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
   def log_message(self, format, *args):
     # override logging output
@@ -160,7 +165,7 @@ http_handler = HTTP_Handler
 SocketServer.TCPServer.allow_reuse_address = True
 http_server = SocketServer.TCPServer(("", http_port), http_handler)
 http_thread = threading.Thread(target = http_server.serve_forever)
-http_thread.deamon = True 
+http_thread.deamon = True
 
 if __name__ == "__main__":
 
@@ -180,9 +185,9 @@ if __name__ == "__main__":
     ws_server.close()
     logger.sockEntry("Web Socket Server stopped.")
     sys.exit()
-    
+
   signal.signal(signal.SIGINT, close_sig_handler)
-  
+
   while True:
     logger.mainEntry("Pinging Clients.", False)
     for client in list(clients):
