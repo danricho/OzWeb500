@@ -1,5 +1,6 @@
 # OzWeb500
 This is a web-based multi-player implementation of the Australian card game '500', which is similar to 'Euchre'.
+[GitHub Page for this project](http://danricho.github.io/OzWeb500/)
 ##Features
 ###Python Server:
 - Full logging capability with time-stamping to file and screen.
