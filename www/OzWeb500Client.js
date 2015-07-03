@@ -1,7 +1,20 @@
+
+/* SETTINGS */
 client_version = 0.1
+WebSocket_Add = window.location.hostname
+WebSocket_Port = "8000"
+
+/* CARD RELATED CONSTANTS */
+/// SUIT index ranges from 1 to 5.
+SUIT_str  = [null,"Clubs","Spades","Diamonds","Hearts","No Trumps"]
+SUIT_disp = [null,"♣","♠","♦","♥",""]
+/// RANK index ranges from 3 to 15.
+RANK_str  = [null,null,null,"3","4","5","6","7","8","9","10","Jack","Queen","King","Ace","Joker"]
+RANK_disp = [null,null,null,"3","4","5","6","7","8","9","10","J","Q","K","A","Jok"]
+
 
 function doWsConnect() {
-  websocket = new WebSocket("ws://" + window.location.hostname + ":" + "8000");
+  websocket = new WebSocket("ws://" + WebSocket_Add + ":" + WebSocket_Port);
   websocket.onopen = function(evt) {
     onWebSockOpen(evt)
   };

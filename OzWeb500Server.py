@@ -10,12 +10,81 @@ import SimpleHTTPServer, SocketServer
 
 class Object(object): pass;
 
+""" SETTINGS """
 dealer_lag = 0.25
 ws_port = 8000
 http_port = 8001
 http_root = "www/"
 server_version = 0.1
 server_hostname = socket.gethostname()
+
+""" CARD RELATED CONSTANTS """
+# SUIT index ranges from 1 to 5.
+SUIT_str  = [None,"Spades","Clubs","Diamonds","Hearts","No Trumps"]
+SUIT_disp = [None,"♠","♣","♦","♥",""] # not displayable for python output.
+SUIT_leftBower = [None,2,1,4,3,None] # left bower's suit
+# RANK index ranges from 3 to 15.
+RANK_str  = [None,None,None,"3","4","5","6","7","8","9","10","Jack","Queen","King","Ace","Joker"]
+RANK_disp = [None,None,None,"3","4","5","6","7","8","9","10","J","Q","K","A","Jok"]
+
+NO_CARDS = False
+
+trumps = 5 # no trumps
+
+class Card(object):
+  def __init__(self, suit=1, rank=3):
+    self.suit = suit
+    self.rank = rank
+  def __str__(self):
+    if self.suit == 5:
+      return "The Joker"
+    else:
+      return RANK_str[self.rank] + " of " + SUIT_str[self.suit]
+  def __cmp__(self, other):
+    #print "self",str(self.suit),str(self.rank)
+    #print "other",str(other.suit),str(other.rank)
+    if self.rank == 15: return 1 # 1st is the Joker
+    if other.rank == 15: return -1  # 2nd is the Joker
+    if (self.suit == trumps and self.rank == 11): return 1 # 1st is the right bower
+    if (other.suit == trumps and other.rank == 11): return -1 # 2nd is the right bower
+    if (self.suit == SUIT_leftBower[trumps] and self.rank == 11): return 1 # 1st is the left bower
+    if (other.suit == SUIT_leftBower[trumps] and other.rank == 11): return -1 # 2nd is the left bower
+    if (self.suit == trumps and other.suit != trumps): return 1 # 1st only is on suit
+    if (other.suit == trumps and self.suit != trumps): return -1 # 2nd only is on suit
+    if cmp(self.suit, other.suit) == 0: # same suit -> highest wins
+      return cmp(self.rank, other.rank)
+    else:
+      return 0
+class Deck(object):
+  def __init__(self,fill=True):
+    self.cards=[]
+    if fill:
+      for suit in range(1,3): # Create the black cards
+        for rank in range(3, 15):
+          new_card = Card(suit, rank)
+          self.cards.append(new_card)
+      for suit in range(3,5): # Create the red cards
+        for rank in range(4, 15):
+          new_card = Card(suit, rank)
+          self.cards.append(new_card)
+      new_card = Card(5, 15) # create the Joker
+      self.cards.append(new_card)
+  def __str__(self):
+    string = ""
+    for card in self.cards:
+      string = string + str(card) + "\n"
+    return string[:-1]
+  def sort(self):
+    self.cards.sort()
+
+""" Cards Testing """
+dealer_deck = Deck()
+kitty = Deck(NO_CARDS)
+#print str(dealer_deck)
+
+trumps = 1
+dealer_deck.sort()
+# print str(dealer_deck)
 
 clients = []
 
@@ -146,7 +215,6 @@ class WS_Handler(WebSocket):
     clients.remove(self.getClient())
     sendUserList()
     logger.sockEntry(str(self.address[0]) + '-' + str(self.address[1]) + ': Socket connection disconnected.')
-
 class HTTP_Handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
   def log_message(self, format, *args):
     # override logging output
