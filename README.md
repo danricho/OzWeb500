@@ -16,7 +16,7 @@ This is a web-based multi-player implementation of the Australian card game '500
 
 ###Desktop Client (Future):
 - Should be a simple port from the Web Client above.
-- Intend to utilise the github "electron" framework.
+- Intend to utilise the github [electron](https://github.com/atom/electron) framework.
 
 ###Game Play (Future):
 - I have previously written a working version of the card game.
