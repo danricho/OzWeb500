@@ -35,9 +35,15 @@ Note that my repo contains the needed files to run and I have modified all of th
 * JQuery Filter Input v1.5.3
  * Author: Rudolf Naprstek
  * [Web Link](http://www.thimbleopensource.com/tutorials-snippets/jquery-plugin-filter-text-input)
+ * [GitHub Repo](https://github.com/frodik/jquery.filter.input)
 * Gritter for jQuery v1.7.4
  * Author: Jordan Boesch
  * [Web Link](http://www.boedesign.com)
+ * [GitHub Repo](https://github.com/jboesch/Gritter)
 * leanModal v1.1
  * Author: Ray Stone
  * [Web Link](http://finelysliced.com.au)
+ * [GitHub Repo](https://github.com/FinelySliced/leanModal.js)
+* ThinkPython card class - inspiration for my classes
+ * Author: Allen Downey
+ * [GitHub Repo](https://github.com/AllenDowney/ThinkPython)
