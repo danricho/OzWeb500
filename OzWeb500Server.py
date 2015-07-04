@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import signal, json, time, sys, traceback, threading, re, socket, os
+import signal, json, time, sys, traceback, threading, re, socket, os, random
 os.system('clear')
 
 import logger
@@ -55,6 +55,8 @@ class Card(object):
       return cmp(self.rank, other.rank)
     else:
       return 0
+  def jsonStr(self):
+    return '{"suit":'+str(self.suit)+',"rank":'+str(self.rank)+'}'
 class Deck(object):
   def __init__(self,fill=True):
     self.cards=[]
@@ -74,19 +76,43 @@ class Deck(object):
     for card in self.cards:
       string = string + str(card) + "\n"
     return string[:-1]
+  def addCard(self,card):
+    self.cards.append(card)
+  def removeCard(self,card):
+    self.cards.remove(card)
+  def removeCardIndex(self,index):
+    del self.cards[index]
+  def popCard(self,i=-1):
+    return self.cards.pop(i)
+  def moveCards(self,otherDeck,num):
+    for i in range(num):
+      otherDeck.addCard(self.popCard())
   def sort(self):
     self.cards.sort()
+  def shuffle(self):
+    random.shuffle(self.cards)
+  def getIndex(self,findcard):
+    for index,card in enumerate(self.cards):
+      if card == findcard:
+        return index
+    return -1
+  def winningIndex(self):
+    tempCards = self.cards
+    tempCards.sort()
+    if tempCards[-1] > tempCards[-2]:
+      return self.getIndex(tempCards[-1])
+    return -1
+  def jsonStr(self):
+    string = "["
+    for card in self.cards:
+      string = string + card.jsonStr() + ","
+    return string[:-1] + "]"
 
-""" Cards Testing """
 dealer_deck = Deck()
-kitty = Deck(NO_CARDS)
-#print str(dealer_deck)
-
-trumps = 1
-dealer_deck.sort()
-# print str(dealer_deck)
+kitty = Deck(False)
 
 clients = []
+players = [None,None,None,None]
 
 def allClients():
   clientlist = []
