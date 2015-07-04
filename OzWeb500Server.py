@@ -140,6 +140,7 @@ def usernameRequest(conn, username):
     logger.sockEntry(str(conn.address[0]) + '-' + str(conn.address[1]) + ': Username accepted ('+username +').')
     sendClientData(conn)
     sendUserList()
+    sendPlayersStatus(conn)
     sendLoginNotification(conn)
 
 def pong(conn, pingStampStr):
@@ -168,7 +169,8 @@ def sendLeftNotification(conn):
   for client in allClients():
     if client.connection != conn:
       client.connection.sendData("notification",notificationObject)
-
+def sendPlayersStatus(conn):
+  conn.sendData("playerStatus",players)
 def sendClientData(conn):
   userdata = conn.getClient()
   conn.sendData("clientData",userdata)
