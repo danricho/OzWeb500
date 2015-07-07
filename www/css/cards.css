@@ -1,21 +1,91 @@
+card {
+  width: 120px;
+  height: 180px;
+  border: solid 1px #DDD;
+  border-radius: 10px;
+  background: white;
+  display:none;
+}
+card > face {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+card > face#back div.shading{
+  margin: 10px;
+  width: 98px;
+  height: 158px;
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQIW2NkgIP//xkYGBkZEQIQFiMDA0QGJoGhAgCu3gQFSmE10wAAAABJRU5ErkJggg==) repeat;
+  border: 1px solid #00F;
+  border-radius: 3px;
+}
+card > face#front {
+  text-align: left;
+}
+card > face#front .index {
+  border: none;
+  height: 176px;
+  display: inline-block;
+  width: 25px;
+  padding: 2px;
+  background: none;
+}
+card > face#front .index p {
+  display: block;
+  clear: both;
+  text-align: center;
+  font: 20px Georgia, serif;
+  font-weight: bold;
+}
+card > face#front .big {
+  border: none;
+  padding-top:40px;
+  height: 130px;
+  background: none;
+  top: 0;
+  position: absolute;
+  display: block;
+  width: 100%;
+}
+card > face#front .big p {
+  display:block;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  font: 50px/50px Georgia, serif;
+}
+
 .Hand {
   width: 478px;
   height: 270px;
   position: absolute;
 }
-#myHand {
+.Hand > card{
+  float: left;
+  border-radius: 10px;
+  margin-right: 10px;
+  width: 120px;
+  height: 180px;
+  position: absolute;
+}
+
+.red{
+    color: #ff0000;
+}
+.black{
+    color: #000000;
+}
+.kitty{
+  display: none;
+}
+
+#myHand{
   bottom: 0px;
   left: 50%;
   margin-left: -239px;
   margin-bottom: -50px;
-}
-#nextHand{
-  top: 150px;
-  right: -250px;
-  -webkit-transform: rotateZ( -90deg );
-   -moz-transform: rotateZ( -90deg );
-     -o-transform: rotateZ( -90deg );
-        transform: rotateZ( -90deg );
 }
 #partnerHand{
   top: 0px;
@@ -27,7 +97,7 @@
      -o-transform: rotateZ( 180deg );
         transform: rotateZ( 180deg );
 }
-#previousHand{ 
+#previousHand{
   top: 150px;
   left: -250px;
   -webkit-transform: rotateZ( 90deg );
@@ -35,23 +105,22 @@
      -o-transform: rotateZ( 90deg );
         transform: rotateZ( 90deg );
 }
+#nextHand{
+  top: 150px;
+  right: -250px;
+  -webkit-transform: rotateZ( -90deg );
+   -moz-transform: rotateZ( -90deg );
+     -o-transform: rotateZ( -90deg );
+        transform: rotateZ( -90deg );
+}
 
-.kitty{
-  display: none;
+#myHand > card > face#back{
+  display:none;
 }
-.cardPosition{
-  float: left;
-  border-radius: 10px;
-  margin-right: 10px;
-  width: 120px;
-  height: 180px;
-  position: absolute;
-}
-.red{
-    color: #ff0000;
-}
-.black{
-    color: #000000;
+#myHand > card:hover {
+  background-color: #dde;
+  -webkit-box-shadow: 1px 1px 7px rgba(0,0,63,0.4);
+  box-shadow: 1px 1px 7px rgba(0,0,63,0.4);
 }
 
 #table_cards{
@@ -59,40 +128,40 @@
   width: 200px;
 }
 #partnerTableCard{
-  top: 85px;
-  left: 126px;
+  top: -90px;
+  left: -10px;
   position: absolute;
-  -webkit-transform: rotateZ( 170deg );
-   -moz-transform: rotateZ( 170deg );
-     -o-transform: rotateZ( 170deg );
-        transform: rotateZ( 170deg );
+  -webkit-transform: rotateZ( 175deg );
+   -moz-transform: rotateZ( 175deg );
+     -o-transform: rotateZ( 175deg );
+        transform: rotateZ( 175deg );
+}
+#previousTableCard{
+  top: 68px;
+  left: -65px;
+  position: absolute;
+  -webkit-transform: rotateZ( 94deg );
+   -moz-transform: rotateZ( 94deg );
+     -o-transform: rotateZ( 94deg );
+        transform: rotateZ( 94deg );
 }
 #nextTableCard{
-  top: 115px;
-  left: 138px;
+  top: -30px;
+  left: 156px;
   position: absolute;
   -webkit-transform: rotateZ( -86deg );
    -moz-transform: rotateZ( -86deg );
      -o-transform: rotateZ( -86deg );
         transform: rotateZ( -86deg );
 }
-#previousTableCard{
-  top: 98px;
-  left: 62px;
-  position: absolute;
-  -webkit-transform: rotateZ( 78deg );
-   -moz-transform: rotateZ( 78deg );
-     -o-transform: rotateZ( 78deg );
-        transform: rotateZ( 78deg );
-}
 #myTableCard{
   top: 120px;
-  left: 113px;
+  left: 95px;
   position: absolute;
-    -webkit-transform: rotateZ( 12deg );
-   -moz-transform: rotateZ( 12deg );
-     -o-transform: rotateZ( 12deg );
-        transform: rotateZ( 12deg );
+  -webkit-transform: rotateZ( 3deg );
+   -moz-transform: rotateZ( 3deg );
+     -o-transform: rotateZ( 3deg );
+        transform: rotateZ( 3deg );
 }
 
 #card_1{
@@ -104,7 +173,7 @@
   -ms-transform: rotate(-18deg);
   transform: rotate(-18deg);
 }
-#card_2 {
+#card_2{
   /*display:none;*/
   top: 65px;
   left: 57px;
@@ -114,7 +183,7 @@
   -ms-transform: rotate(-14deg);
   transform: rotate(-14deg);
 }
-#card_3 {
+#card_3{
   /*display:none;*/
   top: 57px;
   left: 91px;
@@ -223,87 +292,4 @@
   -o-transform: rotate(8deg);
   -ms-transform: rotate(8deg);
   transform: rotate(8deg);
-}
-
-.cardFaces {
-  width: 120px;
-  height: 180px;
-  position: absolute;
-  -webkit-transition: -webkit-transform 0.5s;
-     -moz-transition: -moz-transform 0.5s;
-       -o-transition: -o-transform 0.5s;
-          transition: transform 0.5s;
-  -webkit-transform-style: preserve-3d;
-     -moz-transform-style: preserve-3d;
-       -o-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-}
-.cardFaces.flipped {
-  -webkit-transform: rotateY( 180deg );
-     -moz-transform: rotateY( 180deg );
-       -o-transform: rotateY( 180deg );
-          transform: rotateY( 180deg );
-}
-.cardFaces div {
-  background: white;
-  height: 100%;
-  width: 100%;
-  border: solid 1px #DDD;
-  border-radius: 10px;
-  position: absolute;
-  -webkit-backface-visibility: hidden;
-     -moz-backface-visibility: hidden;
-       -o-backface-visibility: hidden;
-          backface-visibility: hidden;
-}
-.cardFaces .back {
-  -webkit-transform: rotateY( 180deg );
-     -moz-transform: rotateY( 180deg );
-       -o-transform: rotateY( 180deg );
-          transform: rotateY( 180deg );
-}
-.cardFaces .back .shading{
-  margin: 10px;
-  width: 98px;
-  height: 158px;
-  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQIW2NkgIP//xkYGBkZEQIQFiMDA0QGJoGhAgCu3gQFSmE10wAAAABJRU5ErkJggg==) repeat;
-  border: 1px solid #00F;
-  border-radius: 3px;
-}
-.cardFaces .front {
-  text-align: left;
-}
-.cardFaces .front .index {
-  border: none;
-  height: 176px;
-  display: inline-block;
-  width: 25px;
-  padding: 2px;
-  background: none;
-}
-.cardFaces .front .index p {
-  display: block;
-  clear: both;
-  text-align: center;
-  font: 20px Georgia, serif;
-  font-weight: bold;
-}
-.cardFaces .front .big {
-  border: none;
-  padding-top:40px;
-  height: 130px;
-  background: none;
-}
-.cardFaces .front .big p {
-  display:block;
-  margin: 0px;
-  padding: 0px;
-  text-align: center;
-  font: 50px/50px Georgia, serif;
-}
-
-#myHand .cardFaces:hover .front, #myHand .cardFaces:hover .back {
-  background-color: #ddd;
-  -webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.4);
-  box-shadow: 1px 1px 7px rgba(0,0,0,0.4);
 }

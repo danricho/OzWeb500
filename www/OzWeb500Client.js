@@ -9,6 +9,7 @@ autoTest = true;
 /// SUIT index ranges from 1 to 5.
 SUIT_str  = [null,"Clubs","Spades","Diamonds","Hearts","No Trumps"]
 SUIT_disp = [null,"♣","♠","♦","♥",""]
+SUIT_col  = [null,"black","black","red","red",""]
 /// RANK index ranges from 3 to 15.
 RANK_str  = [null,null,null,"3","4","5","6","7","8","9","10","Jack","Queen","King","Ace","Joker"]
 RANK_disp = [null,null,null,"3","4","5","6","7","8","9","10","J","Q","K","A","Jok"]
@@ -67,7 +68,10 @@ function doSendLoginReguest() {
   }
 }
 function doSendChatMessage() {
-  doWsSend("chat", $('#inputChat').val());
+  chat_message = $('#inputChat').val()
+  chat_message = chat_message.replace(/["]/g, "&#34;");
+  chat_message = chat_message.replace(/[']/g, "&#39;");
+  doWsSend("chat", chat_message);
   $('#inputChat').val("");
 }
 // Display Info Doers
@@ -115,6 +119,23 @@ function doDisplayUserList(users) {
       $("#userList").append("<p>" + value + "</p>");
     }
   });
+}
+function doDisplayCardFront(card,suit,rank){
+  $(card + "> face#front").removeClass("red").removeClass("black").addClass(SUIT_col[suit]);
+  $(card + "> face#front #rank").text(RANK_disp[rank]);
+  $(card + "> face#front #suit").text(SUIT_disp[suit]);
+  $(card + "> face#back").fadeOut(50);
+  $(card + "> face#front").fadeIn(50);
+  $(card).fadeIn(50);
+}
+function doDisplayCardBack(card){
+  $(card + "> face#front").removeClass("red").removeClass("black")
+  $(card + "> face#front").fadeOut(50);
+  $(card + "> face#back").fadeIn(50);
+  $(card).fadeIn(50);
+}
+function doDisplayHideCard(card){
+  $(card).fadeOut(50);
 }
 // Input Availability Doers
 function doInputChatAvailable(state) {
@@ -234,11 +255,13 @@ function onWebSockMessage(evt) {
       console.log("Message: " + message.data.message + ".");
       console.log("Displaying message.");
       onIncomingChatMessage(message.data.fromUser, message.data.message);
+      console.groupEnd();
       break;
     case "notification":
       console.log("Message: " + message.data.str + ".");
       console.log("Displaying notification.");
       onIncomingNotification(message.data.str);
+      console.groupEnd();
       break;
     default:
       console.log("Received Data: ", message.data);

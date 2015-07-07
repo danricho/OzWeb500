@@ -18,985 +18,873 @@
   <div id="header">
     <div class="third-column-left">
       <i id="users" class="fa fa-fw fa-users"></i>
-      <i id="login_status" class="fa fa-fw fa-user red" title='Not logged in.'></i>
+      <i id="login_status" class="fa fa-fw fa-user" title='Not logged in.'></i>
       <span id="usernameDisp"></span>
     </div>
     <div class="third-column-centre">
       <span id="title">OzWeb500</span>
     </div>
     <div class="third-column-right">
-      <i id="ws_conn_status" class="fa fa-fw fa-plug red" title='Not Connected to Server.'></i>
+      <i id="ws_conn_status" class="fa fa-fw fa-plug" title='Not Connected to Server.'></i>
     </div>
   </div>
   <div id="table_cards">
-    <div class="table_card red" id="partnerTableCard">
-      <div class="cardFaces">
-        <div class="front">
+    <card id="partnerTableCard">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="table_card red" id="previousTableCard">
-      <div class="cardFaces">
-        <div class="front">
+        </face>
+    </card>
+    <card id="previousTableCard">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="table_card red" id="nextTableCard">
-      <div class="cardFaces">
-        <div class="front">
+        </face>
+    </card>
+    <card id="nextTableCard">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="table_card red" id="myTableCard">
-      <div class="cardFaces">
-        <div class="front">
+        </face>
+    </card>
+    <card id="myTableCard">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
+        </face>
+    </card>
   </div>
   <div class="Hand" id="partnerHand">
-    <div class="cardPosition red" id="card_1">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_2">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_3">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_4">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_5">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_6">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_7">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_8">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_9">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_10">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
     <!-- kitty cards -->
-    <div class="kitty cardPosition red" id="card_11">
-      <div class="cardFaces flipped">
-        <div class="front">
+    <card class="kitty" id="card_11">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="kitty cardPosition red" id="card_12">
-      <div class="cardFaces flipped">
-        <div class="front">
+        </face>
+    </card>
+    <card class="kitty" id="card_12">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="kitty cardPosition red" id="card_13">
-      <div class="cardFaces flipped">
-        <div class="front">
+        </face>
+    </card>
+    <card class="kitty" id="card_13">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
+        </face>
+    </card>
     <!-- end kitty cards -->
+    <card id="card_1">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_2">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_3">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_4">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_5">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_6">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_7">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_8">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_9">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_10">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
   </div>
   <div class="Hand" id="previousHand">
-    <div class="cardPosition red" id="card_1">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_2">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_3">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_4">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_5">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_6">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_7">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_8">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_9">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_10">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
     <!-- kitty cards -->
-    <div class="kitty cardPosition red" id="card_11">
-      <div class="cardFaces flipped">
-        <div class="front">
+    <card class="kitty" id="card_11">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="kitty cardPosition red" id="card_12">
-      <div class="cardFaces flipped">
-        <div class="front">
+        </face>
+    </card>
+    <card class="kitty" id="card_12">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="kitty cardPosition red" id="card_13">
-      <div class="cardFaces flipped">
-        <div class="front">
+        </face>
+    </card>
+    <card class="kitty" id="card_13">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
+        </face>
+    </card>
     <!-- end kitty cards -->
+    <card id="card_1">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_2">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_3">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_4">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_5">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_6">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_7">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_8">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_9">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_10">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
   </div>
   <div class="Hand" id="nextHand">
-    <div class="cardPosition red" id="card_1">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_2">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_3">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_4">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_5">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_6">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_7">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_8">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_9">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_10">
-      <div class="cardFaces flipped">
-        <div class="front">
-          <div class="index">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-          <div class="big">
-            <p>10</p>
-            <p>♥</p>
-          </div>
-        </div>
-        <div class="back">
-          <div class="shading"></div>
-        </div>
-      </div>
-    </div>
     <!-- kitty cards -->
-    <div class="kitty cardPosition red" id="card_11">
-      <div class="cardFaces flipped">
-        <div class="front">
+    <card class="kitty" id="card_11">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="kitty cardPosition red" id="card_12">
-      <div class="cardFaces flipped">
-        <div class="front">
+        </face>
+    </card>
+    <card class="kitty" id="card_12">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="kitty cardPosition red" id="card_13">
-      <div class="cardFaces flipped">
-        <div class="front">
+        </face>
+    </card>
+    <card class="kitty" id="card_13">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
+        </face>
+    </card>
     <!-- end kitty cards -->
+    <card id="card_1">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_2">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_3">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_4">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_5">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_6">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_7">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_8">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_9">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
+    <card id="card_10">
+        <face id="front">
+          <div class="index">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+          <div class="big">
+            <p id="rank"></p>
+            <p id="suit"></p>
+          </div>
+        </face>
+        <face id="back">
+          <div class="shading"></div>
+        </face>
+    </card>
   </div>
   <div class="Hand" id="myHand">
     <!-- kitty cards -->
-    <div class="kitty cardPosition red" id="card_11">
-      <div class="cardFaces">
-        <div class="front">
+    <card class="kitty" id="card_11">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="kitty cardPosition red" id="card_12">
-      <div class="cardFaces">
-        <div class="front">
+        </face>
+    </card>
+    <card class="kitty" id="card_12">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="kitty cardPosition red" id="card_13">
-      <div class="cardFaces">
-        <div class="front">
+        </face>
+    </card>
+    <card class="kitty" id="card_13">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
+        </face>
+    </card>
     <!-- end kitty cards -->
-    <div class="cardPosition red" id="card_1">
-      <div class="cardFaces">
-        <div class="front">
+    <card id="card_1">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_2">
-      <div class="cardFaces">
-        <div class="front">
+        </face>
+    </card>
+    <card id="card_2">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_3">
-      <div class="cardFaces">
-        <div class="front">
+        </face>
+    </card>
+    <card id="card_3">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_4">
-      <div class="cardFaces">
-        <div class="front">
+        </face>
+    </card>
+    <card id="card_4">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_5">
-      <div class="cardFaces">
-        <div class="front">
+        </face>
+    </card>
+    <card id="card_5">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_6">
-      <div class="cardFaces">
-        <div class="front">
+        </face>
+    </card>
+    <card id="card_6">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_7">
-      <div class="cardFaces">
-        <div class="front">
+        </face>
+    </card>
+    <card id="card_7">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_8">
-      <div class="cardFaces">
-        <div class="front">
+        </face>
+    </card>
+    <card id="card_8">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_9">
-      <div class="cardFaces">
-        <div class="front">
+        </face>
+    </card>
+    <card id="card_9">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
-    <div class="cardPosition red" id="card_10">
-      <div class="cardFaces">
-        <div class="front">
+        </face>
+    </card>
+    <card id="card_10">
+        <face id="front">
           <div class="index">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
           <div class="big">
-            <p>10</p>
-            <p>♥</p>
+            <p id="rank"></p>
+            <p id="suit"></p>
           </div>
-        </div>
-        <div class="back">
+        </face>
+        <face id="back">
           <div class="shading"></div>
-        </div>
-      </div>
-    </div>
+        </face>
+    </card>
   </div>
   <div id="footer">
     <div class="half-column-left">
@@ -1017,9 +905,9 @@
     <a href="#loginmodal" rel="leanModal" name="loginmodal" id="hide_modal" style="display:none">a</a>
   </div>
   <div id="userList"></div>
-  
+
   <script type="text/javascript" charset="utf-8" src="OzWeb500Client.js"></script>
-  
+
 </body>
 
 </html>
