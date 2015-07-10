@@ -28,26 +28,22 @@ The current available version is "Pre-Release" and only exists as a release as i
 I have used the following resources for this project.  
 All credit goes to the respective authors.  
 Note that my repo contains the needed files to run and I have modified all of them to some degree.
-* Server End - Python:
- * Simple-Websocket-Server
-   * Author: dpallot
-   * [GitHub Repo](https://github.com/dpallot/simple-websocket-server)
- * ThinkPython card class - inspiration for my classes
-   * Author: Allen Downey
-   * [GitHub Repo](https://github.com/AllenDowney/ThinkPython)
- * transitions finite state machine implementation
-   * Author: Tal Yarkoni
-   * [GitHub Repo](https://github.com/tyarkoni/transitions)
-* Web Client - Javascript/JQuery:
- * JQuery Filter Input v1.5.3
-   * Author: Rudolf Naprstek
-   * [Web Link](http://www.thimbleopensource.com/tutorials-snippets/jquery-plugin-filter-text-input)
-   * [GitHub Repo](https://github.com/frodik/jquery.filter.input)
- * Gritter for jQuery v1.7.4
-   * Author: Jordan Boesch
-   * [Web Link](http://www.boedesign.com)
-   * [GitHub Repo](https://github.com/jboesch/Gritter)
- * leanModal v1.1
-   * Author: Ray Stone
-   * [Web Link](http://finelysliced.com.au)
-   * [GitHub Repo](https://github.com/FinelySliced/leanModal.js)
+
+####Server End - Python:
+* Simple-Websocket-Server by dpallot
+  * [GitHub Repo](https://github.com/dpallot/simple-websocket-server)
+* Transitions - Finite State Machine Implementation by Tal Yarkoni
+  * [GitHub Repo](https://github.com/tyarkoni/transitions)
+* Inspiration from: ThinkPython Card Class by Allen Downey
+  * [GitHub Repo](https://github.com/AllenDowney/ThinkPython)
+
+####Web Client - Javascript/JQuery:
+* JQuery Filter Input v1.5.3 by Rudolf Naprstek
+  * [Web Link](http://www.thimbleopensource.com/tutorials-snippets/jquery-plugin-filter-text-input)
+  * [GitHub Repo](https://github.com/frodik/jquery.filter.input)
+* Gritter for jQuery v1.7.4 by Jordan Boesch
+  * [Web Link](http://www.boedesign.com)
+  * [GitHub Repo](https://github.com/jboesch/Gritter)
+* leanModal v1.1 by Author: Ray Stone
+  * [Web Link](http://finelysliced.com.au)
+  * [GitHub Repo](https://github.com/FinelySliced/leanModal.js)
