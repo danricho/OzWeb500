@@ -7,6 +7,7 @@ os.system('clear')
 import logger
 from SimpleWebSocketServer import WebSocket, SimpleWebSocketServer
 import SimpleHTTPServer, SocketServer
+from transitions import Machine
 
 class Object(object): pass;
 
@@ -113,6 +114,39 @@ kitty = Deck(False)
 
 clients = []
 players = [None,None,None,None]
+
+
+# This is the game state machine.
+# It will be updated as each element of the game is implemented.
+# Not currently integrated with the WS logic.
+# Uses the transitions library
+# https://github.com/tyarkoni/transitions
+# pip install transitions
+class GameMachine(Machine):
+  players = [None,None,None,None,None]
+  dealerButton = 0 # player index who is the current 'dealer'. Initially random.
+  dealerFocus = 0 # this is the player the dealer is waiting on or is dealing to.
+  transit = False
+  states = ['Signup', 'Bidding', 'theThrow', 'Playing']
+  transitions = [
+    {'trigger':'deal', 'source':'Signup', 'dest':'Bidding', 'conditions':'fourPlayers', 'after': 'dealing'},
+    {'trigger':'giveKitty','source':'Bidding','dest':'theThrow','conditions':'winningBid'},
+    {'trigger':'winnersLead','source':'theThrow','dest':'Playing','conditions':'cardsThrown'},
+    {'trigger':'gameOver','source':'Playing','dest':'Signup','conditions':'over500'}
+  ]
+  def toggle(self): self.transit = not self.transit
+  def fourPlayers(self): return self.transit
+  def dealing(self): logger.gameEntry("I'm dealing baby!") # this will be the function which does the work!!
+  def winningBid(self): return self.transit
+  def cardsThrown(self): return self.transit
+  def over500(self): return self.transit
+  def __init__(self):
+    dealerButton = random.randint(1, 4)
+    self.transit = False
+    Machine.__init__(self, states=self.states, transitions=self.transitions, initial=self.states[0])
+  def __str__(self): return "GameMachine state is '" + self.state + "'."
+
+thisGame = GameMachine()
 
 def allClients():
   clientlist = []

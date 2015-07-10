@@ -39,6 +39,12 @@ def dbugEntry(entry, serverLogEntry=True):
   if serverLogEntry:
     serverLog.write("[" + datetime_str() + " " + "DBUG" + "] " + entry + "\n")
 
+def gameEntry(entry, serverLogEntry=True):
+  print PURPLE + BOLD + "[" + time_str() + " " + "GAME" + "] " + CLEAR + entry
+  if serverLogEntry:
+    serverLog.write("[" + datetime_str() + " " + "GAME" + "] " + entry + "\n")
+
+
 def secondsSinceDateTimeStr(str):
   now = datetime.datetime.now()
   since = datetime.datetime.strptime(str, '%Y-%m-%d %H:%M:%S.%f')
