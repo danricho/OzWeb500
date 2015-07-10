@@ -235,6 +235,7 @@ class WS_Handler(WebSocket):
     newUser.latency = 0.000
     clients.append(newUser)
     logger.sockEntry(str(self.address[0]) + '-' + str(self.address[1]) + ': New socket connection.')
+    sendPlayersStatus(self)
     self.sendData("loginRequest")
     self.sendData("serverVersion",server_version)
     self.sendData("ping", logger.datetime_str())
