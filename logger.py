@@ -14,10 +14,10 @@ import datetime
 serverLog = open("logs/"+datetime.datetime.now().strftime('%Y%m%d.%H%M%S')+"_ozWeb500_server.log",'w')
 
 def time_str():
-  return datetime.datetime.now().strftime('%H:%M:%S.%f')
+  return datetime.datetime.now().strftime('%H:%M:%S.%f')[:-3]
 
 def datetime_str():
-  return datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+  return datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
 
 def mainEntry(entry, serverLogEntry=True):
   print RED + BOLD + "[" + time_str() + " " + "MAIN" + "] " + CLEAR + entry

@@ -14,6 +14,35 @@ SUIT_col  = [null,"black","black","red","red","black"]
 RANK_str  = [null,null,null,"3","4","5","6","7","8","9","10","Jack","Queen","King","Ace","Joker"]
 RANK_disp = [null,null,null,"3","4","5","6","7","8","9","10","J","Q","K","A","Jok"]
 
+// Logger
+myLogger = {
+  timestamp(cat){
+    now = new Date();
+    string = "[";
+    string += now.getHours() + ":";
+    string += (now.getMinutes()<10?'0':'') + now.getMinutes() + ":";
+    string += (now.getSeconds()<10?'0':'') + now.getSeconds() + ".";
+    string += (now.getMilliseconds()<100?'0':now.getMilliseconds()<10?'00':'') + now.getMilliseconds();
+    if (cat != ""){
+      string += " " + cat;
+    };
+    string += "] ";
+    return string;
+  },
+  groupStart(cat, colr, string){
+    console.groupCollapsed("%c" + myLogger.timestamp(cat) + string, "color:" + colr + ";font-weight:bold;");
+  },
+  groupLine(string){
+    console.log(string);
+  },
+  groupEnd(string){
+    console.groupEnd();
+  },
+  line(cat, colr, string){
+    console.log("%c" + myLogger.timestamp(cat) + string, "color:" + colr + ";font-weight:bold;");
+  },
+}
+
 // DO FUNCTIONS
 // WebSocket Doers
 function doWsConnect() {
@@ -30,6 +59,9 @@ function doWsConnect() {
   websocket.onerror = function(evt) {
     onWebSockError(evt)
   };
+  if (autoTest){
+    AutoTester.start();
+  }
 }
 function doWsDisconnect() {
   websocket.close();
@@ -40,30 +72,33 @@ function doWsSend(type, dataIn) {
     data: dataIn
   }
   websocket.send(JSON.stringify(message));
-  console.groupCollapsed("WS Sent: %s.", message.header);
-  console.log("Sent Data:", message.data);
-  console.groupEnd();
+  myLogger.groupStart("WS-SNT", "green", message.header);
+  console.log("Sent Data: " + message.data);
+  myLogger.groupEnd();
 }
 // Send Message Doers
 function doSendLoginReguest() {
   var desired_username = $("#inputUsername").val();
-  console.groupCollapsed("Attempting Login as '%s'.", desired_username);
+  myLogger.groupStart("USR_IN", "blue", "Login as (" + desired_username + ")");
   if (desired_username == "") {
     console.log("Username Empty: Setting Feedback.");
     doDisplayLoginFeedback("Enter a username!", true);
-    console.groupEnd();
-  } else if (desired_username.length < 3) {
+    myLogger.groupEnd();
+  }
+  else if (desired_username.length < 3) {
     console.log("Username too short: Setting Feedback.");
     doDisplayLoginFeedback("Username is too short (min 3).", true);
-    console.groupEnd();
-  } else if (desired_username.length > 10) {
+    myLogger.groupEnd();
+  }
+  else if (desired_username.length > 10) {
     console.log("Username too long: Setting Feedback.");
     doDisplayLoginFeedback("Username is too long (max 10).", true);
-    console.groupEnd();
-  } else {
+    myLogger.groupEnd();
+  }
+  else {
     console.log("Sending usernameRequest message.");
     doDisplayLoginFeedback("Requesting username...", false);
-    console.groupEnd();
+    myLogger.groupEnd();
     doWsSend("usernameRequest", desired_username);
   }
 }
@@ -127,23 +162,27 @@ function doDisplayCardFront(card,suit,rank){
     $(card + "> face#front .big #suit").html("");
     $(card + "> face#front .index #rank").html("<p style='padding-top:10px;line-height:12px;font-size:15px;'>J<br/>O<br/>K<br/>E<br/>R</p>");
     $(card + "> face#front .index #suit").html("");
+    return_string = "Joker(s) displayed.";
   }else{
     $(card + "> face#front #rank").html(RANK_disp[rank]);
     $(card + "> face#front #suit").html(SUIT_disp[suit]);
+    return_string = RANK_disp[rank] + " of " + SUIT_str[suit] + " card(s) displayed.";
   }
-
   $(card + "> face#back").fadeOut(50);
   $(card + "> face#front").fadeIn(50);
   $(card).fadeIn(50);
+  return return_string;
 }
 function doDisplayCardBack(card){
   $(card + "> face#front").removeClass("red").removeClass("black")
   $(card + "> face#front").fadeOut(50);
   $(card + "> face#back").fadeIn(50);
   $(card).fadeIn(50);
+  return "Back of card(s) displayed.";
 }
 function doDisplayHideCard(card){
   $(card).fadeOut(50);
+  return "Card(s) hidden.";
 }
 // Input Availability Doers
 function doInputChatAvailable(state) {
@@ -153,7 +192,7 @@ function doInputChatAvailable(state) {
     $("#inputChat").prop('disabled', true);
   }
 }
-function doInputPlayerPositionAvailable(players){
+function doInputSeatAvailable(players){
   for (var i = 0; i < 4; i++){
     value = i+1
     if (players[i] === null) {
@@ -190,14 +229,14 @@ function doLayoutShowModal(state) {
 // ON FUNCTIONS
 // WebSocket Reactions
 function onWebSockOpen(evt) {
-  console.groupCollapsed("WS connection successfully opened.");
+  myLogger.groupStart("WS", "green", "Connected to server");
   console.log("Updating the connection status display to 'connected'.");
   doDisplayConnectionStatus(true);
   console.log("Open Event Data:", evt);
-  console.groupEnd();
+  myLogger.groupEnd();
 }
 function onWebSockClose(evt) {
-  console.groupCollapsed("WS connection closed.");
+  myLogger.groupStart("WS", "green", "Connection closed.");
   console.log("Updating the connection status display to 'not connected'.");
   doDisplayConnectionStatus(false);
   console.log("Updating the login status to 'not logged in'.");
@@ -209,39 +248,39 @@ function onWebSockClose(evt) {
   console.log("Disabling chat input.");
   doInputChatAvailable(false);
   console.log("Close Event Data", evt)
-  console.groupEnd();
+  myLogger.groupEnd();
 
   setTimeout(function() {
-    doWsConnect();
+      doWsConnect();
   }, 2500);
 
 }
 function onWebSockMessage(evt) {
   //console.log(evt.data)
   message = jQuery.parseJSON(evt.data);
-  console.groupCollapsed("WS Rcvd: %s.", message.header);
+  myLogger.groupStart("WS-REC", "green", message.header);
   switch (message.header) {
     case "serverVersion":
       console.log("Updating the title version data to 'Server v" + message.data + " : Client v" + client_version + "'.");
       doDisplayVersionInfo(message.data, client_version)
-      console.groupEnd();
+      myLogger.groupEnd();
       break;
     case "ping":
       console.log("Sending pong message.");
-      console.groupEnd();
+      myLogger.groupEnd();
       doWsSend("pong", message.data);
       break;
     case "loginRequest":
       console.log("Showing the login modal.");
       doLayoutShowModal(true);
-      console.groupEnd();
+      myLogger.groupEnd();
       break;
     case "usernameExists":
       console.log("Displaying login feedback (in red).");
       doDisplayLoginFeedback($("#inputUsername").val() + " is already logged in!", true);
       console.log("Clearing the entered username.");
       $("#inputUsername").val("");
-      console.groupEnd();
+      myLogger.groupEnd();
       break;
     case "loginAccepted":
       username = message.data;
@@ -252,7 +291,7 @@ function onWebSockMessage(evt) {
       console.log(" - Enabling chat input.");
       console.log("In 2.5 seconds:");
       console.log(" - Hiding the login modal.");
-      console.groupEnd();
+      myLogger.groupEnd();
       setTimeout(function() {
         doDisplayLoginFeedback("Login Successful.", false);
         doDisplayLoginStatus(username);
@@ -267,36 +306,36 @@ function onWebSockMessage(evt) {
       console.log("Updating user list.");
       doDisplayUserList(message.data);
       console.log("Received Data: ", message.data);
-      console.groupEnd();
+      myLogger.groupEnd();
       break;
     case "chatMessage":
       console.log("From: " + message.data.fromUser + ".");
       console.log("Message: " + message.data.message + ".");
       console.log("Displaying message.");
       onIncomingChatMessage(message.data.fromUser, message.data.message);
-      console.groupEnd();
+      myLogger.groupEnd();
       break;
     case "notification":
       console.log("Message: " + message.data.str + ".");
       console.log("Displaying notification.");
       onIncomingNotification(message.data.str);
-      console.groupEnd();
+      myLogger.groupEnd();
       break;
-    case "playerStatus":
-      console.log("Updating the positions available on the login modal.");
-      doInputPlayerPositionAvailable(message.data);
-      console.groupEnd();
+    case "seatsAvailability":
+      console.log("Updating the seats available.");
+      doInputSeatAvailable(message.data);
+      myLogger.groupEnd();
       break;
     default:
       console.log("Received Data: ", message.data);
-      console.groupEnd();
+      myLogger.groupEnd();
   }
 
 }
 function onWebSockError(evt) {
-  console.groupCollapsed("WS connection error.");
+  myLogger.groupStart("WS", "green", "Connection error.");
   console.log("Error Event Data:", evt);
-  console.groupEnd();
+  myLogger.groupEnd();
 }
 // Incoming Message Reactions
 function onIncomingChatMessage(frm, msg) {
@@ -304,7 +343,7 @@ function onIncomingChatMessage(frm, msg) {
     title: frm + ":",
     text: msg,
     sticky: false,
-    time: 4000,
+    time: 7000,
     class_name: 'chatGritter'
   });
 }
@@ -393,14 +432,10 @@ $(document).ready(function() {
   // Start the Fun
   doLayoutVerticalCentre();
   doWsConnect();
-  if (autoTest){
-    AutoTester.start();
-  }
 
 });
 
 AutoTester = {
-  delayMilli: 0,
   randomStringGenerator(lng) {
     var chars = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz!#$%&*";
     var string_length = lng;
@@ -413,293 +448,163 @@ AutoTester = {
   },
   randomNameGenerator() {
     var names = [
-      "Schmitt",
-      "Woods",
-      "Alvarado",
-      "Horn",
-      "Stokes",
-      "Richards",
-      "Baird",
-      "Andersen",
-      "Bryan",
-      "Duncan",
-      "Ho",
-      "Arroyo",
-      "Barnes",
-      "Avery",
-      "Burch",
-      "Fry",
-      "Cooke",
-      "Mccoy",
-      "Vega",
-      "Cole",
-      "Orr",
-      "Valenzuela",
-      "Newman",
-      "Hanson",
-      "Buckley",
-      "Herring",
-      "Hanna",
-      "Boone",
-      "Charles",
-      "Barr",
-      "Houston",
-      "Hayes",
-      "Black",
-      "Floyd",
-      "Berg",
-      "Graves",
-      "Prince",
-      "Guzman",
-      "Huerta",
-      "Christensen",
-      "Brady",
-      "Booker",
-      "Cervantes",
-      "Johns",
-      "Daniel",
-      "Walton",
-      "Donaldson",
-      "Salas",
-      "Bright",
-      "Carrillo",
-      "Kim",
-      "Compton",
-      "Pitts",
-      "Hamilton",
-      "Nolan",
-      "Hooper",
-      "Oneill",
-      "Wright",
-      "Cunningham",
-      "Snyder",
-      "Wilkins",
-      "Chaney",
-      "Stevenson",
-      "Archer",
-      "Rich",
-      "Ibarra",
-      "Thornton",
-      "Delgado",
-      "Velez",
-      "Singh",
-      "Giles",
-      "Warner",
-      "Schaefer",
-      "Holden",
-      "Buck",
-      "Powell",
-      "Cobb",
-      "Erickson",
-      "Chapman",
-      "Hartman",
-      "Benitez",
-      "Fuller",
-      "Davis",
-      "Norman",
-      "Mcgrath",
-      "Esparza",
-      "Baxter",
-      "Sellers",
-      "Pollard",
-      "Ponce",
-      "Bentley",
-      "Clements",
-      "Mcintosh",
-      "Kaiser",
-      "Brooks",
-      "Castaneda",
-      "Bond",
-      "Nielsen",
-      "Butler",
-      "Cannon",
-      "Spears",
-      "Barton",
-      "Mullen",
-      "White",
-      "Castro",
-      "Villarreal",
-      "Case",
-      "Kirby",
-      "Simmons",
-      "Mccormick",
-      "Foster",
-      "Small",
-      "Mathews",
-      "Wells",
-      "Fischer",
-      "Parsons",
-      "Francis",
-      "Fletcher",
-      "Pratt",
-      "Watts",
-      "Crawford",
-      "Mcgee",
-      "Luna",
-      "Shaw",
-      "Quinn",
-      "Mathis",
-      "Middleton",
-      "Gilbert",
-      "Salinas",
-      "Andrade",
-      "Phelps",
-      "Burgess",
-      "Cline",
-      "Craig",
-      "Goodwin",
-      "Wise",
-      "Cox",
-      "George",
-      "Lamb",
-      "Jones",
-      "Frye",
-      "Harvey",
-      "West",
-      "Morton",
-      "Lutz",
-      "Zhang",
-      "Cisneros",
-      "Mccullough",
-      "Kelly",
-      "Fitzpatrick",
-      "Carson",
-      "Reyes",
-      "Hicks",
-      "Daniels",
-      "Anthony",
-      "Jefferson",
-      "Li",
-      "Bowen",
-      "Barry",
-      "Miller",
-      "Glass",
-      "Bray",
-      "Norris",
-      "Saunders",
-      "Hinton",
-      "Steele",
-      "Moody",
-      "Allison",
-      "Malone",
-      "Mack",
-      "Hardy",
-      "Pineda",
-      "Page",
-      "Duffy",
-      "Anderson",
-      "Sampson",
-      "Mcmillan",
-      "Lynn",
-      "Pope",
-      "Mullins",
-      "Schwartz",
-      "Reid",
-      "Nash",
-      "Bradshaw",
-      "Moore",
-      "Boyle",
-      "Tran",
-      "Swanson",
-      "Tapia",
-      "Salazar",
-      "Sparks",
-      "Rangel",
-      "Donovan",
-      "House",
-      "Koch",
-      "Spencer",
-      "Tyler",
-      "Perez",
-      "Frank",
-      "Robertson",
-      "Khan",
-      "Gilmore",
-      "Greer",
-      "Blackwell",
-      "Harmon",
-      "Randolph",
-      "Mercado",
-      "Whitney",
-      "Gutierrez",
-      "Dean",
-      "Walsh",
-      "Hendrix",
-      "Holder",
-      "Gibson",
-      "Massey",
-      "Coleman",
-      "Morgan",
-      "Marks",
-      "Schultz",
-      "Ashley",
-      "Jacobs",
-      "Bernard",
-      "Hutchinson",
-      "Richmond",
-      "Potts",
-      "Davies",
-      "Dodson",
-      "Clayton",
-      "Gamble",
-      "Booth",
-      "Dougherty",
-      "Ingram",
-      "Watkins",
-      "Figueroa",
-      "Burke",
-      "Camacho",
-      "Oconnell",
-      "Carey",
-      "Gay",
-      "Hines",
-      "Marquez",
-      "Graham",
-      "Mcknight",
-      "Pruitt",
-      "Gray",
-      "Adams",
-      "Fuentes",
-      "Richard",
-      "Soto",
-      "Tucker"
+      "bisque",
+      "opposite",
+      "stringy",
+      "lithe",
+      "bash",
+      "lithium",
+      "point",
+      "axiomatic",
+      "diarrhea",
+      "travel",
+      "local",
+      "sdraught",
+      "access",
+      "nibble",
+      "black",
+      "hobby",
+      "alumni",
+      "sparkle",
+      "feather",
+      "rotation",
+      "rising",
+      "magellan",
+      "diss",
+      "daring",
+      "risk",
+      "burnt",
+      "drag",
+      "matron",
+      "santander",
+      "faded",
+      "booth",
+      "means",
+      "gaudy",
+      "min",
+      "glean",
+      "canon",
+      "pockets",
+      "crampon",
+      "sowse",
+      "forehead",
+      "regulus",
+      "superb",
+      "insoluble",
+      "lives",
+      "updates",
+      "shying",
+      "worklist",
+      "decipher",
+      "analogy",
+      "dingo",
+      "appaloosa",
+      "qualling",
+      "virus",
+      "buy",
+      "posing",
+      "wabbit",
+      "oort",
+      "wreckaged",
+      "brought",
+      "samosa",
+      "compete",
+      "aldebaran",
+      "adjacent",
+      "leukemia",
+      "ideal",
+      "fairs",
+      "faculties",
+      "trachyte",
+      "goody",
+      "sonata",
+      "capable",
+      "musical",
+      "quickest",
+      "scut",
+      "buzzard",
+      "fields",
+      "fixie",
+      "chlorides",
+      "palette",
+      "yoke",
+      "adorable",
+      "fan",
+      "tendril",
+      "shaving",
+      "notation",
+      "lepe",
+      "generic",
+      "rolling",
+      "gild",
+      "pills",
+      "push",
+      "judge",
+      "rufous",
+      "dental",
+      "helping",
+      "shrewd",
+      "atheist",
+      "write",
+      "taste",
+      "tephra",
+      "snarl",
+      "boxer",
+      "fixation",
+      "violas",
+      "poultry",
+      "actinium",
+      "wink",
+      "vocal",
+      "dhtml",
+      "ossobuco",
+      "gateau",
+      "scribble",
+      "muesli",
+      "posing",
+      "ridge",
+      "parma",
+      "dugout",
+      "voltage",
+      "sickness",
+      "constant",
+      "enormous",
+      "dear",
+      "resentful",
+      "neon"
     ];
     var rnum = Math.floor(Math.random() * names.length);
     return names[rnum];
   },
   randomSentenceGenerator() {
     var sentences = [
-      "A sound you heard is good for you.",
-      "Insignificance is running away.",
-      "A setback of the heart likes to have a shower in the morning.",
-      "A fly is ever present.",
-      "Trickery tells the tale of towers.",
-      "Gasoline lay down on the riverbed.",
-      "Colorful clay lies ahead, what with the future yet to come.",
-      "The last sentence you saw tenderly sees to her child.",
-      "Rock music will take you to places you never expected not to visit!",
-      "Organisational culture stands upon somebody else's legs.",
-      "A caring mother visits Japan in the winter.",
-      "Tomorrow is always a pleasure.",
-      "The person you were before loves a good joke!",
-      "A small mercy sickens me.",
-      "A great silence says goodbye to the shooter.",
-      "Style brings both pleasure and pain.",
-      "A classical composition shakes beliefs widely held.",
-      "Camouflage paint is still not very coherent.",
-      "The other side was always the second best.",
-      "A token of gratitude is not yet ready to die.",
-      "Sevenworm takes the world for granted.",
-      "Sixty-four says hello.",
-      "Nihilism bathes in sunlight.",
-      "Gasoline shot the sheriff.",
-      "Passion or serendipity stole the goods.",
-      "Trickery is nonsensical, much like me.",
-      "Stew and rum would kindly inquire something about you.",
-      "A sickingly prodigous profile ever stuns the onlooker.",
-      "The light at the end of the tunnel loves a good joke!",
-      "A principal idea will take you to places you never expected not to visit!",
-      "Another day does not make any sense."];
+      "The quick brown fox jumps over the lazy dog.",
+      "My Mum tries to be cool by saying that she likes all the same things that I do.",
+      "If the Easter Bunny and the Tooth Fairy had babies would they take your teeth and leave chocolate for you?",
+      "A purple pig and a green donkey flew a kite in the middle of the night and ended up sunburnt.",
+      "What was the person thinking when they discovered cow's milk was fine for human consumption... and why did they do it in the first place!?",
+      "Last Friday in three week's time I saw a spotted striped blue worm shake hands with a legless lizard.",
+      "Wednesday is hump day, but has anyone asked the camel if he's happy about it?",
+      "If Purple People Eaters are real... where do they find purple people to eat?",
+      "A song can make or ruin a person's day if they let it get to them.",
+      "Sometimes it is better to just walk away from things and go back to them later when you're in a better frame of mind.",
+      "Writing a list of random sentences is harder than I initially thought it would be.",
+      "Where do random thoughts come from?",
+      "Lets all be unique together until we realise we are all the same.",
+      "I will never be this young again. Ever. Oh damn... I just got older.",
+      "If I don't like something, I'll stay away from it.",
+      "I love eating toasted cheese and tuna sandwiches.",
+      "If you like tuna and tomato sauce- try combining the two. It's really not as bad as it sounds.",
+      "Someone I know recently combined Maple Syrup & buttered Popcorn thinking it would taste like caramel popcorn. It didn't and they don't recommend anyone else do it either.",
+      "Sometimes, all you need to do is completely make an ass of yourself and laugh it off to realise that life isn't so bad after all.",
+      "When I was little I had a car door slammed shut on my hand. I still remember it quite vividly.",
+      "The clock within this blog and the clock on my laptop are 1 hour different from each other.",
+      "I want to buy a onesie... but know it won't suit me.",
+      "I was very proud of my nickname throughout high school but today- I couldn't be any different to what my nickname was.",
+      "I currently have 4 windows open up... and I don't know why.",
+      "I often see the time 11:11 or 12:34 on clocks.",
+      "This is the last random sentence I will be writing and I am going to stop mid-sent"
+    ];
     var rnum = Math.floor(Math.random() * sentences.length);
     return sentences[rnum];
   },
@@ -708,7 +613,7 @@ AutoTester = {
     doSendChatMessage();
     setTimeout(function() {
       AutoTester.random_chat_messager()
-    }, Math.floor(Math.random() * 120000));
+    }, Math.floor(Math.random() * 60000));
   },
   card_flipping(){
     // this functionality is not used.
@@ -719,40 +624,99 @@ AutoTester = {
     });
   },
   start(){
-    console.log("Auto Tester Started.")
-    AutoTester.delayMilli += 500;
-    setTimeout(function() { // Send a login request
-      $("#inputUsername").val(AutoTester.randomNameGenerator());
-      doSendLoginReguest();
-    }, AutoTester.delayMilli);
-    AutoTester.delayMilli += 4000;
-    setTimeout(function() { // Test Chat Gritter
-      onIncomingChatMessage("Test User", "Test Chat Message.");
-    }, AutoTester.delayMilli);
+    myLogger.line("TEST","red","Auto Test Started.")
+    delayMilli = 0;
+
     AutoTester.delayMilli += 1000;
-    setTimeout(function() { // Test Notification Gritter (remove after 4sec)
+    setTimeout(function() { // create username
+      $("#inputUsername").val(AutoTester.randomNameGenerator());
+    }, delayMilli);
+    delayMilli += 1000;
+    setTimeout(function() { // Send a login request
+      myLogger.line("TEST","red","Login attempt.")
+      doSendLoginReguest();
+    }, delayMilli);
+    delayMilli += 4000;
+    setTimeout(function() { // Test Chat Gritter
+      myLogger.line("TEST","red","Chat display.")
+      onIncomingChatMessage("Test User", "Test Chat Message.");
+    }, delayMilli);
+    delayMilli += 500;
+    setTimeout(function() { // Test Notification Gritter (remove after 2sec)
+      myLogger.line("TEST","red","Notification display.")
       var Notification = onIncomingNotification("Test Notification.");
       setTimeout(function() {
         $.gritter.remove(Notification);
-      }, 4000);
-    }, AutoTester.delayMilli);
-    AutoTester.delayMilli += 1000;
-    setTimeout(function() { // Test Alert Gritter (remove after 4sec)
+      }, 2000);
+    }, delayMilli);
+    delayMilli += 500;
+    setTimeout(function() { // Test Alert Gritter (remove after 2sec)
+      myLogger.line("TEST","red","Alert display.")
       var Alert = onIncomingAlert("Test Alert.");
       setTimeout(function() {
         $.gritter.remove(Alert);
-      }, 4000);
-    }, AutoTester.delayMilli);
-    AutoTester.delayMilli += 1000;
-    setTimeout(function() { // Test Error Gritter (remove after 4sec)
+      }, 2000);
+    }, delayMilli);
+    delayMilli += 500;
+    setTimeout(function() { // Test Error Gritter (remove after 2sec)
+      myLogger.line("TEST","red","Error display.")
       var Error = onIncomingError("Test Error.");
       setTimeout(function() {
         $.gritter.remove(Error);
-      }, 4000);
-    }, AutoTester.delayMilli);
-    AutoTester.delayMilli += 3000;
+      }, 2000);
+    }, delayMilli);
+    delayMilli += 1000;
     setTimeout(function() { // Start Random Chats Outputs
+      myLogger.line("TEST","red","Random chats started.")
       AutoTester.random_chat_messager();
-    }, AutoTester.delayMilli);
+    }, delayMilli);
+    delayMilli += 1000;
+    cardNumber = 1;
+    setTimeout(function() {
+      myLogger.line("TEST","red","Showing some cards.")
+    }, delayMilli);
+    for (i = 0; i < 15; i++){ // display nexthand
+      if (i < 14){
+        setTimeout(function() {
+          doDisplayCardBack("#nextHand #card_"+cardNumber);
+          cardNumber++;
+        }, delayMilli);
+      }
+      else{
+        setTimeout(function() {
+          cardNumber = 1;
+        }, delayMilli);
+      }
+      delayMilli += 50;
+    }
+    for (i = 0; i < 15; i++){ // display partnerhand
+      if (i < 14){
+        setTimeout(function() {
+          doDisplayCardBack("#partnerHand #card_"+cardNumber);
+          cardNumber++;
+        }, delayMilli);
+      }
+      else{
+        setTimeout(function() {
+          cardNumber = 1;
+        }, delayMilli);
+      }
+      delayMilli += 50;
+    }
+    for (i = 0; i < 15; i++){ // display previoushand
+      if (i < 14){
+        setTimeout(function() {
+          doDisplayCardBack("#previousHand #card_"+cardNumber);
+          cardNumber++;
+        }, delayMilli);
+      }
+      else{
+        setTimeout(function() {
+          cardNumber = 1;
+        }, delayMilli);
+      }
+      delayMilli += 50;
+    }
+
   }
 }

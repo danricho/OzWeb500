@@ -27,204 +27,8 @@ SUIT_leftBower = [None,2,1,4,3,None] # left bower's suit
 # RANK index ranges from 3 to 15.
 RANK_str  = [None,None,None,"3","4","5","6","7","8","9","10","Jack","Queen","King","Ace","Joker"]
 RANK_disp = [None,None,None,"3","4","5","6","7","8","9","10","J","Q","K","A","Jok"]
-
 NO_CARDS = False
-
-trumps = 5 # no trumps
-
-class Card(object):
-  def __init__(self, suit=1, rank=3):
-    self.suit = suit
-    self.rank = rank
-  def __str__(self):
-    if self.suit == 5:
-      return "The Joker"
-    else:
-      return RANK_str[self.rank] + " of " + SUIT_str[self.suit]
-  def __cmp__(self, other):
-    #print "self",str(self.suit),str(self.rank)
-    #print "other",str(other.suit),str(other.rank)
-    if self.rank == 15: return 1 # 1st is the Joker
-    if other.rank == 15: return -1  # 2nd is the Joker
-    if (self.suit == trumps and self.rank == 11): return 1 # 1st is the right bower
-    if (other.suit == trumps and other.rank == 11): return -1 # 2nd is the right bower
-    if (self.suit == SUIT_leftBower[trumps] and self.rank == 11): return 1 # 1st is the left bower
-    if (other.suit == SUIT_leftBower[trumps] and other.rank == 11): return -1 # 2nd is the left bower
-    if (self.suit == trumps and other.suit != trumps): return 1 # 1st only is on suit
-    if (other.suit == trumps and self.suit != trumps): return -1 # 2nd only is on suit
-    if cmp(self.suit, other.suit) == 0: # same suit -> highest wins
-      return cmp(self.rank, other.rank)
-    else:
-      return 0
-  def jsonStr(self):
-    return '{"suit":'+str(self.suit)+',"rank":'+str(self.rank)+'}'
-class Deck(object):
-  def __init__(self,fill=True):
-    self.cards=[]
-    if fill:
-      for suit in range(1,3): # Create the black cards
-        for rank in range(3, 15):
-          new_card = Card(suit, rank)
-          self.cards.append(new_card)
-      for suit in range(3,5): # Create the red cards
-        for rank in range(4, 15):
-          new_card = Card(suit, rank)
-          self.cards.append(new_card)
-      new_card = Card(5, 15) # create the Joker
-      self.cards.append(new_card)
-  def __str__(self):
-    string = ""
-    for card in self.cards:
-      string = string + str(card) + "\n"
-    return string[:-1]
-  def addCard(self,card):
-    self.cards.append(card)
-  def removeCard(self,card):
-    self.cards.remove(card)
-  def removeCardIndex(self,index):
-    del self.cards[index]
-  def popCard(self,i=-1):
-    return self.cards.pop(i)
-  def moveCards(self,otherDeck,num):
-    for i in range(num):
-      otherDeck.addCard(self.popCard())
-  def sort(self):
-    self.cards.sort()
-  def shuffle(self):
-    random.shuffle(self.cards)
-  def getIndex(self,findcard):
-    for index,card in enumerate(self.cards):
-      if card == findcard:
-        return index
-    return -1
-  def winningIndex(self):
-    tempCards = self.cards
-    tempCards.sort()
-    if tempCards[-1] > tempCards[-2]:
-      return self.getIndex(tempCards[-1])
-    return -1
-  def jsonStr(self):
-    string = "["
-    for card in self.cards:
-      string = string + card.jsonStr() + ","
-    return string[:-1] + "]"
-
-dealer_deck = Deck()
-kitty = Deck(False)
-
-clients = []
-players = [None,None,None,None]
-
-
-# This is the game state machine.
-# It will be updated as each element of the game is implemented.
-# Not currently integrated with the WS logic.
-# Uses the transitions library
-# https://github.com/tyarkoni/transitions
-# pip install transitions
-class GameMachine(Machine):
-  players = [None,None,None,None,None]
-  dealerButton = 0 # player index who is the current 'dealer'. Initially random.
-  dealerFocus = 0 # this is the player the dealer is waiting on or is dealing to.
-  transit = False
-  states = ['Signup', 'Bidding', 'theThrow', 'Playing']
-  transitions = [
-    {'trigger':'deal', 'source':'Signup', 'dest':'Bidding', 'conditions':'fourPlayers', 'after': 'dealing'},
-    {'trigger':'giveKitty','source':'Bidding','dest':'theThrow','conditions':'winningBid'},
-    {'trigger':'winnersLead','source':'theThrow','dest':'Playing','conditions':'cardsThrown'},
-    {'trigger':'gameOver','source':'Playing','dest':'Signup','conditions':'over500'}
-  ]
-  def toggle(self): self.transit = not self.transit
-  def fourPlayers(self): return self.transit
-  def dealing(self): logger.gameEntry("I'm dealing baby!") # this will be the function which does the work!!
-  def winningBid(self): return self.transit
-  def cardsThrown(self): return self.transit
-  def over500(self): return self.transit
-  def __init__(self):
-    dealerButton = random.randint(1, 4)
-    self.transit = False
-    Machine.__init__(self, states=self.states, transitions=self.transitions, initial=self.states[0])
-  def __str__(self): return "GameMachine state is '" + self.state + "'."
-
-thisGame = GameMachine()
-
-def allClients():
-  clientlist = []
-  for client in list(clients):
-    clientlist.append(client)
-  return clientlist
-def allUsers():
-  userlist = []
-  for client in list(clients):
-    if client.username:
-      userlist.append(client)
-  return list(userlist)
-def username2client(username):
-  for client in list(clients):
-    if client.username == username:
-      return client
-  return None
-def usernameRequest(conn, username):
-  if username2client(username):
-    conn.sendData("usernameExists")
-    logger.sockEntry(str(conn.address[0]) + '-' + str(conn.address[1]) + ': Username request denied - exists (' + username + ').')
-  else:
-    conn.setUsername(username)
-    conn.sendData("loginAccepted", username)
-    logger.sockEntry(str(conn.address[0]) + '-' + str(conn.address[1]) + ': Username accepted ('+username +').')
-    sendClientData(conn)
-    sendUserList()
-    sendPlayersStatus(conn)
-    sendLoginNotification(conn)
-
-def pong(conn, pingStampStr):
-  conn.getClient().latency = logger.secondsSinceDateTimeStr(pingStampStr)
-  if conn.getUsername():
-    logger.sockEntry(conn.getUsername() + ': latency updated to ' + str(conn.getClient().latency) + '.')
-  else:
-    logger.sockEntry(str(conn.address[0]) + '-' + str(conn.address[1]) + ': latency updated to ' + str(conn.getClient().latency) + '.')
-  sendClientData(conn)
-def sendChatOut(conn, msg):
-  chatObject = Object()
-  chatObject.fromUser = conn.getUsername()
-  chatObject.message = msg
-  logger.sockEntry(chatObject.fromUser + ' said: ' + chatObject.message)
-  for client in allClients():
-    client.connection.sendData("chatMessage",chatObject)
-def sendLoginNotification(conn):
-  notificationObject = Object()
-  notificationObject.str = conn.getUsername() + " logged in."
-  for client in allClients():
-    if client.connection != conn:
-      client.connection.sendData("notification",notificationObject)
-def sendLeftNotification(conn):
-  notificationObject = Object()
-  notificationObject.str = conn.getUsername() + " left."
-  for client in allClients():
-    if client.connection != conn:
-      client.connection.sendData("notification",notificationObject)
-def sendPlayersStatus(conn):
-  conn.sendData("playerStatus",players)
-def sendClientData(conn):
-  userdata = conn.getClient()
-  conn.sendData("clientData",userdata)
-def cleanJSONstring(string):
-  """ These are regular expressions to correct the format for send client objects """
-  string = re.sub(r"': u'", r"': '", string);
-  string = re.sub(r"(<__[^>]*>)", r"'\1'", string);
-  string = re.sub(r"'", r'"', string)
-  string = re.sub(r'": "{"', r'": {"', string)
-  string = re.sub(r'}"', "}", string)
-  string = re.sub(r': None', ": null", string)
-  return string
-def sendUserList():
-  userList = []
-  for client in list(clients):
-    if client.username != "":
-      userList.append(client.username)
-  for client in list(clients):
-    if client.username != "":
-      client.connection.sendData("userList", sorted(userList))
+FULL_DECK = True
 
 class WS_Handler(WebSocket):
   def sendData(self, message_type, message_data = None):
@@ -269,7 +73,7 @@ class WS_Handler(WebSocket):
     newUser.latency = 0.000
     clients.append(newUser)
     logger.sockEntry(str(self.address[0]) + '-' + str(self.address[1]) + ': New socket connection.')
-    sendPlayersStatus(self)
+    sendSeatsAvailability(self)
     self.sendData("loginRequest")
     self.sendData("serverVersion",server_version)
     self.sendData("ping", logger.datetime_str())
@@ -286,6 +90,201 @@ class HTTP_Handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
   def translate_path(self, path):
     path = http_root + path
     return path
+class Card(object):
+  def __init__(self, suit=1, rank=3):
+    self.suit = suit
+    self.rank = rank
+  def __str__(self):
+    if self.suit == 5:
+      return "The Joker"
+    else:
+      return RANK_str[self.rank] + " of " + SUIT_str[self.suit]
+  def __cmp__(self, other):
+    #print "self",str(self.suit),str(self.rank)
+    #print "other",str(other.suit),str(other.rank)
+    if self.rank == 15: return 1 # 1st is the Joker
+    if other.rank == 15: return -1  # 2nd is the Joker
+    if (self.suit == trumps and self.rank == 11): return 1 # 1st is the right bower
+    if (other.suit == trumps and other.rank == 11): return -1 # 2nd is the right bower
+    if (self.suit == SUIT_leftBower[trumps] and self.rank == 11): return 1 # 1st is the left bower
+    if (other.suit == SUIT_leftBower[trumps] and other.rank == 11): return -1 # 2nd is the left bower
+    if (self.suit == trumps and other.suit != trumps): return 1 # 1st only is on suit
+    if (other.suit == trumps and self.suit != trumps): return -1 # 2nd only is on suit
+    if cmp(self.suit, other.suit) == 0: # same suit -> highest wins
+      return cmp(self.rank, other.rank)
+    else:
+      return 0
+  def jsonStr(self):
+    return '{"suit":'+str(self.suit)+',"rank":'+str(self.rank)+'}'
+class Deck(object):
+  def __init__(self, fill=True):
+    self.cards=[]
+    if fill:
+      for suit in range(1,3): # Create the black cards
+        for rank in range(3, 15):
+          new_card = Card(suit, rank)
+          self.cards.append(new_card)
+      for suit in range(3,5): # Create the red cards
+        for rank in range(4, 15):
+          new_card = Card(suit, rank)
+          self.cards.append(new_card)
+      new_card = Card(5, 15) # create the Joker
+      self.cards.append(new_card)
+  def __str__(self):
+    string = ""
+    for card in self.cards:
+      string = string + str(card) + "\n"
+    return string[:-1]
+  def addCard(self, card):
+    self.cards.append(card)
+  def removeCard(self, card):
+    self.cards.remove(card)
+  def removeCardIndex(self, index):
+    del self.cards[index]
+  def popCard(self, i=-1):
+    return self.cards.pop(i)
+  def moveCards(self, otherDeck, num):
+    for i in range(num):
+      otherDeck.addCard(self.popCard())
+  def sort(self):
+    self.cards.sort()
+  def shuffle(self):
+    random.shuffle(self.cards)
+  def getIndex(self, findcard):
+    for index,card in enumerate(self.cards):
+      if card == findcard:
+        return index
+    return -1
+  def winningIndex(self):
+    tempCards = self.cards
+    tempCards.sort()
+    if tempCards[-1] > tempCards[-2]:
+      return self.getIndex(tempCards[-1])
+    return -1
+  def jsonStr(self):
+    string = "["
+    for card in self.cards:
+      string = string + card.jsonStr() + ","
+    return string[:-1] + "]"
+# This is the game state machine.
+# It will be updated as each element of the game is implemented.
+# Not currently integrated with the WS logic.
+# Uses the transitions library
+# https://github.com/tyarkoni/transitions
+# pip install transitions
+class GameMachine(Machine):
+  seats = [None,None,None,None,None] # seat[0] is ignored
+  dealerButton = 0 # player index who is the current 'dealer'. Initially random.
+  dealerFocus = 0 # this is the player the dealer is waiting on or is dealing to.
+  dealer_deck = Deck(FULL_DECK)
+  kitty = Deck(NO_CARDS)
+  states = ['Signup', 'Bidding', 'theThrow', 'Playing']
+  transitions = [
+    {'trigger':'deal', 'source':'Signup', 'dest':'Bidding', 'conditions':'fourPlayers', 'after': 'dealing'},
+    {'trigger':'giveKitty','source':'Bidding','dest':'theThrow','conditions':'winningBid'},
+    {'trigger':'winnersLead','source':'theThrow','dest':'Playing','conditions':'cardsThrown'},
+    {'trigger':'gameOver','source':'Playing','dest':'Signup','conditions':'over500'}
+  ]
+  def toggle(self): self.transit = not self.transit
+  def fourPlayers(self): return self.transit
+  def dealing(self): logger.gameEntry("I'm dealing baby!") # this will be the function which does the work!!
+  def winningBid(self): return self.transit
+  def cardsThrown(self): return self.transit
+  def over500(self): return self.transit
+  def __init__(self):
+    dealerButton = random.randint(1, 4)
+    self.transit = False
+    Machine.__init__(self, states=self.states, transitions=self.transitions, initial=self.states[0])
+  def __str__(self): return "GameMachine state is '" + self.state + "'."
+
+def allClients():
+  clientlist = []
+  for client in list(clients):
+    clientlist.append(client)
+  for seat in list(thisGame.seats):
+    if seat != None:
+      clientlist.append(seat)
+  return clientlist
+def allUsers():
+  userlist = []
+  for client in list(clients):
+    if client.username:
+      userlist.append(client)
+  for seat in list(thisGame.seats):
+    if seat != None:
+        clientlist.append(seat)
+  return list(userlist)
+def allSeated():
+  userlist = []
+  for seat in list(thisGame.seats):
+    if seat != None:
+      clientlist.append(seat)
+  return list(userlist)
+def username2client(username):
+  for client in list(clients):
+    if client.username == username:
+      return client
+  return None
+def usernameRequest(conn, username):
+  if username2client(username):
+    conn.sendData("usernameExists")
+    logger.sockEntry(str(conn.address[0]) + '-' + str(conn.address[1]) + ': Username request denied - exists (' + username + ').')
+  else:
+    conn.setUsername(username)
+    conn.sendData("loginAccepted", username)
+    logger.sockEntry(str(conn.address[0]) + '-' + str(conn.address[1]) + ': Username accepted ('+username +').')
+    sendClientData(conn)
+    sendUserList()
+    sendSeatsAvailability(conn)
+    sendLoginNotification(conn)
+def pong(conn, pingStampStr):
+  conn.getClient().latency = logger.secondsSinceDateTimeStr(pingStampStr)
+  if conn.getUsername():
+    logger.sockEntry(conn.getUsername() + ': latency updated to ' + str(conn.getClient().latency) + '.')
+  else:
+    logger.sockEntry(str(conn.address[0]) + '-' + str(conn.address[1]) + ': latency updated to ' + str(conn.getClient().latency) + '.')
+  sendClientData(conn)
+def sendChatOut(conn, msg):
+  chatObject = Object()
+  chatObject.fromUser = conn.getUsername()
+  chatObject.message = msg
+  logger.sockEntry(chatObject.fromUser + ' said: ' + chatObject.message)
+  for client in allClients():
+    client.connection.sendData("chatMessage",chatObject)
+def sendLoginNotification(conn):
+  notificationObject = Object()
+  notificationObject.str = conn.getUsername() + " logged in."
+  for client in allClients():
+    if client.connection != conn:
+      client.connection.sendData("notification",notificationObject)
+def sendLeftNotification(conn):
+  notificationObject = Object()
+  notificationObject.str = conn.getUsername() + " left."
+  for client in allClients():
+    if client.connection != conn:
+      client.connection.sendData("notification",notificationObject)
+def sendSeatsAvailability(conn):
+  conn.sendData("seatsAvailability",thisGame.seats[1:])
+def sendClientData(conn):
+  userdata = conn.getClient()
+  conn.sendData("clientData",userdata)
+def cleanJSONstring(string):
+  """ These are regular expressions to correct the format for send client objects """
+  string = re.sub(r"': u'", r"': '", string);
+  string = re.sub(r"(<__[^>]*>)", r"'\1'", string);
+  string = re.sub(r"'", r'"', string)
+  string = re.sub(r'": "{"', r'": {"', string)
+  string = re.sub(r'}"', "}", string)
+  string = re.sub(r': None', ": null", string)
+  return string
+def sendUserList():
+  userList = []
+  for client in list(clients):
+    if client.username != "":
+      userList.append(client.username)
+  for client in list(clients):
+    if client.username != "":
+      client.connection.sendData("userList", sorted(userList))
 
 ws_handler = WS_Handler
 ws_server = SimpleWebSocketServer('', ws_port, ws_handler)
@@ -297,6 +296,10 @@ SocketServer.TCPServer.allow_reuse_address = True
 http_server = SocketServer.TCPServer(("", http_port), http_handler)
 http_thread = threading.Thread(target = http_server.serve_forever)
 http_thread.deamon = True
+
+trumps = 5 # no trumps
+clients = []
+thisGame = GameMachine()
 
 if __name__ == "__main__":
 
