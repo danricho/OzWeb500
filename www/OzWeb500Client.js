@@ -109,6 +109,11 @@ function doSendChatMessage() {
   doWsSend("chat", chat_message);
   $('#inputChat').val("");
 }
+function doSendSeatRequest(seat){
+  myLogger.groupStart("USR_IN", "blue", "Requesting seat " + seat);
+  myLogger.groupEnd();
+  doWsSend("seatRequest", seat);
+}
 // Display Info Doers
 function doDisplayLoginFeedback(str, red) {
   if (str==""){
@@ -193,12 +198,14 @@ function doInputChatAvailable(state) {
   }
 }
 function doInputSeatAvailable(players){
-  for (var i = 0; i < 4; i++){
-    value = i+1
-    if (players[i] === null) {
-      null;
+  for (var i = 1; i < 5; i++){
+    seat = i;
+    if (players[i] == null || $("#usernameDisp").text() == "") {
+      $("#seat"+seat).val('Sit Here');
+      $("#seat"+seat).prop('disabled', false);
     }else{
-      null;
+      $("#seat"+seat).val(players[i]);
+      $("#seat"+seat).prop('disabled', true);
     }
   }
   console.log("players",players);
@@ -291,16 +298,16 @@ function onWebSockMessage(evt) {
       console.log(" - Enabling chat input.");
       console.log("In 2.5 seconds:");
       console.log(" - Hiding the login modal.");
+      doDisplayLoginStatus(username);
+      doDisplayPageTitle(username);
+      doInputChatAvailable(true);
       myLogger.groupEnd();
       setTimeout(function() {
         doDisplayLoginFeedback("Login Successful.", false);
-        doDisplayLoginStatus(username);
-        doDisplayPageTitle(username);
-        doInputChatAvailable(true);
-      }, 1000);
+      }, 758);
       setTimeout(function() {
         doLayoutShowModal(false);
-      }, 2500);
+      }, 1500);
       break;
     case "userList":
       console.log("Updating user list.");
@@ -627,7 +634,7 @@ AutoTester = {
     myLogger.line("TEST","red","Auto Test Started.")
     delayMilli = 0;
 
-    AutoTester.delayMilli += 1000;
+    AutoTester.delayMilli += 1000 + Math.random() * 2000;
     setTimeout(function() { // create username
       $("#inputUsername").val(AutoTester.randomNameGenerator());
     }, delayMilli);
@@ -636,6 +643,27 @@ AutoTester = {
       myLogger.line("TEST","red","Login attempt.")
       doSendLoginReguest();
     }, delayMilli);
+    delayMilli += Math.floor(Math.random() * 10000) + Math.floor(Math.random() * 1000) + Math.floor(Math.random() * 500);
+    console.log(delayMilli);
+    setTimeout(function() { // Send a seat request
+      var seat = 1;
+      if ($("#seat"+seat).prop('disabled')){
+        myLogger.line("TEST","red","Seat "+seat+" taken by "+$("#seat"+seat).val()+".");
+        seat += 1;
+        if ($("#seat"+seat).prop('disabled')){
+          myLogger.line("TEST","red","Seat "+seat+" taken by "+$("#seat"+seat).val()+".");
+          seat += 1;
+          if ($("#seat"+seat).prop('disabled')){
+            myLogger.line("TEST","red","Seat "+seat+" taken by "+$("#seat"+seat).val()+".");
+            seat += 1;
+            if ($("#seat"+seat).prop('disabled')){
+              myLogger.line("TEST","red","All seats taken.");
+            }else{doSendSeatRequest(seat);}
+          }else{doSendSeatRequest(seat);}
+        }else{doSendSeatRequest(seat);}
+      }else{doSendSeatRequest(seat);}
+    }, delayMilli);
+
     delayMilli += 4000;
     setTimeout(function() { // Test Chat Gritter
       myLogger.line("TEST","red","Chat display.")
@@ -670,7 +698,8 @@ AutoTester = {
       myLogger.line("TEST","red","Random chats started.")
       AutoTester.random_chat_messager();
     }, delayMilli);
-    delayMilli += 1000;
+
+/*
     cardNumber = 1;
     setTimeout(function() {
       myLogger.line("TEST","red","Showing some cards.")
@@ -717,6 +746,10 @@ AutoTester = {
       }
       delayMilli += 50;
     }
+    */
+
+
+
 
   }
 }

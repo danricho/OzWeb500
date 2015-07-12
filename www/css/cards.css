@@ -87,31 +87,32 @@ card > face#front .big p {
   margin-left: -239px;
   margin-bottom: -50px;
 }
+#partnerHand .upright{}
 #partnerHand{
   top: 0px;
   left: 50%;
   margin-left: -239px;
   margin-top: -110px;
-  -webkit-transform: rotateZ( 180deg );
-   -moz-transform: rotateZ( 180deg );
-     -o-transform: rotateZ( 180deg );
-        transform: rotateZ( 180deg );
+  transform: rotateZ( 180deg );
+}
+#partnerHand .upright{
+  transform: rotateZ( -180deg );
 }
 #previousHand{
   top: 150px;
   left: -250px;
-  -webkit-transform: rotateZ( 90deg );
-   -moz-transform: rotateZ( 90deg );
-     -o-transform: rotateZ( 90deg );
-        transform: rotateZ( 90deg );
+  transform: rotateZ( 90deg );
+}
+#previousHand .upright{
+  transform: rotateZ( -90deg );
 }
 #nextHand{
   top: 150px;
   right: -250px;
-  -webkit-transform: rotateZ( -90deg );
-   -moz-transform: rotateZ( -90deg );
-     -o-transform: rotateZ( -90deg );
-        transform: rotateZ( -90deg );
+  transform: rotateZ( -90deg );
+}
+#nextHand .upright{
+  transform: rotateZ( 90deg );
 }
 
 #myHand > card > face#back{

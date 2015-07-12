@@ -11,7 +11,7 @@
   -ms-user-select: none;
   user-select: none;
 }
-body { 
+body {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   color: #BBB;
@@ -22,7 +22,7 @@ body {
   text-align: center;
 }
 input:focus{
-  outline: none
+  /*outline: none*/
 }
 i{
   width: 17px;
@@ -66,7 +66,7 @@ i{
   color: #CCC;
   border-top: 1px solid #222;
 }
-#footer input { 
+#footer input {
   background: #222;
   color: #CCC;
   padding: 4px 8px;
@@ -108,7 +108,7 @@ i{
   color: #333;
   text-align: center;
 }
-#loginmodal input { 
+#loginmodal input, .Hand input {
   background: #333;
   color: #CCC;
   padding: 8px 8px;
@@ -118,9 +118,9 @@ i{
   border: none;
   margin: 8px 0px;
 }
-#loginmodal p { 
+input:disabled {
+  opacity: 0.5;
+}
+#loginmodal p {
   margin: 8px 0px;
 }
-
-
-

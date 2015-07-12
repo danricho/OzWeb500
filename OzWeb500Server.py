@@ -44,33 +44,42 @@ class WS_Handler(WebSocket):
     # print "outgoing", string
     self.sendMessage(string)
   def getClient(self):
-    for client in list(clients):
+    for client in allClients():
       if client.connection == self:
         return client
     return False
   def getUsername(self):
-    for client in list(clients):
+    for client in allClients():
       if client.connection == self:
         return client.username
     return False
   def setUsername(self, username):
-    for client in list(clients):
+    for client in allClients():
       if client.connection == self:
         client.username = username
   def handleMessage(self):
     # print "incoming", self.data
-    message = json.loads(self.data)
-    if message['header'] == "usernameRequest":
-      usernameRequest(self, message['data'])
-    elif message['header'] == "pong":
-      pong(self, message['data'])
-    elif message['header'] == "chat":
-      sendChatOut(self, message['data'])
+    try:
+        message = json.loads(self.data)
+        if message['header'] == "usernameRequest":
+          usernameRequest(self, message['data'])
+        elif message['header'] == "seatRequest":
+          seatRequest(self, message['data'])
+        elif message['header'] == "pong":
+          pong(self, message['data'])
+        elif message['header'] == "chat":
+          sendChatOut(self, message['data'])
+        else:
+          print "Unknown Message:", self.data
+    except: # catch *all* exceptions
+        e = sys.exc_info()
+        print "Error: " + str(e)
   def handleConnected(self):
     newUser = Object()
     newUser.connection = self
     newUser.username = None
     newUser.latency = 0.000
+    newUser.seat = None
     clients.append(newUser)
     logger.sockEntry(str(self.address[0]) + '-' + str(self.address[1]) + ': New socket connection.')
     sendSeatsAvailability(self)
@@ -78,10 +87,12 @@ class WS_Handler(WebSocket):
     self.sendData("serverVersion",server_version)
     self.sendData("ping", logger.datetime_str())
   def handleClose(self):
+    logger.sockEntry(str(self.address[0]) + '-' + str(self.address[1]) + ': Socket connection disconnected.')
     sendLeftNotification(self)
     clients.remove(self.getClient())
+    for client in allClients():
+      sendSeatsAvailability(client.connection)
     sendUserList()
-    logger.sockEntry(str(self.address[0]) + '-' + str(self.address[1]) + ': Socket connection disconnected.')
 class HTTP_Handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
   def log_message(self, format, *args):
     # override logging output
@@ -173,7 +184,6 @@ class Deck(object):
 # https://github.com/tyarkoni/transitions
 # pip install transitions
 class GameMachine(Machine):
-  seats = [None,None,None,None,None] # seat[0] is ignored
   dealerButton = 0 # player index who is the current 'dealer'. Initially random.
   dealerFocus = 0 # this is the player the dealer is waiting on or is dealing to.
   dealer_deck = Deck(FULL_DECK)
@@ -201,25 +211,24 @@ def allClients():
   clientlist = []
   for client in list(clients):
     clientlist.append(client)
-  for seat in list(thisGame.seats):
-    if seat != None:
-      clientlist.append(seat)
   return clientlist
 def allUsers():
   userlist = []
   for client in list(clients):
     if client.username:
       userlist.append(client)
-  for seat in list(thisGame.seats):
-    if seat != None:
-        clientlist.append(seat)
   return list(userlist)
-def allSeated():
+def seatedUsers():
   userlist = []
-  for seat in list(thisGame.seats):
-    if seat != None:
-      clientlist.append(seat)
+  for client in list(clients):
+    if client.seat != None:
+      userlist.append(client)
   return list(userlist)
+def seatTaken(seat):
+  for client in seatedUsers():
+    if client.seat == seat:
+      return True
+  return False
 def username2client(username):
   for client in list(clients):
     if client.username == username:
@@ -237,6 +246,17 @@ def usernameRequest(conn, username):
     sendUserList()
     sendSeatsAvailability(conn)
     sendLoginNotification(conn)
+def seatRequest(conn, seat):
+  if seatTaken(seat):
+    conn.sendData("seatTaken")
+    logger.sockEntry(conn.getClient().username + ': Seat '+ str(seat) +' request denied - already taken.')
+    sendSeatsAvailability(conn)
+  else:
+    conn.getClient().seat = seat
+    conn.sendData("seatAccepted", seat)
+    logger.sockEntry(conn.getClient().username + ' sat in seat '+ str(seat) +'.')
+    for client in allClients():
+      sendSeatsAvailability(client.connection)
 def pong(conn, pingStampStr):
   conn.getClient().latency = logger.secondsSinceDateTimeStr(pingStampStr)
   if conn.getUsername():
@@ -264,7 +284,10 @@ def sendLeftNotification(conn):
     if client.connection != conn:
       client.connection.sendData("notification",notificationObject)
 def sendSeatsAvailability(conn):
-  conn.sendData("seatsAvailability",thisGame.seats[1:])
+  seats = [None,None,None,None,None]
+  for client in seatedUsers():
+    seats[client.seat] = client.username
+  conn.sendData("seatsAvailability", seats)
 def sendClientData(conn):
   userdata = conn.getClient()
   conn.sendData("clientData",userdata)
