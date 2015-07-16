@@ -620,7 +620,7 @@ AutoTester = {
     doSendChatMessage();
     setTimeout(function() {
       AutoTester.random_chat_messager()
-    }, Math.floor(Math.random() * 60000));
+    }, Math.floor(Math.random() * 300000));
   },
   card_flipping(){
     // this functionality is not used.

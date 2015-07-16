@@ -72,7 +72,8 @@ class WS_Handler(WebSocket):
         else:
           print "Unknown Message:", self.data
     except: # catch *all* exceptions
-        e = sys.exc_info()
+        e = traceback.format_exc()
+        f = sys.exc_info()
         print "Error: " + str(e)
   def handleConnected(self):
     newUser = Object()
@@ -186,21 +187,68 @@ class Deck(object):
 class GameMachine(Machine):
   dealerButton = 0 # player index who is the current 'dealer'. Initially random.
   dealerFocus = 0 # this is the player the dealer is waiting on or is dealing to.
-  dealer_deck = Deck(FULL_DECK)
+  game_deck = Deck(FULL_DECK)
   kitty = Deck(NO_CARDS)
-  states = ['Signup', 'Bidding', 'theThrow', 'Playing']
+  states = ['waiting for full seats','dealing to players', 'waiting for winning bid', 'waiting for kitty throw off', 'waiting for cards to be played']
   transitions = [
-    {'trigger':'deal', 'source':'Signup', 'dest':'Bidding', 'conditions':'fourPlayers', 'after': 'dealing'},
-    {'trigger':'giveKitty','source':'Bidding','dest':'theThrow','conditions':'winningBid'},
-    {'trigger':'winnersLead','source':'theThrow','dest':'Playing','conditions':'cardsThrown'},
-    {'trigger':'gameOver','source':'Playing','dest':'Signup','conditions':'over500'}
+    {'trigger':'deal', 'source':'waiting for full seats', 'dest':'dealing to players', 'conditions':'fourPlayers', 'after': 'deal_cards'},
+    {'trigger':'getbids', 'source':'dealing to players', 'dest':'waiting for winning bid', 'after': 'ask_for_bid'},
+    {'trigger':'throwKitty','source':'waiting for winning bid','dest':'waiting for kitty throw off','conditions':'winningBid'},
+    {'trigger':'winnersLead','source':'waiting for kitty throw off','dest':'waiting for cards to be played','conditions':'kittyThrown'},
+    {'trigger':'gameOver','source':'waiting for cards to be played','dest':'waiting for full seats','conditions':'scoreOver500'},
+
+    {'trigger':'player_left', 'source':'*','dest':'waiting for full seats', 'after':'stop_playing'}
   ]
-  def toggle(self): self.transit = not self.transit
-  def fourPlayers(self): return self.transit
-  def dealing(self): logger.gameEntry("I'm dealing baby!") # this will be the function which does the work!!
+  def incrementDealerFocus(self):
+    self.dealerFocus = ((self.dealerFocus) % 4) + 1
+  def fourPlayers(self):
+    if seat2client(1) and seat2client(2) and seat2client(3) and seat2client(4):
+      logger.gameEntry("Four players are sitting.")
+      return True
+    else:
+      logger.gameEntry("Waiting for more players.")
+      return False
+  def stop_playing(self):
+    logger.gameEntry("A player left :(")
+  def deal_cards(self):
+    logger.gameEntry("I'm dealing baby!")
+
+    # this is threaded as there are blocking delays involved.
+    # The state machine will progress on completion of the thread.
+    def deal_thread():
+
+      logger.gameEntry("Emptying the player's hands.")
+      for seat in xrange(1, 5):
+        seat2client(seat).hand = Deck(NO_CARDS)
+
+      logger.gameEntry("Initialising and shuffling the game deck.")
+      self.game_deck = Deck(FULL_DECK)
+      self.game_deck.shuffle()
+
+      self.dealerButton = random.randint(1, 4)
+      self.dealerFocus = self.dealerButton
+      self.incrementDealerFocus()
+      logger.gameEntry("Dealing for " + seat2client(self.dealerButton).username + " to " + seat2client(self.dealerFocus).username + ".")
+
+      for cards_to_deal in [3, 4, 3]:
+        for i in range(4):
+          for j in range(cards_to_deal):
+            self.game_deck.moveCards(seat2client(self.dealerFocus).hand, 1)
+          self.incrementDealerFocus()
+        self.game_deck.moveCards(self.kitty, 1)
+
+      # todo:
+      # update the clients throughout the dealing...
+      # transition the machine to bidding state (thisGame.getBids())
+
+    t = threading.Thread(target=deal_thread, args=[])
+    t.start()
+
+  def ask_for_bid(self):
+    logger.gameEntry("Your bid mate.") # this will be the function which does the work!!
   def winningBid(self): return self.transit
-  def cardsThrown(self): return self.transit
-  def over500(self): return self.transit
+  def kittyThrown(self): return self.transit
+  def scoreOver500(self): return self.transit
   def __init__(self):
     dealerButton = random.randint(1, 4)
     self.transit = False
@@ -224,11 +272,11 @@ def seatedUsers():
     if client.seat != None:
       userlist.append(client)
   return list(userlist)
-def seatTaken(seat):
+def seat2client(seat):
   for client in seatedUsers():
     if client.seat == seat:
-      return True
-  return False
+      return client
+  return None
 def username2client(username):
   for client in list(clients):
     if client.username == username:
@@ -247,7 +295,7 @@ def usernameRequest(conn, username):
     sendSeatsAvailability(conn)
     sendLoginNotification(conn)
 def seatRequest(conn, seat):
-  if seatTaken(seat):
+  if seat2client(seat):
     conn.sendData("seatTaken")
     logger.sockEntry(conn.getClient().username + ': Seat '+ str(seat) +' request denied - already taken.')
     sendSeatsAvailability(conn)
@@ -257,6 +305,7 @@ def seatRequest(conn, seat):
     logger.sockEntry(conn.getClient().username + ' sat in seat '+ str(seat) +'.')
     for client in allClients():
       sendSeatsAvailability(client.connection)
+    thisGame.deal()
 def pong(conn, pingStampStr):
   conn.getClient().latency = logger.secondsSinceDateTimeStr(pingStampStr)
   if conn.getUsername():
@@ -268,9 +317,10 @@ def sendChatOut(conn, msg):
   chatObject = Object()
   chatObject.fromUser = conn.getUsername()
   chatObject.message = msg
-  logger.sockEntry(chatObject.fromUser + ' said: ' + chatObject.message)
-  for client in allClients():
-    client.connection.sendData("chatMessage",chatObject)
+  if conn.getUsername():
+    # logger.sockEntry(conn.getUsername() + ' said: ' + chatObject.message)
+    for client in allClients():
+      client.connection.sendData("chatMessage",chatObject)
 def sendLoginNotification(conn):
   notificationObject = Object()
   notificationObject.str = conn.getUsername() + " logged in."
@@ -346,7 +396,9 @@ if __name__ == "__main__":
   signal.signal(signal.SIGINT, close_sig_handler)
 
   while True:
-    logger.mainEntry("Pinging Clients.", False)
+    logger.gameEntry("Game State is '" + thisGame.state + "'")
+    logger.mainEntry("Pinging Clients.")
     for client in list(clients):
       client.connection.sendData("ping", logger.datetime_str())
-    time.sleep(300)
+
+    time.sleep(30)
