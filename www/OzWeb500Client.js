@@ -189,6 +189,31 @@ function doDisplayHideCard(card){
   $(card).fadeOut(50);
   return "Card(s) hidden.";
 }
+function doDisplayUpdateCards(updatedCards){
+  for (var i = 1; i < 13; i++){
+    //$("#myHand #card_"+i)
+    if (updatedCards.previousHand >= i ){
+      doDisplayCardBack("#previousHand #card_"+i);
+    }else{
+      doDisplayHideCard("#previousHand #card_"+i);
+    }
+    if (updatedCards.nextHand >= i ){
+      doDisplayCardBack("#nextHand #card_"+i);
+    }else{
+      doDisplayHideCard("#nextHand #card_"+i);
+    }
+    if (updatedCards.partnerHand >= i ){
+      doDisplayCardBack("#partnerHand #card_"+i);
+    }else{
+      doDisplayHideCard("#partnerHand #card_"+i);
+    }
+    if (updatedCards.myHand.length > i-1){
+      doDisplayCardFront("#myHand #card_"+i, updatedCards.myHand[i-1].suit, updatedCards.myHand[i-1].rank);
+    }else{
+      doDisplayHideCard("#myHand #card_"+i);
+    }
+  }
+}
 // Input Availability Doers
 function doInputChatAvailable(state) {
   if (state) {
@@ -208,7 +233,12 @@ function doInputSeatAvailable(players){
       $("#seat"+seat).prop('disabled', true);
     }
   }
-  console.log("players",players);
+  if ($(".Hand .upright input:enabled").length){
+    $(".Hand .upright input").show();
+  }else{
+    $(".Hand .upright input").hide();
+  }
+  console.log("players", players);
 }
 // Layout Adjustment Doers
 function doLayoutVerticalCentre() {
@@ -331,6 +361,13 @@ function onWebSockMessage(evt) {
     case "seatsAvailability":
       console.log("Updating the seats available.");
       doInputSeatAvailable(message.data);
+      myLogger.groupEnd();
+      break;
+    case "cardUpdate":
+      console.log("Updating the player cards.");
+      message.data.myHand = jQuery.parseJSON(message.data.myHand);
+      console.log(message.data)
+      doDisplayUpdateCards(message.data);
       myLogger.groupEnd();
       break;
     default:
@@ -518,7 +555,6 @@ AutoTester = {
       "compete",
       "aldebaran",
       "adjacent",
-      "leukemia",
       "ideal",
       "fairs",
       "faculties",
@@ -633,8 +669,7 @@ AutoTester = {
   start(){
     myLogger.line("TEST","red","Auto Test Started.")
     delayMilli = 0;
-
-    AutoTester.delayMilli += 1000 + Math.random() * 2000;
+    delayMilli += Math.random() * 10000 * Math.random();
     setTimeout(function() { // create username
       $("#inputUsername").val(AutoTester.randomNameGenerator());
     }, delayMilli);
@@ -643,8 +678,7 @@ AutoTester = {
       myLogger.line("TEST","red","Login attempt.")
       doSendLoginReguest();
     }, delayMilli);
-    delayMilli += Math.floor(Math.random() * 10000) + Math.floor(Math.random() * 1000) + Math.floor(Math.random() * 500);
-    console.log(delayMilli);
+    delayMilli += Math.floor(Math.random() * 8000);
     setTimeout(function() { // Send a seat request
       var seat = 1;
       if ($("#seat"+seat).prop('disabled')){
@@ -664,6 +698,7 @@ AutoTester = {
       }else{doSendSeatRequest(seat);}
     }, delayMilli);
 
+    /*
     delayMilli += 4000;
     setTimeout(function() { // Test Chat Gritter
       myLogger.line("TEST","red","Chat display.")
@@ -694,11 +729,11 @@ AutoTester = {
       }, 2000);
     }, delayMilli);
     delayMilli += 1000;
+    */
     setTimeout(function() { // Start Random Chats Outputs
       myLogger.line("TEST","red","Random chats started.")
       AutoTester.random_chat_messager();
     }, delayMilli);
-
 /*
     cardNumber = 1;
     setTimeout(function() {
@@ -747,9 +782,5 @@ AutoTester = {
       delayMilli += 50;
     }
     */
-
-
-
-
   }
 }

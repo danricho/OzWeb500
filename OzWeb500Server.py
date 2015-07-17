@@ -90,6 +90,8 @@ class WS_Handler(WebSocket):
   def handleClose(self):
     logger.sockEntry(str(self.address[0]) + '-' + str(self.address[1]) + ': Socket connection disconnected.')
     sendLeftNotification(self)
+    if self.getClient().seat != None:
+      thisGame.playerLeft()
     clients.remove(self.getClient())
     for client in allClients():
       sendSeatsAvailability(client.connection)
@@ -177,7 +179,12 @@ class Deck(object):
     string = "["
     for card in self.cards:
       string = string + card.jsonStr() + ","
-    return string[:-1] + "]"
+    if string != "[":
+      string = string[:-1]
+    return string + "]"
+  def countCards(self):
+    return len(self.cards)
+
 # This is the game state machine.
 # It will be updated as each element of the game is implemented.
 # Not currently integrated with the WS logic.
@@ -192,12 +199,11 @@ class GameMachine(Machine):
   states = ['waiting for full seats','dealing to players', 'waiting for winning bid', 'waiting for kitty throw off', 'waiting for cards to be played']
   transitions = [
     {'trigger':'deal', 'source':'waiting for full seats', 'dest':'dealing to players', 'conditions':'fourPlayers', 'after': 'deal_cards'},
-    {'trigger':'getbids', 'source':'dealing to players', 'dest':'waiting for winning bid', 'after': 'ask_for_bid'},
+    {'trigger':'getBids', 'source':'dealing to players', 'dest':'waiting for winning bid', 'after': 'ask_for_bid'},
     {'trigger':'throwKitty','source':'waiting for winning bid','dest':'waiting for kitty throw off','conditions':'winningBid'},
     {'trigger':'winnersLead','source':'waiting for kitty throw off','dest':'waiting for cards to be played','conditions':'kittyThrown'},
     {'trigger':'gameOver','source':'waiting for cards to be played','dest':'waiting for full seats','conditions':'scoreOver500'},
-
-    {'trigger':'player_left', 'source':'*','dest':'waiting for full seats', 'after':'stop_playing'}
+    {'trigger':'playerLeft', 'source':'*', 'dest':'waiting for full seats'}
   ]
   def incrementDealerFocus(self):
     self.dealerFocus = ((self.dealerFocus) % 4) + 1
@@ -216,6 +222,7 @@ class GameMachine(Machine):
     # this is threaded as there are blocking delays involved.
     # The state machine will progress on completion of the thread.
     def deal_thread():
+      # if a player drops during this, it hurts.
 
       logger.gameEntry("Emptying the player's hands.")
       for seat in xrange(1, 5):
@@ -234,12 +241,14 @@ class GameMachine(Machine):
         for i in range(4):
           for j in range(cards_to_deal):
             self.game_deck.moveCards(seat2client(self.dealerFocus).hand, 1)
+            seat2client(self.dealerFocus).hand.sort()
+            sendCardUpdate()
+            time.sleep(0.25)
           self.incrementDealerFocus()
         self.game_deck.moveCards(self.kitty, 1)
+        time.sleep(0.25)
 
-      # todo:
-      # update the clients throughout the dealing...
-      # transition the machine to bidding state (thisGame.getBids())
+      self.getBids()
 
     t = threading.Thread(target=deal_thread, args=[])
     t.start()
@@ -338,6 +347,17 @@ def sendSeatsAvailability(conn):
   for client in seatedUsers():
     seats[client.seat] = client.username
   conn.sendData("seatsAvailability", seats)
+def sendCardUpdate():
+  previousSeat = [None,4,1,2,3]
+  nextSeat = [None,2,3,4,1]
+  partnerSeat = [None,3,4,1,2]
+  for seat in range(1,5):
+    cardUpdateObject = Object()
+    cardUpdateObject.myHand = seat2client(seat).hand.jsonStr()
+    cardUpdateObject.previousHand = seat2client(previousSeat[seat]).hand.countCards()
+    cardUpdateObject.nextHand = seat2client(nextSeat[seat]).hand.countCards()
+    cardUpdateObject.partnerHand = seat2client(partnerSeat[seat]).hand.countCards()
+    seat2client(seat).connection.sendData("cardUpdate",cardUpdateObject)
 def sendClientData(conn):
   userdata = conn.getClient()
   conn.sendData("clientData",userdata)
