@@ -164,6 +164,33 @@ card > face#front .big p {
      -o-transform: rotateZ( 3deg );
         transform: rotateZ( 3deg );
 }
+#tableKitty{
+  left: 20px;
+  top: 10px;
+  width: 160px;
+  height: 180px;
+  position: absolute;
+}
+#tableKitty > card{
+  float: left;
+  border-radius: 10px;
+  margin-right: 10px;
+  width: 120px;
+  height: 180px;
+  position: absolute;
+}
+#tableKitty1 {
+  top:0px;
+  left: 0px;
+}
+#tableKitty2 {
+  top:0px;
+  left:20px;
+}
+#tableKitty3 {
+  top:0px;
+  left:40px;
+}
 
 #card_1{
   top: 74px;

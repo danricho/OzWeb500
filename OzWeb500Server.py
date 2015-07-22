@@ -30,13 +30,38 @@ RANK_disp = [None,None,None,"3","4","5","6","7","8","9","10","J","Q","K","A","Jo
 NO_CARDS = False
 FULL_DECK = True
 
+class Client(object):
+  def __init__(self, conn):
+    self.connection = conn
+    self.username = None
+    self.latency = 0.0000
+    self.seat = None
+    self.hand = Deck(NO_CARDS)
+  def toJSONobj(self):
+    JSONobj = Object()
+    if self.connection:
+      JSONobj.connection = Object()
+      JSONobj.connection.host = self.connection.address[0]
+      JSONobj.connection.instance = self.connection.address[1]
+    if self.username:
+      JSONobj.username = self.username
+    if self.latency != 0.0000:
+      JSONobj.latency = self.latency
+    if self.seat:
+      JSONobj.seat = self.seat
+    return JSONobj
+  def logID(self):
+    if self.username:
+      return self.username
+    else:
+      return str(self.connection.address[0]) + '-' + str(self.connection.address[1])
 class WS_Handler(WebSocket):
   def sendData(self, message_type, message_data = None):
     toSend = Object()
     toSend.header = message_type
     if message_data != None:
       if isinstance(message_data, Object):
-        toSend.data = str(message_data.__dict__)
+        toSend.data = json.dumps(message_data, default=lambda o: o.__dict__, sort_keys=True)
       else:
         toSend.data = message_data
     string = unicode(json.dumps(toSend.__dict__))
@@ -76,17 +101,18 @@ class WS_Handler(WebSocket):
         f = sys.exc_info()
         print "Error: " + str(e)
   def handleConnected(self):
-    newUser = Object()
-    newUser.connection = self
-    newUser.username = None
-    newUser.latency = 0.000
-    newUser.seat = None
-    clients.append(newUser)
-    logger.sockEntry(str(self.address[0]) + '-' + str(self.address[1]) + ': New socket connection.')
-    sendSeatsAvailability(self)
-    self.sendData("loginRequest")
-    self.sendData("serverVersion",server_version)
-    self.sendData("ping", logger.datetime_str())
+    try:
+        newUser = Client(self)
+        clients.append(newUser)
+        logger.sockEntry(str(self.address[0]) + '-' + str(self.address[1]) + ': New socket connection.')
+        sendSeatsAvailability(self)
+        self.sendData("loginRequest")
+        self.sendData("serverVersion",server_version)
+        self.sendData("ping", logger.datetime_str())
+    except: # catch *all* exceptions
+        e = traceback.format_exc()
+        f = sys.exc_info()
+        print "Error: " + str(e)
   def handleClose(self):
     logger.sockEntry(str(self.address[0]) + '-' + str(self.address[1]) + ': Socket connection disconnected.')
     sendLeftNotification(self)
@@ -129,17 +155,22 @@ class Card(object):
     else:
       return 0
   def jsonStr(self):
-    return '{"suit":'+str(self.suit)+',"rank":'+str(self.rank)+'}'
+    return str(self.toJSONobj().__dict__)
+  def toJSONobj(self):
+    JSONobj = Object()
+    JSONobj.suit = self.suit
+    JSONobj.rank = self.rank
+    return JSONobj
 class Deck(object):
   def __init__(self, fill=True):
     self.cards=[]
     if fill:
       for suit in range(1,3): # Create the black cards
-        for rank in range(3, 15):
+        for rank in range(4, 15):
           new_card = Card(suit, rank)
           self.cards.append(new_card)
       for suit in range(3,5): # Create the red cards
-        for rank in range(4, 15):
+        for rank in range(5, 15):
           new_card = Card(suit, rank)
           self.cards.append(new_card)
       new_card = Card(5, 15) # create the Joker
@@ -176,15 +207,17 @@ class Deck(object):
       return self.getIndex(tempCards[-1])
     return -1
   def jsonStr(self):
-    string = "["
+    str(self.toJSONobj().cards.__dict__)
+  def toJSONobj(self):
+    JSONobj = Object()
+    JSONobj.cards = []
     for card in self.cards:
-      string = string + card.jsonStr() + ","
-    if string != "[":
-      string = string[:-1]
-    return string + "]"
+      JSONobj.cards.append(card.toJSONobj())
+    return JSONobj
   def countCards(self):
     return len(self.cards)
-
+  def sortHand():
+    None
 # This is the game state machine.
 # It will be updated as each element of the game is implemented.
 # Not currently integrated with the WS logic.
@@ -217,8 +250,6 @@ class GameMachine(Machine):
   def stop_playing(self):
     logger.gameEntry("A player left :(")
   def deal_cards(self):
-    logger.gameEntry("I'm dealing baby!")
-
     # this is threaded as there are blocking delays involved.
     # The state machine will progress on completion of the thread.
     def deal_thread():
@@ -229,7 +260,9 @@ class GameMachine(Machine):
         seat2client(seat).hand = Deck(NO_CARDS)
 
       logger.gameEntry("Initialising and shuffling the game deck.")
+      self.kitty = Deck(NO_CARDS)
       self.game_deck = Deck(FULL_DECK)
+      sendCardUpdate()
       self.game_deck.shuffle()
 
       self.dealerButton = random.randint(1, 4)
@@ -237,6 +270,7 @@ class GameMachine(Machine):
       self.incrementDealerFocus()
       logger.gameEntry("Dealing for " + seat2client(self.dealerButton).username + " to " + seat2client(self.dealerFocus).username + ".")
 
+      sendCardUpdate()
       for cards_to_deal in [3, 4, 3]:
         for i in range(4):
           for j in range(cards_to_deal):
@@ -246,10 +280,10 @@ class GameMachine(Machine):
             time.sleep(0.25)
           self.incrementDealerFocus()
         self.game_deck.moveCards(self.kitty, 1)
+        sendCardUpdate()
         time.sleep(0.25)
 
       self.getBids()
-
     t = threading.Thread(target=deal_thread, args=[])
     t.start()
 
@@ -294,15 +328,16 @@ def username2client(username):
 def usernameRequest(conn, username):
   if username2client(username):
     conn.sendData("usernameExists")
-    logger.sockEntry(str(conn.address[0]) + '-' + str(conn.address[1]) + ': Username request denied - exists (' + username + ').')
+    logger.sockEntry(conn.getClient().logID() + ': Username request denied - exists (' + username + ').')
   else:
+    logger.sockEntry(conn.getClient().logID() + ': Username accepted ('+username +').')
     conn.setUsername(username)
     conn.sendData("loginAccepted", username)
-    logger.sockEntry(str(conn.address[0]) + '-' + str(conn.address[1]) + ': Username accepted ('+username +').')
     sendClientData(conn)
     sendUserList()
     sendSeatsAvailability(conn)
     sendLoginNotification(conn)
+    sendCardUpdate()
 def seatRequest(conn, seat):
   if seat2client(seat):
     conn.sendData("seatTaken")
@@ -311,16 +346,13 @@ def seatRequest(conn, seat):
   else:
     conn.getClient().seat = seat
     conn.sendData("seatAccepted", seat)
+    sendClientData(conn)
     logger.sockEntry(conn.getClient().username + ' sat in seat '+ str(seat) +'.')
     for client in allClients():
       sendSeatsAvailability(client.connection)
     thisGame.deal()
 def pong(conn, pingStampStr):
   conn.getClient().latency = logger.secondsSinceDateTimeStr(pingStampStr)
-  if conn.getUsername():
-    logger.sockEntry(conn.getUsername() + ': latency updated to ' + str(conn.getClient().latency) + '.')
-  else:
-    logger.sockEntry(str(conn.address[0]) + '-' + str(conn.address[1]) + ': latency updated to ' + str(conn.getClient().latency) + '.')
   sendClientData(conn)
 def sendChatOut(conn, msg):
   chatObject = Object()
@@ -353,22 +385,45 @@ def sendCardUpdate():
   partnerSeat = [None,3,4,1,2]
   for seat in range(1,5):
     cardUpdateObject = Object()
-    cardUpdateObject.myHand = seat2client(seat).hand.jsonStr()
-    cardUpdateObject.previousHand = seat2client(previousSeat[seat]).hand.countCards()
-    cardUpdateObject.nextHand = seat2client(nextSeat[seat]).hand.countCards()
-    cardUpdateObject.partnerHand = seat2client(partnerSeat[seat]).hand.countCards()
-    seat2client(seat).connection.sendData("cardUpdate",cardUpdateObject)
+    if len(seatedUsers()) < 4:
+      cardUpdateObject.myHand = Object()
+      cardUpdateObject.myHand.hand = []
+      cardUpdateObject.previousHand = 0
+      cardUpdateObject.nextHand = 0
+      cardUpdateObject.partnerHand = 0
+      cardUpdateObject.kitty = 0
+      cardUpdateObject.deck = 0
+    else:
+      cardUpdateObject.myHand = seat2client(seat).hand.toJSONobj()
+      cardUpdateObject.previousHand = seat2client(previousSeat[seat]).hand.countCards()
+      cardUpdateObject.nextHand = seat2client(nextSeat[seat]).hand.countCards()
+      cardUpdateObject.partnerHand = seat2client(partnerSeat[seat]).hand.countCards()
+      cardUpdateObject.kitty = thisGame.kitty.countCards()
+      cardUpdateObject.deck = thisGame.game_deck.countCards()
+      #cardUpdateObject.previousHandPeak = seat2client(previousSeat[seat]).hand.toJSONobj()
+      #cardUpdateObject.nextHandPeak = seat2client(nextSeat[seat]).hand.toJSONobj()
+      #cardUpdateObject.partnerHandPeak = seat2client(partnerSeat[seat]).hand.toJSONobj()
+      #cardUpdateObject.kittyPeak = thisGame.kitty.toJSONobj()
+      #cardUpdateObject.deckPeak = thisGame.game_deck.toJSONobj()
+      seat2client(seat).connection.sendData("cardUpdate",cardUpdateObject)
 def sendClientData(conn):
-  userdata = conn.getClient()
-  conn.sendData("clientData",userdata)
+  userdata = conn.getClient().toJSONobj()
+  conn.sendData("clientData", userdata)
 def cleanJSONstring(string):
   """ These are regular expressions to correct the format for send client objects """
-  string = re.sub(r"': u'", r"': '", string);
-  string = re.sub(r"(<__[^>]*>)", r"'\1'", string);
-  string = re.sub(r"'", r'"', string)
-  string = re.sub(r'": "{"', r'": {"', string)
-  string = re.sub(r'}"', "}", string)
-  string = re.sub(r': None', ": null", string)
+  string = re.sub(r'"{', r"{", string);
+  string = re.sub(r'}"', r"}", string);
+  string = re.sub(r' \\"', r' "', string);
+  string = re.sub(r'{\\"', r'{"', string);
+  string = re.sub(r'\\"}', r'"}', string);
+  string = re.sub(r'\\":', r'":', string);
+  string = re.sub(r'\\",', r'",', string);
+  #string = re.sub(r"': u'", r"': '", string);
+  #string = re.sub(r"(<__[^>]*>)", r"'\1'", string);
+  #string = re.sub(r"'", r'"', string)
+  #string = re.sub(r'": "{"', r'": {"', string)
+  #string = re.sub(r'}"', "}", string)
+  #string = re.sub(r': None', ": null", string)
   return string
 def sendUserList():
   userList = []

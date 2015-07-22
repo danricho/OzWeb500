@@ -59,9 +59,12 @@ function doWsConnect() {
   websocket.onerror = function(evt) {
     onWebSockError(evt)
   };
-  if (autoTest){
-    AutoTester.start();
-  }
+  setTimeout(function() { // allow for disable (escape key) of the tester.
+    if (autoTest){
+      AutoTester.start();
+    }
+  }, 2000);
+
 }
 function doWsDisconnect() {
   websocket.close();
@@ -190,6 +193,8 @@ function doDisplayHideCard(card){
   return "Card(s) hidden.";
 }
 function doDisplayUpdateCards(updatedCards){
+  updatedCards.myHand = updatedCards.myHand.cards
+  console.log(updatedCards)
   for (var i = 1; i < 13; i++){
     //$("#myHand #card_"+i)
     if (updatedCards.previousHand >= i ){
@@ -211,6 +216,13 @@ function doDisplayUpdateCards(updatedCards){
       doDisplayCardFront("#myHand #card_"+i, updatedCards.myHand[i-1].suit, updatedCards.myHand[i-1].rank);
     }else{
       doDisplayHideCard("#myHand #card_"+i);
+    }
+  }
+  for (var i = 1; i <= 3; i++){
+    if (updatedCards.kitty >= i ){
+      doDisplayCardBack("#tableKitty"+i);
+    }else{
+      doDisplayHideCard("#tableKitty"+i);
     }
   }
 }
@@ -266,6 +278,7 @@ function doLayoutShowModal(state) {
 // ON FUNCTIONS
 // WebSocket Reactions
 function onWebSockOpen(evt) {
+  console.clear()
   myLogger.groupStart("WS", "green", "Connected to server");
   console.log("Updating the connection status display to 'connected'.");
   doDisplayConnectionStatus(true);
@@ -363,10 +376,13 @@ function onWebSockMessage(evt) {
       doInputSeatAvailable(message.data);
       myLogger.groupEnd();
       break;
+    case "seatTaken":
+      console.log("Seat is taken.");
+      onIncomingAlert("Seat has already been taken!");
+      myLogger.groupEnd();
+      break;
     case "cardUpdate":
       console.log("Updating the player cards.");
-      message.data.myHand = jQuery.parseJSON(message.data.myHand);
-      console.log(message.data)
       doDisplayUpdateCards(message.data);
       myLogger.groupEnd();
       break;
@@ -374,7 +390,6 @@ function onWebSockMessage(evt) {
       console.log("Received Data: ", message.data);
       myLogger.groupEnd();
   }
-
 }
 function onWebSockError(evt) {
   myLogger.groupStart("WS", "green", "Connection error.");
@@ -472,7 +487,17 @@ $(document).ready(function() {
       doSendChatMessage();
     }
   });
-
+  $("#seat1").click(function(){doSendSeatRequest(1);});
+  $("#seat2").click(function(){doSendSeatRequest(2);});
+  $("#seat3").click(function(){doSendSeatRequest(3);});
+  $("#seat4").click(function(){doSendSeatRequest(4);});
+  $(document).keyup(function(e) {
+    if (e.keyCode == 27) {
+      event.preventDefault();
+      autoTest = false;
+      myLogger.line("TEST","red","Auto Test Disabled using <esc>.")
+    }
+  });
   // Start the Fun
   doLayoutVerticalCentre();
   doWsConnect();
@@ -490,169 +515,392 @@ AutoTester = {
     }
     return randomstring;
   },
-  randomNameGenerator() {
+  randomGOTusernameGenerator() {
     var names = [
-      "bisque",
-      "opposite",
-      "stringy",
-      "lithe",
-      "bash",
-      "lithium",
-      "point",
-      "axiomatic",
-      "diarrhea",
-      "travel",
-      "local",
-      "sdraught",
-      "access",
-      "nibble",
-      "black",
-      "hobby",
-      "alumni",
-      "sparkle",
-      "feather",
-      "rotation",
-      "rising",
-      "magellan",
-      "diss",
-      "daring",
-      "risk",
-      "burnt",
-      "drag",
-      "matron",
-      "santander",
-      "faded",
-      "booth",
-      "means",
-      "gaudy",
-      "min",
-      "glean",
-      "canon",
-      "pockets",
-      "crampon",
-      "sowse",
-      "forehead",
-      "regulus",
-      "superb",
-      "insoluble",
-      "lives",
-      "updates",
-      "shying",
-      "worklist",
-      "decipher",
-      "analogy",
-      "dingo",
-      "appaloosa",
-      "qualling",
-      "virus",
-      "buy",
-      "posing",
-      "wabbit",
-      "oort",
-      "wreckaged",
-      "brought",
-      "samosa",
-      "compete",
-      "aldebaran",
-      "adjacent",
-      "ideal",
-      "fairs",
-      "faculties",
-      "trachyte",
-      "goody",
-      "sonata",
-      "capable",
-      "musical",
-      "quickest",
-      "scut",
-      "buzzard",
-      "fields",
-      "fixie",
-      "chlorides",
-      "palette",
-      "yoke",
-      "adorable",
-      "fan",
-      "tendril",
-      "shaving",
-      "notation",
-      "lepe",
-      "generic",
-      "rolling",
-      "gild",
-      "pills",
-      "push",
-      "judge",
-      "rufous",
-      "dental",
-      "helping",
-      "shrewd",
-      "atheist",
-      "write",
-      "taste",
-      "tephra",
-      "snarl",
-      "boxer",
-      "fixation",
-      "violas",
-      "poultry",
-      "actinium",
-      "wink",
-      "vocal",
-      "dhtml",
-      "ossobuco",
-      "gateau",
-      "scribble",
-      "muesli",
-      "posing",
-      "ridge",
-      "parma",
-      "dugout",
-      "voltage",
-      "sickness",
-      "constant",
-      "enormous",
-      "dear",
-      "resentful",
-      "neon"
+      "Arya",
+      "Sansa",
+      "Catelyn",
+      "Rickon",
+      "Rickard",
+      "Bran",
+      "Brandon",
+      "Eddard",
+      "Tyrion",
+      "Cersei",
+      "Margaery",
+      "Daenerys",
+      "Viserys",
+      "Jamie",
+      "Petyr",
+      "Jorah",
+      "Stark",
+      "Snow",
+      "Rivers",
+      "Tywin",
+      "Davos",
+      "Theon",
+      "Robb",
+      "Joffrey",
+      "Khaleesi",
+      "Samwell",
+      "Sandor",
+      "Gregor",
+      "Stannis",
+      "Melisandre",
+      "Shae",
+      "Bronn",
+      "Varys",
+      "Robert",
+      "Drogo",
+      "Lysa",
+      "Robin",
+      "Renly",
+      "Brienne",
+      "Selyse",
+      "Lyanna",
+      "Balon",
+      "Kevan",
+      "Lancel",
+      "Podrick",
+      "Roose",
+      "Jory",
+      "Meera",
+      "Ramsay",
+      "Jojen",
+      "Brynden",
+      "Tully",
+      "Edmure",
+      "Loras",
+      "Benjen",
+      "Aemon",
+      "Illyrio",
+      "Missandei",
+      "Gendry",
+      "Syrio",
+      "Myrcella",
+      "Tommen",
+      "Aerys",
+      "Rhaenys",
+      "Osha",
+      "Asha",
+      "Ygritte",
+      "Mycah",
+      "Rhaegar",
+      "Arryn",
+      "Aeron",
+      "Arianne",
+      "Doran",
+      "Quentyn",
+      "Nymeria",
+      "Jeyne",
+      "Jane",
+      "Walder",
+      "Hoster",
+      "Willas",
+      "Mace"
     ];
     var rnum = Math.floor(Math.random() * names.length);
     return names[rnum];
   },
-  randomSentenceGenerator() {
+  randomGOTipsumSentenceGenerator() {
     var sentences = [
-      "The quick brown fox jumps over the lazy dog.",
-      "My Mum tries to be cool by saying that she likes all the same things that I do.",
-      "If the Easter Bunny and the Tooth Fairy had babies would they take your teeth and leave chocolate for you?",
-      "A purple pig and a green donkey flew a kite in the middle of the night and ended up sunburnt.",
-      "What was the person thinking when they discovered cow's milk was fine for human consumption... and why did they do it in the first place!?",
-      "Last Friday in three week's time I saw a spotted striped blue worm shake hands with a legless lizard.",
-      "Wednesday is hump day, but has anyone asked the camel if he's happy about it?",
-      "If Purple People Eaters are real... where do they find purple people to eat?",
-      "A song can make or ruin a person's day if they let it get to them.",
-      "Sometimes it is better to just walk away from things and go back to them later when you're in a better frame of mind.",
-      "Writing a list of random sentences is harder than I initially thought it would be.",
-      "Where do random thoughts come from?",
-      "Lets all be unique together until we realise we are all the same.",
-      "I will never be this young again. Ever. Oh damn... I just got older.",
-      "If I don't like something, I'll stay away from it.",
-      "I love eating toasted cheese and tuna sandwiches.",
-      "If you like tuna and tomato sauce- try combining the two. It's really not as bad as it sounds.",
-      "Someone I know recently combined Maple Syrup & buttered Popcorn thinking it would taste like caramel popcorn. It didn't and they don't recommend anyone else do it either.",
-      "Sometimes, all you need to do is completely make an ass of yourself and laugh it off to realise that life isn't so bad after all.",
-      "When I was little I had a car door slammed shut on my hand. I still remember it quite vividly.",
-      "The clock within this blog and the clock on my laptop are 1 hour different from each other.",
-      "I want to buy a onesie... but know it won't suit me.",
-      "I was very proud of my nickname throughout high school but today- I couldn't be any different to what my nickname was.",
-      "I currently have 4 windows open up... and I don't know why.",
-      "I often see the time 11:11 or 12:34 on clocks.",
-      "This is the last random sentence I will be writing and I am going to stop mid-sent"
+      "Spare me your false courtesy, moon and stars, weirwood bastard eiusmod tempor incididunt ut labore et you know nothing.",
+      "Ut betrothed righteous in wrath, none so fierce green dreams suckling pig let me soar commodo consequat.",
+      "Duis nuncle irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Excepteur sint occaecat cupidatat non proident, sunt in culpa take the black none so dutiful seven hells.",
+      "Tread lightly here lacus.",
+      "The wall trencher a odio.",
+      "Godswood sandsilk, coin rouse me not, night's watch bibendum feast, nec luctus magna felis sollicitudin lance.",
+      "Mare's milk mauris eu nibh euismod gravida.",
+      "Duis ac tellus et moon-flower juice sword.",
+      "Dagger never resting ever vigilant.",
+      "Maidenhead throne.",
+      "Ut ullamcorper, your grace tempor congue, bannerman est euismod turpis, arbor gold sapien risus honeyed locusts.",
+      "Maecenas fermentum royal mi.",
+      "Bloody mummers.",
+      "Old bear work her will.",
+      "Lamprey sapien sem, the seven, whore destrier, night's watch, dirk.",
+      "Suckling pig, holdfast lord of light, as high as honor, mare's milk diam lacus eget erat.",
+      "Cras winter is coming.",
+      "Spiced wine.",
+      "Sorcery consequat.",
+      "Full of terrors, seven hells, green dreams, pretium ac, motley.",
+      "Arbor gold feast, sister dwarf, moon-flower juice, honeyed locusts, orci.",
+      "In garrison habitasse platea dictumst.",
+      "Fusce bannerman, a taste of glory, nisl turpis suscipit mauris, no foe may pass sed neeps.",
+      "Honed and ready merchant mauris.",
+      "Curabitur non elit ut libero tristique stag.",
+      "Moon and stars.",
+      "Donec mattis never resting.",
+      "In hac habitasse ice fool.",
+      "Vivamus facilisis diam at prince.",
+      "Mauris dictum, mulled wine night's watch, dungeon ligula molestie metus, beware our sting magna baseborn sem.",
+      "Fleet turpis.",
+      "You know nothing.",
+      "Morbi tristique neque eu mauris.",
+      "Suckling pig ipsum the wall.",
+      "Proin turpis lacus, scelerisque vitae, blood others, spearwife crypt, quam.",
+      "Aliquam take the black.",
+      "Ever vigilant habitasse platea dictumst.",
+      "Maegi sit amet garron.",
+      "Seven hells.",
+      "Bloody mummers.",
+      "In semper bibendum libero.",
+      "Proin dog, we do not sow, mare's milk spiced wine, vitae tristique magna lacus sit warrior eros.",
+      "Death gallant.",
+      "Praesent odio ligula, dwarf coin, green dreams, gown raiders, nibh.",
+      "Arbor gold lacus.",
+      "Nunc eleifend molestie sandsilk.",
+      "Tunic none so fierce velit.",
+      "Warg euismod vestibulum massa.",
+      "Stag honeyed locusts.",
+      "Always pays his debts never resting.",
+      "Let it be written weirwood.",
+      "Nullam non diam.",
+      "Pellentesque habitant morbi milk of the poppy et malesuada fames ac suckling pig.",
+      "In hac none so wise.",
+      "Aenean vestibulum.",
+      "Ours is the fury lectus.",
+      "Old bear poison is a woman's weapon.",
+      "Aliquam vehicula sem ut feast.",
+      "Cras purus lectus, egestas eu, your grace, spiced wine, blood.",
+      "Fire death before disgrace.",
+      "Donec vitae nisi.",
+      "Mulled wine feugiat elit.",
+      "Drink, your king commands it ullamcorper feugiat.",
+      "Praesent pretium, we light the way, clansmen lorem iaculis magna, pulvinar scelerisque seven hells a justo.",
+      "Bloody mummers rouse me not.",
+      "Wench quis quam.",
+      "Night's watch.",
+      "Curabitur ac sapien.",
+      "Nam erat.",
+      "Praesent ut dog.",
+      "Vivamus steel, augue et laoreet euismod, mare's milk the wall, the last of the dragons ice.",
+      "Betrothed vestibulum tortor ac lacus.",
+      "None so dutiful throne.",
+      "Arbor gold motley justo.",
+      "Honeyed locusts.",
+      "Integer m'lord though all men do despise us.",
+      "Full of terrors.",
+      "Never resting.",
+      "Let me soar, the seven, m'lady dragons, tempor sed, urna.",
+      "Winter is coming, your grace, ever vigilant, moon-flower juice, lacus.",
+      "Dwarf viverra purus.",
+      "Quisque elit.",
+      "Lord of light.",
+      "Duis volutpat elit et erat.",
+      "In lamprey craven no song so sweet.",
+      "Quisque elementum pharetra lacus.",
+      "Mulled wine beware our sting.",
+      "Nulla iaculis egestas magna.",
+      "Dungeon erat volutpat.",
+      "Work her will.",
+      "You know nothing, crypt sit amet, pharetra tunic, imperdiet sit amet, brothel.",
+      "Our sun shines bright mi aliquam pretium.",
+      "Nullam mauris orci, green dreams, snow non, vulputate id, throne.",
+      "He asked too many questions.",
+      "Nam aliquam lacinia enim.",
+      "Warg eget lorem eu purus dignissim maester.",
+      "Seven hells night's watch.",
+      "Mauris urna diam, spiced wine, dagger dragons, take the black, clansmen.",
+      "None so fierce.",
+      "Death before disgrace.",
+      "Honed and ready, bloody mummers, spiced wine, arbor gold, leo.",
+      "None so dutiful, fire id, maidenhead ut, old bear, odio.",
+      "Steel raiders.",
+      "Vestibulum auctor tortor never resting.",
+      "Integer semper, as high as honor, erat nisl hendrerit justo, eget righteous in wrath sandsilk leo.",
+      "Integer fleet velit, pharetra in, suckling pig, honeyed locusts, felis.",
+      "Vestibulum sed felis.",
+      "In maegi.",
+      "As high as honor let me soar.",
+      "Donec magna.",
+      "Quisque id risus.",
+      "No foe may pass.",
+      "Duis crypt, motley pride and purpose, orci nunc interdum leo, ac egestas elit sem ut lacus.",
+      "We do not sow king moon-flower juice.",
+      "Always pays his debts mare's milk sun.",
+      "Moon and stars.",
+      "Pellentesque vitae tellus.",
+      "Fusce lectus est, accumsan sword, seven hells, crimson eget, augue.",
+      "Ever vigilant.",
+      "Rouse me not eu ante.",
+      "Brother coin nisl, ornare auctor, mulled wine, posuere tristique, moon.",
+      "In his cups ironborn.",
+      "Ut green dreams, spiced wine, merchant maester, tristique eget, slave.",
+      "Pellentesque habitant morbi tristique no foe may pass feed it to the goats.",
+      "None so wise, condimentum id, scelerisque ac, the seven, lamprey.",
+      "Arbor gold ligula ac sapien suscipit blandit.",
+      "Suspendisse euismod.",
+      "Ut accumsan, usurper bloody mummers wildling, arcu pede nightsoil manhood, goblet blandit massa arcu eget ligula.",
+      "Winter is coming.",
+      "Feed it to the goats nuncle beware our sting your grace never resting.",
+      "Donec sem crimson, moon-flower juice, commodo eu, tempor nec, crows.",
+      "Donec laoreet ice cloak.",
+      "Servant seven hells, bibendum dwarf, ornare et, old bear, realm.",
+      "Milk of the poppy.",
+      "Gallant ante ipsum no foe may pass though all men do despise us treachery honeyed locusts bannerman.",
+      "Ours is the fury.",
+      "Suspendisse et orci et arcu suckling pig.",
+      "Motley green dreams, your grace, mulled wine, imperdiet eget, flagon.",
+      "Nam consectetuer euismod nunc.",
+      "Nulla dignissim arbor gold.",
+      "Ever vigilant night's watch.",
+      "Nullam sapien augue, condimentum vel, venenatis id, coopers pellentesque, sapien.",
+      "None so fierce ultrices turpis consectetuer imperdiet.",
+      "We light the way maester throne wolf.",
+      "Mauris eu est.",
+      "Tread lightly here a taste of glory.",
+      "Donec tellus mi, luctus sit amet, ultrices a, convallis eu, holdfast.",
+      "Proin faucibus convallis elit.",
+      "Full of terrors spiced wine.",
+      "Joust whore.",
+      "Moon-flower juice.",
+      "Mace spare me your false courtesy pretium.",
+      "Maid old bear, spiced wine, iaculis ut, elementum non, turpis.",
+      "The wall.",
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, though all men do despise us honeyed locusts dolore magna aliqua.",
+      "You know nothing minim veniam, spare me your false courtesy nisi ut aliquip ex seven hells dog.",
+      "Ice spider no foe may pass suckling pig velit esse let it be written nulla pariatur.",
+      "As high as honor brother greyscale, work her will qui smallfolk we do not sow green dreams.",
+      "Curabitur pretium tincidunt lacus.",
+      "Pride and purpose a cell.",
+      "Nullam moon, always pays his debts, est bloody mummers bannerman, mare's milk m'lady felis sollicitudin mauris.",
+      "Integer in mauris our sun shines bright.",
+      "Spiced wine moon-flower juice risus vulputate vehicula.",
+      "Night's watch never resting realm.",
+      "Merchant lamprey.",
+      "Ever vigilant, steel moon and stars, maester est euismod turpis, id tincidunt sapien the seven quam.",
+      "Always pays his debts.",
+      "Donec fermentum.",
+      "Pellentesque betrothed bastard the wall.",
+      "Duis sapien sem, honeyed locusts, commodo eget, consequat quis, baseborn.",
+      "Aliquam faucibus, elit ut greyscale dwarf, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat.",
+      "Old bear mulled wine.",
+      "Moleskin blood.",
+      "Bloody mummers.",
+      "Curabitur augue lorem, dapibus quis, mare's milk, moon-flower juice, nisi.",
+      "Seven hells chamber, mollis squire, spiced wine, your grace, orci.",
+      "Suckling pig habitasse platea dictumst.",
+      "Fusce convallis, the seven gravida bibendum, garrison turpis suscipit mauris, sed placerat ipsum urna sed prince.",
+      "Milk of the poppy tunic.",
+      "Death before disgrace ut libero tristique sodales.",
+      "Lord of light.",
+      "Donec mattis your grace.",
+      "None so dutiful trueborn beast.",
+      "Beware our sting at odio.",
+      "Old bear, none so wise darkness, lacus ligula molestie maester, winter is coming let me soar.",
+      "Donec turpis.",
+      "In his cups.",
+      "Morbi tristique neque nightsoil servant.",
+      "Rouse me not never resting.",
+      "Tread lightly here, scelerisque vitae, elementum at, gallant ac, fleet.",
+      "No foe may pass.",
+      "Honeyed locusts sellsword platea dictumst.",
+      "Righteous in wrath ser.",
+      "Suspendisse odio.",
+      "Blood brothel.",
+      "In semper arbor gold.",
+      "Mare's milk, moon-flower juice pulvinar magister, pede felis dignissim leo, the wall poison is a woman's weapon.",
+      "Nullam ornare.Praesent odio ligula, green dreams, spiced wine, dictum ac, nibh.",
+      "Mulled wine death.",
+      "Nunc eleifend molestie velit.",
+      "Morbi lobortis quam eu velit.",
+      "Take the black massa.",
+      "Donec non lectus.",
+      "Aliquam commodo lacus ever vigilant nulla.",
+      "Cras you know nothing augue.",
+      "Nullam suckling pig.",
+      "Slay no foe may pass et netus et baseborn fames ac turpis egestas.",
+      "We light the way dictumst.",
+      "Never resting.",
+      "Sed lobortis elit quis m'lady.",
+      "Seven hells honeyed locusts full of terrors.",
+      "Work her will ut pede.",
+      "Gallant beast arakh, your grace, mare's milk, imperdiet sed, whore.",
+      "Morbi consectetuer luctus felis.",
+      "Night's watch spider.",
+      "Moon and stars elit.",
+      "Duis sed none so dutiful ullamcorper feugiat.",
+      "The wall, wildling sed fermentum hendrerit, nulla lorem iaculis sister, pulvinar scelerisque urna tellus a joust.",
+      "The seven massa in slave.",
+      "Duis quis quam.",
+      "Proin justo.",
+      "Curabitur old bear.",
+      "Spiced wine.",
+      "Lord of light.",
+      "Brothel gown, maidenhead et laoreet throne, suckling pig bloody mummers, ac egestas sem ligula quis steel.",
+      "Donec vestibulum tortor ac lacus.",
+      "Sed posuere vestibulum nisl.",
+      "Mulled wine honeyed locusts.",
+      "Seven hells.",
+      "Ironborn your grace the last of the dragons.",
+      "None so fierce.",
+      "Realm facilisi.",
+      "Arbor gold moon, scelerisque et, spiced wine, crimson ward, cloak.",
+      "Vivamus craven beast, gargoyles betrothed, mare's milk, never resting, lacus.",
+      "In his cups.",
+      "Quisque neeps.",
+      "Pride and purpose.",
+      "Old bear honed and ready.",
+      "In at nulla at nisl green dreams.",
+      "Quisque elementum pharetra lacus.",
+      "No foe may pass nunc.",
+      "Nulla iaculis egestas magna.",
+      "Godswood ever vigilant.",
+      "Rouse me not.",
+      "Take the black, iaculis sit amet, pharetra quis, bloody mummers amet, lectus.",
+      "Steel let it be written night's watch.",
+      "Nullam mauris orci, mulled wine, suckling pig, vulputate id, court.",
+      "Donec varius full of terrors.",
+      "Nam aliquam lacinia royal.",
+      "Quisque eget ser crypt purus coin ultricies.",
+      "Sellsword porttitor hendrerit ante.",
+      "None so wise, cursus id, the wall, spiced wine amet, motley.",
+      "Your grace felis.",
+      "Pavilion eu mi.",
+      "Moon-flower juice fool, luctus a, mattis ac, tempus non, leo.",
+      "Let me soar, rhoncus slay, laoreet ut, ultricies id, odio.",
+      "Fire maidenhead.",
+      "Never resting righteous in wrath.",
+      "Integer semper, nisi eget suscipit steel, the seven hendrerit nightsoil, eget vestibulum lorem justo ac leo.",
+      "Old bear m'lady, honeyed locusts, fringilla king, ever vigilant, clansmen.",
+      "Baseborn mulled wine.",
+      "Arbor gold.",
+      "Praesent et pede vel ante dapibus death.",
+      "Donec magna.",
+      "Suckling pig risus.",
+      "Mauris the wall spearwife.",
+      "Night's watch, as high as honor, ours is the fury, we do not sow gown stag.",
+      "Your grace diam quis arcu manhood smallfolk.",
+      "Curabitur nec massa ac tread lightly here.",
+      "Aenean id libero.",
+      "None so fierce.",
+      "Fusce flagon est, accumsan ac, seven hells, warg steel, augue.",
+      "Bloody mummers.",
+      "Quisque death before disgrace maester.",
+      "Cloak sapien garrison, old bear, moleskin trueborn, posuere tristique, arakh.",
+      "No song so sweet.",
+      "Ut augue nulla, honeyed locusts, spiced wine, green dreams, neque.",
+      "Our sun shines bright senectus et netus et malesuada fames ac turpis egestas.",
+      "Never resting warrior, condimentum id, scelerisque ac, arbor gold, quam.",
+      "Lord of light a taste of glory.",
+      "Suspendisse greyscale.",
+      "The seven, neque lance night's watch, milk of the poppy, always pays his debts moon-flower juice.",
+      "Aenean sed turpis.",
+      "We light the way senectus et netus et malesuada dirk sorcery turpis egestas.",
+      "Honed and ready, raiders ut, mace eu, your grace, risus.",
+      "Garron dog dapibus ligula.",
+      "Sellsword mulled wine, bibendum nec, ornare et, nonummy in, elit.",
+      "No foe may pass.",
+      "Vestibulum brothel you know nothing let it be written ultrices posuere mare's milk in his cups destrier.",
+      "Donec convallis tincidunt urna."
     ];
     var rnum = Math.floor(Math.random() * sentences.length);
     return sentences[rnum];
   },
   random_chat_messager(){
-    $("#inputChat").val(AutoTester.randomSentenceGenerator());
+    $("#inputChat").val(AutoTester.randomGOTipsumSentenceGenerator());
     doSendChatMessage();
     setTimeout(function() {
       AutoTester.random_chat_messager()
@@ -667,11 +915,13 @@ AutoTester = {
     });
   },
   start(){
-    myLogger.line("TEST","red","Auto Test Started.")
-    delayMilli = 0;
+    delayMilli = 500;
+    setTimeout(function() { // create username
+      myLogger.line("TEST","red","Auto Test Started.")
+    }, delayMilli);
     delayMilli += Math.random() * 10000 * Math.random();
     setTimeout(function() { // create username
-      $("#inputUsername").val(AutoTester.randomNameGenerator());
+      $("#inputUsername").val(AutoTester.randomGOTusernameGenerator());
     }, delayMilli);
     delayMilli += 1000;
     setTimeout(function() { // Send a login request
