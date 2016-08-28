@@ -1,8 +1,16 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
-import signal, json, time, sys, traceback, threading, re, socket, os, random
-os.system('clear')
+import signal
+import json
+import time
+import sys
+import traceback
+import threading
+import re
+import socket
+import os
+import random
+print("Python v" + sys.version)
 
 import logger
 from SimpleWebSocketServer import WebSocket, SimpleWebSocketServer
@@ -268,8 +276,10 @@ class GameMachine(Machine):
       self.dealerButton = random.randint(1, 4)
       self.dealerFocus = self.dealerButton
       self.incrementDealerFocus()
+      
+      sendDealerNotification("Dealing for " + seat2client(self.dealerButton).username + " to " + seat2client(self.dealerFocus).username + ".")
       logger.gameEntry("Dealing for " + seat2client(self.dealerButton).username + " to " + seat2client(self.dealerFocus).username + ".")
-
+      
       sendCardUpdate()
       for cards_to_deal in [3, 4, 3]:
         for i in range(4):
@@ -288,7 +298,12 @@ class GameMachine(Machine):
     t.start()
 
   def ask_for_bid(self):
-    logger.gameEntry("Your bid mate.") # this will be the function which does the work!!
+    sendDealerNotification(seat2client(self.dealerFocus).username +"'s bid.")
+    logger.gameEntry(seat2client(self.dealerFocus).username +"'s bid.")
+    
+    # Need to rearrange the table depending on player position
+    # Need to check the order of dealing
+    
   def winningBid(self): return self.transit
   def kittyThrown(self): return self.transit
   def scoreOver500(self): return self.transit
@@ -433,7 +448,12 @@ def sendUserList():
   for client in list(clients):
     if client.username != "":
       client.connection.sendData("userList", sorted(userList))
-
+def sendDealerNotification(msg):
+  notificationObject = Object()
+  notificationObject.str = msg
+  for client in allClients():
+    client.connection.sendData("notification",notificationObject)
+      
 ws_handler = WS_Handler
 ws_server = SimpleWebSocketServer('', ws_port, ws_handler)
 ws_thread = threading.Thread(target = ws_server.serveforever)

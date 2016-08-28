@@ -1,9 +1,25 @@
+function getUrlVars() {
+  var vars = {};
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+    vars[key] = value;
+  });
+  return vars;
+}
 
 /* SETTINGS */
 client_version = 0.1
 WebSocket_Add = window.location.hostname
 WebSocket_Port = "8000"
+var clientData;
+
 autoTest = true;
+// DISABLE autoTest (press m at refresh)
+$(document).keypress(function(e) {
+  if(e.which == 109) {
+    autoTest = false;
+    myLogger.line("TEST","red","Auto Test disabled.");
+  }
+});
 
 /* CARD RELATED CONSTANTS */
 /// SUIT index ranges from 1 to 5.
@@ -240,9 +256,12 @@ function doInputSeatAvailable(players){
     if (players[i] == null || $("#usernameDisp").text() == "") {
       $("#seat"+seat).val('Sit Here');
       $("#seat"+seat).prop('disabled', false);
+      $("#unDisp"+seat).text('Empty');
     }else{
       $("#seat"+seat).val(players[i]);
       $("#seat"+seat).prop('disabled', true);
+      $("#seat"+seat).prop('disabled', true);
+      $("#unDisp"+seat).text(players[i]);
     }
   }
   if ($(".Hand .upright input:enabled").length){
@@ -384,6 +403,11 @@ function onWebSockMessage(evt) {
     case "cardUpdate":
       console.log("Updating the player cards.");
       doDisplayUpdateCards(message.data);
+      myLogger.groupEnd();
+      break;
+    case "clientData":
+      console.log("Client Data: ", message.data);
+      clientData = message.data;
       myLogger.groupEnd();
       break;
     default:
@@ -979,11 +1003,12 @@ AutoTester = {
       }, 2000);
     }, delayMilli);
     delayMilli += 1000;
-    */
+    
     setTimeout(function() { // Start Random Chats Outputs
       myLogger.line("TEST","red","Random chats started.")
       AutoTester.random_chat_messager();
     }, delayMilli);
+    */
 /*
     cardNumber = 1;
     setTimeout(function() {
