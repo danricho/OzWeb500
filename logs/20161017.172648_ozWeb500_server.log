@@ -1,0 +1,68 @@
+[2016-10-17 17:26:48.370 MAIN] OzWeb500Server launched.
+[2016-10-17 17:26:48.386 MAIN] Client available at: http://JonSnow:8001
+[2016-10-17 17:26:48.386 SOCK] Web Socket Server started.
+[2016-10-17 17:26:48.386 HTTP] HTTP Server started.
+[2016-10-17 17:26:48.386 GAME] Game State is 'waiting for full seats'
+[2016-10-17 17:26:48.386 MAIN] Pinging Clients.
+[2016-10-17 17:26:48.701 SOCK] 192.168.1.7-50458: New socket connection.
+[2016-10-17 17:26:50.265 SOCK] 192.168.1.7-50459: New socket connection.
+[2016-10-17 17:26:50.479 SOCK] 192.168.1.7-50458: Username accepted (Ygritte).
+[2016-10-17 17:26:50.594 SOCK] 192.168.1.7-50460: New socket connection.
+[2016-10-17 17:26:51.484 SOCK] 192.168.1.7-50460: Username accepted (Drogo).
+[2016-10-17 17:26:51.484 SOCK] Ygritte sat in seat 1.
+[2016-10-17 17:26:51.484 GAME] Waiting for more players.
+[2016-10-17 17:26:51.484 SOCK] Ygritte: Seat 1 request denied - already taken.
+[2016-10-17 17:26:51.624 SOCK] 192.168.1.7-50462: New socket connection.
+[2016-10-17 17:26:52.486 SOCK] 192.168.1.7-50462: Username accepted (Sandor).
+[2016-10-17 17:26:53.323 SOCK] 192.168.1.7-50459: Username accepted (Rickard).
+[2016-10-17 17:26:54.489 SOCK] Drogo: Username accepted (Tully).
+[2016-10-17 17:26:54.490 SOCK] Ygritte sat in seat 2.
+[2016-10-17 17:26:54.490 GAME] Waiting for more players.
+[2016-10-17 17:26:55.489 SOCK] Tully sat in seat 1.
+[2016-10-17 17:26:55.490 GAME] Waiting for more players.
+[2016-10-17 17:26:56.483 SOCK] Sandor: Username accepted (Drogo).
+[2016-10-17 17:26:57.479 SOCK] Drogo sat in seat 3.
+[2016-10-17 17:26:57.479 GAME] Waiting for more players.
+[2016-10-17 17:26:58.480 SOCK] Drogo sat in seat 4.
+[2016-10-17 17:26:58.480 GAME] Waiting for more players.
+[2016-10-17 17:26:58.668 SOCK] Rickard sat in seat 3.
+[2016-10-17 17:26:58.668 GAME] Four players are sitting.
+[2016-10-17 17:26:58.669 GAME] Emptying the player's hands.
+[2016-10-17 17:26:58.669 GAME] Initialising and shuffling the game deck.
+[2016-10-17 17:26:58.673 GAME] Dealing for Rickard to Drogo.
+[2016-10-17 17:27:09.978 GAME] Drogo's bid.
+[2016-10-17 17:27:18.392 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:27:18.393 MAIN] Pinging Clients.
+[2016-10-17 17:27:22.691 SOCK] 192.168.1.7-50459: Socket connection disconnected.
+[2016-10-17 17:27:23.170 SOCK] 192.168.1.7-50481: New socket connection.
+[2016-10-17 17:27:23.200 SOCK] 192.168.1.7-50460: Socket connection disconnected.
+[2016-10-17 17:27:23.520 SOCK] 192.168.1.7-50484: New socket connection.
+[2016-10-17 17:27:23.630 SOCK] 192.168.1.7-50462: Socket connection disconnected.
+[2016-10-17 17:27:23.864 SOCK] 192.168.1.7-50458: Socket connection disconnected.
+[2016-10-17 17:27:24.011 SOCK] 192.168.1.7-50499: New socket connection.
+[2016-10-17 17:27:24.088 SOCK] 192.168.1.7-50500: New socket connection.
+[2016-10-17 17:27:27.526 SOCK] 192.168.1.7-50481: Username accepted (Petyr).
+[2016-10-17 17:27:28.333 SOCK] Petyr sat in seat 1.
+[2016-10-17 17:27:28.334 GAME] Waiting for more players.
+[2016-10-17 17:27:28.480 SOCK] 192.168.1.7-50484: Username accepted (Roose).
+[2016-10-17 17:27:28.485 SOCK] 192.168.1.7-50499: Username accepted (Catelyn).
+[2016-10-17 17:27:30.485 SOCK] 192.168.1.7-50500: Username accepted (Loras).
+[2016-10-17 17:27:31.481 SOCK] Loras sat in seat 2.
+[2016-10-17 17:27:31.481 GAME] Waiting for more players.
+[2016-10-17 17:27:31.484 SOCK] Catelyn: Seat 2 request denied - already taken.
+[2016-10-17 17:27:33.487 SOCK] Roose sat in seat 3.
+[2016-10-17 17:27:33.487 GAME] Waiting for more players.
+[2016-10-17 17:27:43.546 SOCK] Catelyn sat in seat 4.
+[2016-10-17 17:27:43.546 GAME] Four players are sitting.
+[2016-10-17 17:27:43.546 GAME] Emptying the player's hands.
+[2016-10-17 17:27:43.547 GAME] Initialising and shuffling the game deck.
+[2016-10-17 17:27:43.551 GAME] Dealing for Loras to Roose.
+[2016-10-17 17:27:48.394 GAME] Game State is 'dealing to players'
+[2016-10-17 17:27:48.394 MAIN] Pinging Clients.
+[2016-10-17 17:27:54.950 GAME] Roose's bid.
+[2016-10-17 17:28:13.481 SOCK] 192.168.1.7-50499: Socket connection disconnected.
+[2016-10-17 17:28:14.302 SOCK] 192.168.1.7-50500: Socket connection disconnected.
+[2016-10-17 17:28:15.018 SOCK] 192.168.1.7-50484: Socket connection disconnected.
+[2016-10-17 17:28:15.726 SOCK] 192.168.1.7-50481: Socket connection disconnected.
+[2016-10-17 17:28:18.408 GAME] Game State is 'waiting for full seats'
+[2016-10-17 17:28:18.408 MAIN] Pinging Clients.

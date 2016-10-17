@@ -287,7 +287,9 @@ class GameMachine(Machine):
             self.game_deck.moveCards(seat2client(self.dealerFocus).hand, 1)
             seat2client(self.dealerFocus).hand.sort()
             sendCardUpdate()
+            logger.gameEntry("Just dealt to " + seat2client(self.dealerFocus).username + ".")
             time.sleep(0.25)
+            
           self.incrementDealerFocus()
         self.game_deck.moveCards(self.kitty, 1)
         sendCardUpdate()
@@ -496,4 +498,4 @@ if __name__ == "__main__":
     for client in list(clients):
       client.connection.sendData("ping", logger.datetime_str())
 
-    time.sleep(30)
+    time.sleep(300)

@@ -1,0 +1,142 @@
+[2016-10-17 18:08:33.209 MAIN] OzWeb500Server launched.
+[2016-10-17 18:08:33.209 MAIN] Client available at: http://JonSnow:8001
+[2016-10-17 18:08:33.209 SOCK] Web Socket Server started.
+[2016-10-17 18:08:33.209 HTTP] HTTP Server started.
+[2016-10-17 18:08:33.209 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:08:33.209 MAIN] Pinging Clients.
+[2016-10-17 18:08:33.596 SOCK] 192.168.1.7-50841: New socket connection.
+[2016-10-17 18:08:33.608 SOCK] 192.168.1.7-50842: New socket connection.
+[2016-10-17 18:08:33.619 SOCK] 192.168.1.7-50843: New socket connection.
+[2016-10-17 18:08:33.631 SOCK] 192.168.1.7-50844: New socket connection.
+[2016-10-17 18:08:37.156 SOCK] 192.168.1.7-50844: Username accepted (Rickon).
+[2016-10-17 18:08:37.238 SOCK] 192.168.1.7-50841: Username accepted (Davos).
+[2016-10-17 18:08:37.453 SOCK] 192.168.1.7-50843: Username accepted (Illyrio).
+[2016-10-17 18:08:39.126 SOCK] 192.168.1.7-50842: Username accepted (Sansa).
+[2016-10-17 18:08:40.593 SOCK] Sansa sat in seat 1.
+[2016-10-17 18:08:40.593 GAME] Waiting for more players.
+[2016-10-17 18:08:40.897 SOCK] Illyrio sat in seat 2.
+[2016-10-17 18:08:40.898 GAME] Waiting for more players.
+[2016-10-17 18:08:40.917 SOCK] Rickon sat in seat 3.
+[2016-10-17 18:08:40.918 GAME] Waiting for more players.
+[2016-10-17 18:08:43.510 SOCK] Davos sat in seat 4.
+[2016-10-17 18:08:43.510 GAME] Four players are sitting.
+[2016-10-17 18:08:43.511 GAME] Emptying the player's hands.
+[2016-10-17 18:08:43.511 GAME] Initialising and shuffling the game deck.
+[2016-10-17 18:08:43.515 GAME] Dealing for Davos to Sansa.
+[2016-10-17 18:08:43.519 GAME] Just dealt to Sansa.
+[2016-10-17 18:08:44.528 GAME] Just dealt to Sansa.
+[2016-10-17 18:08:45.531 GAME] Just dealt to Sansa.
+[2016-10-17 18:08:46.549 GAME] Just dealt to Illyrio.
+[2016-10-17 18:08:47.567 GAME] Just dealt to Illyrio.
+[2016-10-17 18:08:47.928 SOCK] 192.168.1.7-50843: Socket connection disconnected.
+[2016-10-17 18:08:48.363 SOCK] 192.168.1.7-50841: Socket connection disconnected.
+[2016-10-17 18:08:48.471 SOCK] 192.168.1.7-50869: New socket connection.
+[2016-10-17 18:08:48.641 SOCK] 192.168.1.7-50870: New socket connection.
+[2016-10-17 18:08:48.979 SOCK] 192.168.1.7-50842: Socket connection disconnected.
+[2016-10-17 18:08:49.282 SOCK] 192.168.1.7-50874: New socket connection.
+[2016-10-17 18:08:49.530 SOCK] 192.168.1.7-50844: Socket connection disconnected.
+[2016-10-17 18:08:49.813 SOCK] 192.168.1.7-50883: New socket connection.
+[2016-10-17 18:08:52.560 SOCK] 192.168.1.7-50870: Username accepted (Sansa).
+[2016-10-17 18:08:52.561 SOCK] 192.168.1.7-50869: Username accepted (Doran).
+[2016-10-17 18:08:55.017 SOCK] Doran sat in seat 1.
+[2016-10-17 18:08:55.018 GAME] Waiting for more players.
+[2016-10-17 18:08:56.089 SOCK] 192.168.1.7-50883: Username accepted (Tully).
+[2016-10-17 18:08:57.717 SOCK] Sansa sat in seat 2.
+[2016-10-17 18:08:57.717 GAME] Waiting for more players.
+[2016-10-17 18:08:57.775 SOCK] 192.168.1.7-50874: Username accepted (Viserys).
+[2016-10-17 18:09:00.861 SOCK] Tully sat in seat 3.
+[2016-10-17 18:09:00.862 GAME] Waiting for more players.
+[2016-10-17 18:09:02.250 SOCK] Viserys sat in seat 4.
+[2016-10-17 18:09:02.251 GAME] Four players are sitting.
+[2016-10-17 18:09:02.251 GAME] Emptying the player's hands.
+[2016-10-17 18:09:02.252 GAME] Initialising and shuffling the game deck.
+[2016-10-17 18:09:02.256 GAME] Dealing for Viserys to Doran.
+[2016-10-17 18:09:02.261 GAME] Just dealt to Doran.
+[2016-10-17 18:09:03.222 GAME] Game State is 'dealing to players'
+[2016-10-17 18:09:03.222 MAIN] Pinging Clients.
+[2016-10-17 18:09:03.265 GAME] Just dealt to Doran.
+[2016-10-17 18:09:04.268 GAME] Just dealt to Doran.
+[2016-10-17 18:09:05.273 GAME] Just dealt to Sansa.
+[2016-10-17 18:09:06.285 GAME] Just dealt to Sansa.
+[2016-10-17 18:09:07.294 GAME] Just dealt to Sansa.
+[2016-10-17 18:09:08.310 GAME] Just dealt to Tully.
+[2016-10-17 18:09:09.325 GAME] Just dealt to Tully.
+[2016-10-17 18:09:10.342 GAME] Just dealt to Tully.
+[2016-10-17 18:09:11.350 GAME] Just dealt to Viserys.
+[2016-10-17 18:09:12.355 GAME] Just dealt to Viserys.
+[2016-10-17 18:09:13.372 GAME] Just dealt to Viserys.
+[2016-10-17 18:09:14.633 GAME] Just dealt to Doran.
+[2016-10-17 18:09:15.655 GAME] Just dealt to Doran.
+[2016-10-17 18:09:16.668 GAME] Just dealt to Doran.
+[2016-10-17 18:09:17.680 GAME] Just dealt to Doran.
+[2016-10-17 18:09:18.694 GAME] Just dealt to Sansa.
+[2016-10-17 18:09:19.711 GAME] Just dealt to Sansa.
+[2016-10-17 18:09:20.725 GAME] Just dealt to Sansa.
+[2016-10-17 18:09:21.735 GAME] Just dealt to Sansa.
+[2016-10-17 18:09:22.744 GAME] Just dealt to Tully.
+[2016-10-17 18:09:23.764 GAME] Just dealt to Tully.
+[2016-10-17 18:09:24.782 GAME] Just dealt to Tully.
+[2016-10-17 18:09:25.804 GAME] Just dealt to Tully.
+[2016-10-17 18:09:26.815 GAME] Just dealt to Viserys.
+[2016-10-17 18:09:27.833 GAME] Just dealt to Viserys.
+[2016-10-17 18:09:28.844 GAME] Just dealt to Viserys.
+[2016-10-17 18:09:29.865 GAME] Just dealt to Viserys.
+[2016-10-17 18:09:31.136 GAME] Just dealt to Doran.
+[2016-10-17 18:09:32.151 GAME] Just dealt to Doran.
+[2016-10-17 18:09:33.170 GAME] Just dealt to Doran.
+[2016-10-17 18:09:33.224 GAME] Game State is 'dealing to players'
+[2016-10-17 18:09:33.225 MAIN] Pinging Clients.
+[2016-10-17 18:09:34.187 GAME] Just dealt to Sansa.
+[2016-10-17 18:09:35.196 GAME] Just dealt to Sansa.
+[2016-10-17 18:09:36.214 GAME] Just dealt to Sansa.
+[2016-10-17 18:09:37.224 GAME] Just dealt to Tully.
+[2016-10-17 18:09:38.234 GAME] Just dealt to Tully.
+[2016-10-17 18:09:39.243 GAME] Just dealt to Tully.
+[2016-10-17 18:09:40.270 GAME] Just dealt to Viserys.
+[2016-10-17 18:09:41.294 GAME] Just dealt to Viserys.
+[2016-10-17 18:09:42.312 GAME] Just dealt to Viserys.
+[2016-10-17 18:09:43.588 GAME] Doran's bid.
+[2016-10-17 18:09:52.686 SOCK] 192.168.1.7-50883: Socket connection disconnected.
+[2016-10-17 18:09:53.207 SOCK] 192.168.1.7-50874: Socket connection disconnected.
+[2016-10-17 18:09:53.615 SOCK] 192.168.1.7-50900: New socket connection.
+[2016-10-17 18:09:53.715 SOCK] 192.168.1.7-50870: Socket connection disconnected.
+[2016-10-17 18:09:54.039 SOCK] 192.168.1.7-50909: New socket connection.
+[2016-10-17 18:09:54.148 SOCK] 192.168.1.7-50869: Socket connection disconnected.
+[2016-10-17 18:09:54.449 SOCK] 192.168.1.7-50918: New socket connection.
+[2016-10-17 18:09:58.416 SOCK] 192.168.1.7-50918: Username accepted (Benjen).
+[2016-10-17 18:09:59.763 SOCK] 192.168.1.7-50900: Username accepted (Robb).
+[2016-10-17 18:10:00.349 SOCK] 192.168.1.7-50909: Username accepted (Renly).
+[2016-10-17 18:10:03.229 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:10:03.229 MAIN] Pinging Clients.
+[2016-10-17 18:10:04.663 SOCK] Robb sat in seat 1.
+[2016-10-17 18:10:04.664 GAME] Waiting for more players.
+[2016-10-17 18:10:05.555 SOCK] Benjen sat in seat 2.
+[2016-10-17 18:10:05.556 GAME] Waiting for more players.
+[2016-10-17 18:10:07.471 SOCK] Renly sat in seat 3.
+[2016-10-17 18:10:07.471 GAME] Waiting for more players.
+[2016-10-17 18:10:33.231 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:10:33.231 MAIN] Pinging Clients.
+[2016-10-17 18:11:03.241 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:11:03.242 MAIN] Pinging Clients.
+[2016-10-17 18:11:33.243 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:11:33.243 MAIN] Pinging Clients.
+[2016-10-17 18:12:03.258 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:12:03.258 MAIN] Pinging Clients.
+[2016-10-17 18:12:33.272 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:12:33.272 MAIN] Pinging Clients.
+[2016-10-17 18:13:03.284 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:13:03.284 MAIN] Pinging Clients.
+[2016-10-17 18:13:33.299 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:13:33.299 MAIN] Pinging Clients.
+[2016-10-17 18:13:44.881 SOCK] 192.168.1.7-50909: Socket connection disconnected.
+[2016-10-17 18:13:45.389 SOCK] 192.168.1.7-50974: New socket connection.
+[2016-10-17 18:13:45.483 SOCK] 192.168.1.7-50900: Socket connection disconnected.
+[2016-10-17 18:13:45.778 SOCK] 192.168.1.7-50983: New socket connection.
+[2016-10-17 18:13:46.133 SOCK] 192.168.1.7-50918: Socket connection disconnected.
+[2016-10-17 18:13:46.446 SOCK] 192.168.1.7-50992: New socket connection.
+[2016-10-17 18:13:48.486 MAIN] OzWeb500Server terminating.
+[2016-10-17 18:13:48.702 HTTP] HTTP Server stopped.
+[2016-10-17 18:13:48.703 SOCK] 192.168.1.7-50974: Socket connection disconnected.
+[2016-10-17 18:13:48.704 SOCK] 192.168.1.7-50983: Socket connection disconnected.
+[2016-10-17 18:13:48.704 SOCK] 192.168.1.7-50992: Socket connection disconnected.
+[2016-10-17 18:13:48.704 SOCK] Web Socket Server stopped.

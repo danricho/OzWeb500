@@ -98,20 +98,20 @@ card > face#front .big p {
 #partnerHand .upright{
   transform: rotateZ( -180deg );
 }
-#previousHand{
+#nextHand{
   top: 150px;
   left: -250px;
   transform: rotateZ( 90deg );
 }
-#previousHand .upright{
+#nextHand .upright{
   transform: rotateZ( -90deg );
 }
-#nextHand{
+#previousHand{
   top: 150px;
   right: -250px;
   transform: rotateZ( -90deg );
 }
-#nextHand .upright{
+#previousHand .upright{
   transform: rotateZ( 90deg );
 }
 

@@ -1,0 +1,8 @@
+[2016-10-17 17:25:25.745 MAIN] OzWeb500Server launched.
+[2016-10-17 17:25:25.745 MAIN] Client available at: http://JonSnow:8001
+[2016-10-17 17:25:25.745 SOCK] Web Socket Server started.
+[2016-10-17 17:25:25.745 HTTP] HTTP Server started.
+[2016-10-17 17:25:25.745 GAME] Game State is 'waiting for full seats'
+[2016-10-17 17:25:25.745 MAIN] Pinging Clients.
+[2016-10-17 17:25:55.745 GAME] Game State is 'waiting for full seats'
+[2016-10-17 17:25:55.745 MAIN] Pinging Clients.

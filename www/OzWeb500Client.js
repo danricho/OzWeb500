@@ -252,16 +252,55 @@ function doInputChatAvailable(state) {
 }
 function doInputSeatAvailable(players){
   for (var i = 1; i < 5; i++){
-    seat = i;
-    if (players[i] == null || $("#usernameDisp").text() == "") {
-      $("#seat"+seat).val('Sit Here');
-      $("#seat"+seat).prop('disabled', false);
-      $("#unDisp"+seat).text('Empty');
-    }else{
-      $("#seat"+seat).val(players[i]);
-      $("#seat"+seat).prop('disabled', true);
-      $("#seat"+seat).prop('disabled', true);
-      $("#unDisp"+seat).text(players[i]);
+    if (typeof clientData !== 'undefined' && typeof clientData.seat !== 'undefined'){
+      // I'm sitting!
+      if (clientData.seat-i == 0) { // it's my seat...
+        $("#mySeatButton").val(players[i]);
+        $("#mySeatButton").prop('disabled', true);
+        $("#unMy").text(players[i]);
+      } else if (clientData.seat-i == -3 || clientData.seat-i == 1) { // previous seat
+        if (players[i] == null) {
+          $("#previousSeatButton").val('Sit Here');
+          $("#previousSeatButton").prop('disabled', false);
+          $("#unPrevious").text('Empty');
+        }else{
+          $("#previousSeatButton").val(players[i]);
+          $("#previousSeatButton").prop('disabled', true);
+          $("#unPrevious").text(players[i]);
+        }
+      } else if (clientData.seat-i == 3 || clientData.seat-i == -1) { // next seat
+        if (players[i] == null) {
+          $("#nextSeatButton").val('Sit Here');
+          $("#nextSeatButton").prop('disabled', false);
+          $("#unNext").text('Empty');
+        }else{
+          $("#nextSeatButton").val(players[i]);
+          $("#nextSeatButton").prop('disabled', true);
+          $("#unNext").text(players[i]);
+        }
+      } else if (clientData.seat-i == 2 || clientData.seat-i == -2) { // partner seat
+        if (players[i] == null) {
+          $("#partnerSeatButton").val('Sit Here');
+          $("#partnerSeatButton").prop('disabled', false);
+          $("#unPartner").text('Empty');
+        }else{
+          $("#partnerSeatButton").val(players[i]);
+          $("#partnerSeatButton").prop('disabled', true);
+          $("#unPartner").text(players[i]);
+        }
+      }
+    } else { // I'm not sitting.
+      buttons = [null, "#mySeatButton", "#nextSeatButton", "#partnerSeatButton", "#previousSeatButton"];
+      usernames = [null, "#unMy", "#unNext", "#unPartner", "#usPrevious"];
+      if (players[i] == null) {
+        $(buttons[i]).val('Sit Here');
+        $(buttons[i]).prop('disabled', false);
+        $(usernames[i]).text('Empty');
+      }else{
+        $(buttons[i]).val(players[i]);
+        $(buttons[i]).prop('disabled', true);
+        $(usernames[i]).text(players[i]);
+      }
     }
   }
   if ($(".Hand .upright input:enabled").length){
@@ -406,8 +445,8 @@ function onWebSockMessage(evt) {
       myLogger.groupEnd();
       break;
     case "clientData":
-      console.log("Client Data: ", message.data);
       clientData = message.data;
+      console.log("Client Data: ", clientData);
       myLogger.groupEnd();
       break;
     default:
@@ -511,10 +550,10 @@ $(document).ready(function() {
       doSendChatMessage();
     }
   });
-  $("#seat1").click(function(){doSendSeatRequest(1);});
-  $("#seat2").click(function(){doSendSeatRequest(2);});
-  $("#seat3").click(function(){doSendSeatRequest(3);});
-  $("#seat4").click(function(){doSendSeatRequest(4);});
+  $("#mySeatButton").click(function(){doSendSeatRequest(1);});
+  $("#nextSeatButton").click(function(){doSendSeatRequest(2);});
+  $("#partnerSeatButton").click(function(){doSendSeatRequest(3);});
+  $("#previousSeatButton").click(function(){doSendSeatRequest(4);});
   $(document).keyup(function(e) {
     if (e.keyCode == 27) {
       event.preventDefault();
@@ -939,6 +978,7 @@ AutoTester = {
     });
   },
   start(){
+ 
     delayMilli = 500;
     setTimeout(function() { // create username
       myLogger.line("TEST","red","Auto Test Started.")
@@ -954,22 +994,14 @@ AutoTester = {
     }, delayMilli);
     delayMilli += Math.floor(Math.random() * 8000);
     setTimeout(function() { // Send a seat request
-      var seat = 1;
-      if ($("#seat"+seat).prop('disabled')){
-        myLogger.line("TEST","red","Seat "+seat+" taken by "+$("#seat"+seat).val()+".");
-        seat += 1;
-        if ($("#seat"+seat).prop('disabled')){
-          myLogger.line("TEST","red","Seat "+seat+" taken by "+$("#seat"+seat).val()+".");
-          seat += 1;
-          if ($("#seat"+seat).prop('disabled')){
-            myLogger.line("TEST","red","Seat "+seat+" taken by "+$("#seat"+seat).val()+".");
-            seat += 1;
-            if ($("#seat"+seat).prop('disabled')){
-              myLogger.line("TEST","red","All seats taken.");
-            }else{doSendSeatRequest(seat);}
-          }else{doSendSeatRequest(seat);}
-        }else{doSendSeatRequest(seat);}
-      }else{doSendSeatRequest(seat);}
+      if ($("#mySeatButton").prop('disabled')){myLogger.line("TEST","red","Seat 1 taken by " + $("#mySeatButton").val()+".");
+        if ($("#nextSeatButton").prop('disabled')){myLogger.line("TEST","red","Seat 2 taken by " + $("#nextSeatButton").val()+".");
+          if ($("#partnerSeatButton").prop('disabled')){myLogger.line("TEST","red","Seat 3 taken by " + $("partnerSeatButton").val() + ".");
+            if ($("#previousSeatButton").prop('disabled')){myLogger.line("TEST","red","All seats taken.");
+            }else{doSendSeatRequest(4);}
+          }else{doSendSeatRequest(3);}
+        }else{doSendSeatRequest(2);}
+      }else{doSendSeatRequest(1);}
     }, delayMilli);
 
     /*
@@ -1057,5 +1089,6 @@ AutoTester = {
       delayMilli += 50;
     }
     */
+
   }
 }

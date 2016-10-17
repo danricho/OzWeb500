@@ -1,0 +1,86 @@
+[2016-10-17 18:05:30.505 MAIN] OzWeb500Server launched.
+[2016-10-17 18:05:30.505 MAIN] Client available at: http://JonSnow:8001
+[2016-10-17 18:05:30.505 SOCK] Web Socket Server started.
+[2016-10-17 18:05:30.505 HTTP] HTTP Server started.
+[2016-10-17 18:05:30.506 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:05:30.506 MAIN] Pinging Clients.
+[2016-10-17 18:05:30.600 SOCK] 192.168.1.7-50833: New socket connection.
+[2016-10-17 18:05:30.612 SOCK] 192.168.1.7-50834: New socket connection.
+[2016-10-17 18:05:31.076 SOCK] 192.168.1.7-50835: New socket connection.
+[2016-10-17 18:05:32.076 SOCK] 192.168.1.7-50836: New socket connection.
+[2016-10-17 18:05:32.935 SOCK] 192.168.1.7-50833: Username accepted (Varys).
+[2016-10-17 18:05:32.949 SOCK] 192.168.1.7-50834: Username accepted (Willas).
+[2016-10-17 18:05:34.460 SOCK] Willas: Username accepted (Lysa).
+[2016-10-17 18:05:35.279 SOCK] 192.168.1.7-50835: Username accepted (Davos).
+[2016-10-17 18:05:35.730 SOCK] 192.168.1.7-50836: Username accepted (Nymeria).
+[2016-10-17 18:05:36.075 SOCK] Davos sat in seat 1.
+[2016-10-17 18:05:36.135 SOCK] Lysa sat in seat 2.
+[2016-10-17 18:05:37.714 SOCK] Davos: Username accepted (Jorah).
+[2016-10-17 18:05:37.998 SOCK] Lysa: Seat 2 request denied - already taken.
+[2016-10-17 18:05:38.181 SOCK] Nymeria: Seat 1 request denied - already taken.
+[2016-10-17 18:05:40.802 SOCK] Varys sat in seat 3.
+[2016-10-17 18:05:42.362 SOCK] Nymeria: Username accepted (Quentyn).
+[2016-10-17 18:05:43.336 SOCK] Quentyn sat in seat 4.
+[2016-10-17 18:05:43.336 GAME] Four players are sitting.
+[2016-10-17 18:05:43.337 GAME] Emptying the player's hands.
+[2016-10-17 18:05:43.337 GAME] Initialising and shuffling the game deck.
+[2016-10-17 18:05:43.341 GAME] Dealing for Varys to Quentyn.
+[2016-10-17 18:05:43.346 GAME] Just dealt to Quentyn.
+[2016-10-17 18:05:43.673 SOCK] Jorah: Seat 1 request denied - already taken.
+[2016-10-17 18:05:44.354 GAME] Just dealt to Quentyn.
+[2016-10-17 18:05:45.369 GAME] Just dealt to Quentyn.
+[2016-10-17 18:05:46.382 GAME] Just dealt to Jorah.
+[2016-10-17 18:05:47.398 GAME] Just dealt to Jorah.
+[2016-10-17 18:05:48.467 GAME] Just dealt to Jorah.
+[2016-10-17 18:05:49.473 GAME] Just dealt to Lysa.
+[2016-10-17 18:05:50.479 GAME] Just dealt to Lysa.
+[2016-10-17 18:05:51.490 GAME] Just dealt to Lysa.
+[2016-10-17 18:05:52.510 GAME] Just dealt to Varys.
+[2016-10-17 18:05:53.526 GAME] Just dealt to Varys.
+[2016-10-17 18:05:54.539 GAME] Just dealt to Varys.
+[2016-10-17 18:05:55.815 GAME] Just dealt to Quentyn.
+[2016-10-17 18:05:56.825 GAME] Just dealt to Quentyn.
+[2016-10-17 18:05:57.842 GAME] Just dealt to Quentyn.
+[2016-10-17 18:05:58.861 GAME] Just dealt to Quentyn.
+[2016-10-17 18:05:59.877 GAME] Just dealt to Jorah.
+[2016-10-17 18:06:00.516 GAME] Game State is 'dealing to players'
+[2016-10-17 18:06:00.517 MAIN] Pinging Clients.
+[2016-10-17 18:06:00.888 GAME] Just dealt to Jorah.
+[2016-10-17 18:06:01.895 GAME] Just dealt to Jorah.
+[2016-10-17 18:06:02.910 GAME] Just dealt to Jorah.
+[2016-10-17 18:06:03.917 GAME] Just dealt to Lysa.
+[2016-10-17 18:06:04.938 GAME] Just dealt to Lysa.
+[2016-10-17 18:06:05.955 GAME] Just dealt to Lysa.
+[2016-10-17 18:06:06.971 GAME] Just dealt to Lysa.
+[2016-10-17 18:06:31.906 GAME] Just dealt to Varys.
+[2016-10-17 18:06:31.906 GAME] Game State is 'dealing to players'
+[2016-10-17 18:06:31.906 MAIN] Pinging Clients.
+[2016-10-17 18:06:32.917 GAME] Just dealt to Varys.
+[2016-10-17 18:06:33.935 GAME] Just dealt to Varys.
+[2016-10-17 18:06:35.086 GAME] Just dealt to Varys.
+[2016-10-17 18:06:36.367 GAME] Just dealt to Quentyn.
+[2016-10-17 18:06:37.386 GAME] Just dealt to Quentyn.
+[2016-10-17 18:06:38.404 GAME] Just dealt to Quentyn.
+[2016-10-17 18:06:39.419 GAME] Just dealt to Jorah.
+[2016-10-17 18:06:59.890 GAME] Just dealt to Jorah.
+[2016-10-17 18:07:00.908 GAME] Just dealt to Jorah.
+[2016-10-17 18:07:01.917 GAME] Game State is 'dealing to players'
+[2016-10-17 18:07:01.918 MAIN] Pinging Clients.
+[2016-10-17 18:07:01.922 GAME] Just dealt to Lysa.
+[2016-10-17 18:07:02.933 GAME] Just dealt to Lysa.
+[2016-10-17 18:07:03.950 GAME] Just dealt to Lysa.
+[2016-10-17 18:07:04.959 GAME] Just dealt to Varys.
+[2016-10-17 18:07:05.972 GAME] Just dealt to Varys.
+[2016-10-17 18:07:06.995 GAME] Just dealt to Varys.
+[2016-10-17 18:07:08.264 GAME] Quentyn's bid.
+[2016-10-17 18:07:31.925 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 18:07:31.926 MAIN] Pinging Clients.
+[2016-10-17 18:08:01.935 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 18:08:01.935 MAIN] Pinging Clients.
+[2016-10-17 18:08:30.863 MAIN] OzWeb500Server terminating.
+[2016-10-17 18:08:31.064 HTTP] HTTP Server stopped.
+[2016-10-17 18:08:31.064 SOCK] 192.168.1.7-50834: Socket connection disconnected.
+[2016-10-17 18:08:31.065 SOCK] 192.168.1.7-50835: Socket connection disconnected.
+[2016-10-17 18:08:31.065 SOCK] 192.168.1.7-50836: Socket connection disconnected.
+[2016-10-17 18:08:31.066 SOCK] 192.168.1.7-50833: Socket connection disconnected.
+[2016-10-17 18:08:31.066 SOCK] Web Socket Server stopped.

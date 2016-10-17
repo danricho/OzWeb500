@@ -1,0 +1,506 @@
+[2016-10-17 18:14:41.846 MAIN] OzWeb500Server launched.
+[2016-10-17 18:14:41.846 MAIN] Client available at: http://JonSnow:8001
+[2016-10-17 18:14:41.846 SOCK] Web Socket Server started.
+[2016-10-17 18:14:41.846 HTTP] HTTP Server started.
+[2016-10-17 18:14:41.846 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:14:41.846 MAIN] Pinging Clients.
+[2016-10-17 18:14:42.094 SOCK] 192.168.1.7-51029: New socket connection.
+[2016-10-17 18:14:42.105 SOCK] 192.168.1.7-51030: New socket connection.
+[2016-10-17 18:14:42.117 SOCK] 192.168.1.7-51031: New socket connection.
+[2016-10-17 18:14:51.458 SOCK] 192.168.1.7-51030: Username accepted (Rickard).
+[2016-10-17 18:14:53.536 SOCK] Rickard sat in seat 1.
+[2016-10-17 18:14:53.537 GAME] Waiting for more players.
+[2016-10-17 18:14:53.647 SOCK] 192.168.1.7-51029: Username accepted (Missandei).
+[2016-10-17 18:14:53.809 SOCK] 192.168.1.7-51031: Username accepted (Eddard).
+[2016-10-17 18:14:55.074 SOCK] Missandei sat in seat 2.
+[2016-10-17 18:14:55.074 GAME] Waiting for more players.
+[2016-10-17 18:15:01.543 SOCK] Eddard sat in seat 3.
+[2016-10-17 18:15:01.543 GAME] Waiting for more players.
+[2016-10-17 18:15:11.851 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:15:11.852 MAIN] Pinging Clients.
+[2016-10-17 18:15:22.253 SOCK] 192.168.1.7-51029: Socket connection disconnected.
+[2016-10-17 18:15:22.726 SOCK] 192.168.1.7-51046: New socket connection.
+[2016-10-17 18:15:22.858 SOCK] 192.168.1.7-51031: Socket connection disconnected.
+[2016-10-17 18:15:23.176 SOCK] 192.168.1.7-51055: New socket connection.
+[2016-10-17 18:15:23.501 SOCK] 192.168.1.7-51030: Socket connection disconnected.
+[2016-10-17 18:15:23.808 SOCK] 192.168.1.7-51064: New socket connection.
+[2016-10-17 18:15:27.503 SOCK] 192.168.1.7-51055: Username accepted (Margaery).
+[2016-10-17 18:15:28.202 SOCK] Margaery sat in seat 1.
+[2016-10-17 18:15:28.203 GAME] Waiting for more players.
+[2016-10-17 18:15:29.230 SOCK] 192.168.1.7-51046: Username accepted (Jeyne).
+[2016-10-17 18:15:29.999 SOCK] 192.168.1.7-51064: Username accepted (Joffrey).
+[2016-10-17 18:15:30.738 SOCK] Joffrey sat in seat 2.
+[2016-10-17 18:15:30.739 GAME] Waiting for more players.
+[2016-10-17 18:15:36.663 SOCK] Jeyne sat in seat 3.
+[2016-10-17 18:15:36.663 GAME] Waiting for more players.
+[2016-10-17 18:15:41.866 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:15:41.866 MAIN] Pinging Clients.
+[2016-10-17 18:16:11.878 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:16:11.878 MAIN] Pinging Clients.
+[2016-10-17 18:16:41.895 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:16:41.895 MAIN] Pinging Clients.
+[2016-10-17 18:17:11.910 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:17:11.910 MAIN] Pinging Clients.
+[2016-10-17 18:17:32.874 SOCK] 192.168.1.7-51055: Socket connection disconnected.
+[2016-10-17 18:17:33.296 SOCK] 192.168.1.7-51079: New socket connection.
+[2016-10-17 18:17:38.794 SOCK] 192.168.1.7-51079: Username accepted (Stark).
+[2016-10-17 18:17:41.917 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:17:41.917 MAIN] Pinging Clients.
+[2016-10-17 18:17:44.071 SOCK] Stark sat in seat 1.
+[2016-10-17 18:17:44.072 GAME] Waiting for more players.
+[2016-10-17 18:17:59.430 SOCK] 192.168.1.7-51079: Socket connection disconnected.
+[2016-10-17 18:17:59.927 SOCK] 192.168.1.7-51090: New socket connection.
+[2016-10-17 18:18:03.455 SOCK] 192.168.1.7-51090: Username accepted (Varys).
+[2016-10-17 18:18:08.480 SOCK] Varys sat in seat 1.
+[2016-10-17 18:18:08.480 GAME] Waiting for more players.
+[2016-10-17 18:18:11.930 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:18:11.930 MAIN] Pinging Clients.
+[2016-10-17 18:18:41.828 SOCK] 192.168.1.7-51090: Socket connection disconnected.
+[2016-10-17 18:18:41.931 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:18:41.931 MAIN] Pinging Clients.
+[2016-10-17 18:18:42.299 SOCK] 192.168.1.7-51145: New socket connection.
+[2016-10-17 18:18:51.659 SOCK] 192.168.1.7-51145: Username accepted (Stark).
+[2016-10-17 18:18:59.555 SOCK] Stark sat in seat 1.
+[2016-10-17 18:18:59.555 GAME] Waiting for more players.
+[2016-10-17 18:19:11.941 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:19:11.942 MAIN] Pinging Clients.
+[2016-10-17 18:19:41.956 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:19:41.956 MAIN] Pinging Clients.
+[2016-10-17 18:19:58.186 SOCK] 192.168.1.7-51145: Socket connection disconnected.
+[2016-10-17 18:19:58.733 SOCK] 192.168.1.7-51157: New socket connection.
+[2016-10-17 18:20:04.570 SOCK] 192.168.1.7-51157: Username accepted (Varys).
+[2016-10-17 18:20:05.139 SOCK] Varys sat in seat 1.
+[2016-10-17 18:20:05.140 GAME] Waiting for more players.
+[2016-10-17 18:20:11.958 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:20:11.958 MAIN] Pinging Clients.
+[2016-10-17 18:20:18.623 SOCK] 192.168.1.7-51157: Socket connection disconnected.
+[2016-10-17 18:20:19.103 SOCK] 192.168.1.7-51169: New socket connection.
+[2016-10-17 18:20:22.688 SOCK] 192.168.1.7-51169: Username accepted (Stannis).
+[2016-10-17 18:20:30.396 SOCK] Stannis sat in seat 1.
+[2016-10-17 18:20:30.396 GAME] Waiting for more players.
+[2016-10-17 18:20:41.972 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:20:41.972 MAIN] Pinging Clients.
+[2016-10-17 18:21:11.982 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:21:11.982 MAIN] Pinging Clients.
+[2016-10-17 18:21:41.989 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:21:41.989 MAIN] Pinging Clients.
+[2016-10-17 18:22:11.991 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:22:11.991 MAIN] Pinging Clients.
+[2016-10-17 18:22:27.958 SOCK] Joffrey sat in seat 4.
+[2016-10-17 18:22:27.959 GAME] Waiting for more players.
+[2016-10-17 18:22:36.736 SOCK] Joffrey sat in seat 2.
+[2016-10-17 18:22:36.738 GAME] Waiting for more players.
+[2016-10-17 18:22:38.483 SOCK] Joffrey sat in seat 4.
+[2016-10-17 18:22:38.483 GAME] Waiting for more players.
+[2016-10-17 18:22:39.714 SOCK] Joffrey sat in seat 2.
+[2016-10-17 18:22:39.715 GAME] Waiting for more players.
+[2016-10-17 18:22:41.004 SOCK] Joffrey sat in seat 4.
+[2016-10-17 18:22:41.005 GAME] Waiting for more players.
+[2016-10-17 18:22:41.999 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:22:41.999 MAIN] Pinging Clients.
+[2016-10-17 18:22:42.290 SOCK] Joffrey sat in seat 2.
+[2016-10-17 18:22:42.290 GAME] Waiting for more players.
+[2016-10-17 18:22:49.562 SOCK] Joffrey sat in seat 4.
+[2016-10-17 18:22:49.562 GAME] Waiting for more players.
+[2016-10-17 18:22:50.577 SOCK] Joffrey sat in seat 2.
+[2016-10-17 18:22:50.578 GAME] Waiting for more players.
+[2016-10-17 18:22:53.036 SOCK] Joffrey sat in seat 4.
+[2016-10-17 18:22:53.036 GAME] Waiting for more players.
+[2016-10-17 18:22:54.664 SOCK] Joffrey sat in seat 2.
+[2016-10-17 18:22:54.665 GAME] Waiting for more players.
+[2016-10-17 18:23:12.002 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:23:12.003 MAIN] Pinging Clients.
+[2016-10-17 18:23:42.005 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:23:42.005 MAIN] Pinging Clients.
+[2016-10-17 18:24:12.006 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:24:12.006 MAIN] Pinging Clients.
+[2016-10-17 18:24:42.013 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:24:42.014 MAIN] Pinging Clients.
+[2016-10-17 18:25:12.023 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:25:12.023 MAIN] Pinging Clients.
+[2016-10-17 18:25:42.036 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:25:42.036 MAIN] Pinging Clients.
+[2016-10-17 18:26:12.047 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:26:12.048 MAIN] Pinging Clients.
+[2016-10-17 18:26:42.064 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:26:42.064 MAIN] Pinging Clients.
+[2016-10-17 18:27:12.076 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:27:12.076 MAIN] Pinging Clients.
+[2016-10-17 18:27:42.079 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:27:42.080 MAIN] Pinging Clients.
+[2016-10-17 18:28:12.092 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:28:12.093 MAIN] Pinging Clients.
+[2016-10-17 18:28:42.107 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:28:42.107 MAIN] Pinging Clients.
+[2016-10-17 18:29:12.109 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:29:12.110 MAIN] Pinging Clients.
+[2016-10-17 18:29:42.114 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:29:42.115 MAIN] Pinging Clients.
+[2016-10-17 18:30:12.121 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:30:12.122 MAIN] Pinging Clients.
+[2016-10-17 18:30:42.141 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:30:42.141 MAIN] Pinging Clients.
+[2016-10-17 18:31:12.150 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:31:12.151 MAIN] Pinging Clients.
+[2016-10-17 18:31:37.419 SOCK] 192.168.1.7-51046: Socket connection disconnected.
+[2016-10-17 18:31:37.874 SOCK] 192.168.1.7-51252: New socket connection.
+[2016-10-17 18:31:42.154 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:31:42.154 MAIN] Pinging Clients.
+[2016-10-17 18:31:45.845 SOCK] 192.168.1.7-51252: Username accepted (Balon).
+[2016-10-17 18:31:48.978 SOCK] Balon: Seat 1 request denied - already taken.
+[2016-10-17 18:32:12.167 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:32:12.168 MAIN] Pinging Clients.
+[2016-10-17 18:32:42.176 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:32:42.177 MAIN] Pinging Clients.
+[2016-10-17 18:33:10.940 SOCK] 192.168.1.7-51252: Socket connection disconnected.
+[2016-10-17 18:33:11.409 SOCK] 192.168.1.7-51264: New socket connection.
+[2016-10-17 18:33:12.178 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:33:12.179 MAIN] Pinging Clients.
+[2016-10-17 18:33:19.189 SOCK] 192.168.1.7-51264: Username accepted (Tywin).
+[2016-10-17 18:33:24.869 SOCK] Tywin: Seat 1 request denied - already taken.
+[2016-10-17 18:33:42.184 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:33:42.185 MAIN] Pinging Clients.
+[2016-10-17 18:34:12.201 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:34:12.201 MAIN] Pinging Clients.
+[2016-10-17 18:34:42.210 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:34:42.211 MAIN] Pinging Clients.
+[2016-10-17 18:35:12.213 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:35:12.213 MAIN] Pinging Clients.
+[2016-10-17 18:35:42.229 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:35:42.229 MAIN] Pinging Clients.
+[2016-10-17 18:36:12.244 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:36:12.244 MAIN] Pinging Clients.
+[2016-10-17 18:36:42.255 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:36:42.255 MAIN] Pinging Clients.
+[2016-10-17 18:37:12.263 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:37:12.263 MAIN] Pinging Clients.
+[2016-10-17 18:37:18.124 SOCK] 192.168.1.7-51264: Socket connection disconnected.
+[2016-10-17 18:37:18.694 SOCK] 192.168.1.7-51279: New socket connection.
+[2016-10-17 18:37:27.308 SOCK] 192.168.1.7-51279: Username accepted (Aerys).
+[2016-10-17 18:37:30.903 SOCK] Aerys: Seat 1 request denied - already taken.
+[2016-10-17 18:37:42.268 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:37:42.268 MAIN] Pinging Clients.
+[2016-10-17 18:38:12.272 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:38:12.273 MAIN] Pinging Clients.
+[2016-10-17 18:38:42.278 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:38:42.279 MAIN] Pinging Clients.
+[2016-10-17 18:39:12.295 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:39:12.296 MAIN] Pinging Clients.
+[2016-10-17 18:39:42.299 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:39:42.299 MAIN] Pinging Clients.
+[2016-10-17 18:40:12.303 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:40:12.303 MAIN] Pinging Clients.
+[2016-10-17 18:40:42.316 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:40:42.317 MAIN] Pinging Clients.
+[2016-10-17 18:41:06.242 SOCK] 192.168.1.7-51279: Socket connection disconnected.
+[2016-10-17 18:41:06.753 SOCK] 192.168.1.7-51303: New socket connection.
+[2016-10-17 18:41:11.295 SOCK] 192.168.1.7-51303: Username accepted (Aemon).
+[2016-10-17 18:41:12.318 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:41:12.319 MAIN] Pinging Clients.
+[2016-10-17 18:41:16.674 SOCK] Aemon: Seat 1 request denied - already taken.
+[2016-10-17 18:41:42.334 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:41:42.334 MAIN] Pinging Clients.
+[2016-10-17 18:41:56.115 SOCK] 192.168.1.7-51303: Socket connection disconnected.
+[2016-10-17 18:41:56.610 SOCK] 192.168.1.7-51319: New socket connection.
+[2016-10-17 18:42:00.416 SOCK] 192.168.1.7-51319: Username accepted (Mace).
+[2016-10-17 18:42:04.573 SOCK] Mace: Seat 1 request denied - already taken.
+[2016-10-17 18:42:12.340 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:42:12.341 MAIN] Pinging Clients.
+[2016-10-17 18:42:23.984 SOCK] 192.168.1.7-51319: Socket connection disconnected.
+[2016-10-17 18:42:24.501 SOCK] 192.168.1.7-51330: New socket connection.
+[2016-10-17 18:42:33.736 SOCK] 192.168.1.7-51330: Username accepted (Rhaenys).
+[2016-10-17 18:42:38.428 SOCK] Rhaenys: Seat 1 request denied - already taken.
+[2016-10-17 18:42:42.349 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:42:42.350 MAIN] Pinging Clients.
+[2016-10-17 18:43:12.367 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:43:12.367 MAIN] Pinging Clients.
+[2016-10-17 18:43:42.369 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:43:42.370 MAIN] Pinging Clients.
+[2016-10-17 18:44:12.379 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:44:12.379 MAIN] Pinging Clients.
+[2016-10-17 18:44:42.391 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:44:42.391 MAIN] Pinging Clients.
+[2016-10-17 18:45:12.405 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:45:12.405 MAIN] Pinging Clients.
+[2016-10-17 18:45:42.421 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:45:42.422 MAIN] Pinging Clients.
+[2016-10-17 18:46:12.424 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:46:12.424 MAIN] Pinging Clients.
+[2016-10-17 18:46:42.426 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:46:42.427 MAIN] Pinging Clients.
+[2016-10-17 18:47:06.610 SOCK] 192.168.1.7-51330: Socket connection disconnected.
+[2016-10-17 18:47:07.128 SOCK] 192.168.1.7-51352: New socket connection.
+[2016-10-17 18:47:11.250 SOCK] 192.168.1.7-51352: Username request denied - exists (Stannis).
+[2016-10-17 18:47:12.432 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:47:12.433 MAIN] Pinging Clients.
+[2016-10-17 18:47:14.935 SOCK] 192.168.1.7-51352: Socket connection disconnected.
+[2016-10-17 18:47:15.372 SOCK] 192.168.1.7-51363: New socket connection.
+[2016-10-17 18:47:20.227 SOCK] 192.168.1.7-51363: Username accepted (Hoster).
+[2016-10-17 18:47:42.447 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:47:42.448 MAIN] Pinging Clients.
+[2016-10-17 18:47:55.444 SOCK] 192.168.1.7-51363: Socket connection disconnected.
+[2016-10-17 18:47:55.921 SOCK] 192.168.1.7-51375: New socket connection.
+[2016-10-17 18:47:59.916 SOCK] 192.168.1.7-51375: Username accepted (Robb).
+[2016-10-17 18:48:00.117 SOCK] Robb sat in seat 3.
+[2016-10-17 18:48:00.117 GAME] Waiting for more players.
+[2016-10-17 18:48:12.460 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:48:12.460 MAIN] Pinging Clients.
+[2016-10-17 18:48:42.472 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:48:42.473 MAIN] Pinging Clients.
+[2016-10-17 18:49:12.481 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:49:12.481 MAIN] Pinging Clients.
+[2016-10-17 18:49:42.491 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:49:42.491 MAIN] Pinging Clients.
+[2016-10-17 18:50:02.878 SOCK] 192.168.1.7-51375: Socket connection disconnected.
+[2016-10-17 18:50:03.352 SOCK] 192.168.1.7-51388: New socket connection.
+[2016-10-17 18:50:08.547 SOCK] 192.168.1.7-51388: Username accepted (Ygritte).
+[2016-10-17 18:50:12.495 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:50:12.496 MAIN] Pinging Clients.
+[2016-10-17 18:50:16.306 SOCK] Ygritte sat in seat 3.
+[2016-10-17 18:50:16.307 GAME] Waiting for more players.
+[2016-10-17 18:50:42.510 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:50:42.511 MAIN] Pinging Clients.
+[2016-10-17 18:51:12.516 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:51:12.516 MAIN] Pinging Clients.
+[2016-10-17 18:51:42.521 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:51:42.521 MAIN] Pinging Clients.
+[2016-10-17 18:52:12.525 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:52:12.526 MAIN] Pinging Clients.
+[2016-10-17 18:52:42.530 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:52:42.530 MAIN] Pinging Clients.
+[2016-10-17 18:52:56.973 SOCK] 192.168.1.7-51388: Socket connection disconnected.
+[2016-10-17 18:52:57.461 SOCK] 192.168.1.7-51401: New socket connection.
+[2016-10-17 18:53:06.731 SOCK] 192.168.1.7-51401: Username accepted (Rhaenys).
+[2016-10-17 18:53:12.542 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:53:12.543 MAIN] Pinging Clients.
+[2016-10-17 18:53:12.874 SOCK] Rhaenys sat in seat 4.
+[2016-10-17 18:53:12.875 GAME] Waiting for more players.
+[2016-10-17 18:53:42.556 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:53:42.556 MAIN] Pinging Clients.
+[2016-10-17 18:54:12.558 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:54:12.558 MAIN] Pinging Clients.
+[2016-10-17 18:54:38.214 SOCK] 192.168.1.7-51401: Socket connection disconnected.
+[2016-10-17 18:54:38.699 SOCK] 192.168.1.7-51415: New socket connection.
+[2016-10-17 18:54:42.558 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:54:42.559 MAIN] Pinging Clients.
+[2016-10-17 18:54:44.129 SOCK] 192.168.1.7-51415: Username accepted (Melisandre).
+[2016-10-17 18:54:45.285 SOCK] Melisandre sat in seat 3.
+[2016-10-17 18:54:45.285 GAME] Waiting for more players.
+[2016-10-17 18:55:12.575 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:55:12.576 MAIN] Pinging Clients.
+[2016-10-17 18:55:42.591 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:55:42.592 MAIN] Pinging Clients.
+[2016-10-17 18:56:12.600 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:56:12.600 MAIN] Pinging Clients.
+[2016-10-17 18:56:42.610 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:56:42.611 MAIN] Pinging Clients.
+[2016-10-17 18:57:12.617 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:57:12.617 MAIN] Pinging Clients.
+[2016-10-17 18:57:42.621 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:57:42.621 MAIN] Pinging Clients.
+[2016-10-17 18:58:12.637 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:58:12.637 MAIN] Pinging Clients.
+[2016-10-17 18:58:42.644 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:58:42.644 MAIN] Pinging Clients.
+[2016-10-17 18:58:55.475 SOCK] 192.168.1.7-51415: Socket connection disconnected.
+[2016-10-17 18:58:55.992 SOCK] 192.168.1.7-51434: New socket connection.
+[2016-10-17 18:58:59.866 SOCK] 192.168.1.7-51434: Username accepted (Samwell).
+[2016-10-17 18:59:07.535 SOCK] Samwell sat in seat 3.
+[2016-10-17 18:59:07.536 GAME] Waiting for more players.
+[2016-10-17 18:59:12.654 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:59:12.655 MAIN] Pinging Clients.
+[2016-10-17 18:59:42.656 GAME] Game State is 'waiting for full seats'
+[2016-10-17 18:59:42.657 MAIN] Pinging Clients.
+[2016-10-17 19:00:12.660 GAME] Game State is 'waiting for full seats'
+[2016-10-17 19:00:12.660 MAIN] Pinging Clients.
+[2016-10-17 19:00:40.903 SOCK] 192.168.1.7-51434: Socket connection disconnected.
+[2016-10-17 19:00:41.460 SOCK] 192.168.1.7-51447: New socket connection.
+[2016-10-17 19:00:42.660 GAME] Game State is 'waiting for full seats'
+[2016-10-17 19:00:42.661 MAIN] Pinging Clients.
+[2016-10-17 19:00:47.886 SOCK] 192.168.1.7-51447: Username accepted (Viserys).
+[2016-10-17 19:00:48.468 SOCK] Viserys sat in seat 3.
+[2016-10-17 19:00:48.468 GAME] Waiting for more players.
+[2016-10-17 19:01:01.770 SOCK] 192.168.1.7-51064: Socket connection disconnected.
+[2016-10-17 19:01:02.196 SOCK] 192.168.1.7-51468: New socket connection.
+[2016-10-17 19:01:05.769 SOCK] 192.168.1.7-51468: Username accepted (Tully).
+[2016-10-17 19:01:10.265 SOCK] Tully sat in seat 2.
+[2016-10-17 19:01:10.265 GAME] Waiting for more players.
+[2016-10-17 19:01:12.677 GAME] Game State is 'waiting for full seats'
+[2016-10-17 19:01:12.678 MAIN] Pinging Clients.
+[2016-10-17 19:01:16.764 SOCK] 192.168.1.7-51468: Socket connection disconnected.
+[2016-10-17 19:01:17.339 SOCK] 192.168.1.7-51494: New socket connection.
+[2016-10-17 19:01:17.866 SOCK] 192.168.1.7-51169: Socket connection disconnected.
+[2016-10-17 19:01:18.835 SOCK] 192.168.1.7-51496: New socket connection.
+[2016-10-17 19:01:21.426 SOCK] 192.168.1.7-51494: Username accepted (Melisandre).
+[2016-10-17 19:01:21.762 SOCK] Melisandre sat in seat 1.
+[2016-10-17 19:01:21.762 GAME] Waiting for more players.
+[2016-10-17 19:01:24.911 SOCK] 192.168.1.7-51496: Username accepted (Davos).
+[2016-10-17 19:01:26.741 SOCK] Davos sat in seat 2.
+[2016-10-17 19:01:26.743 GAME] Waiting for more players.
+[2016-10-17 19:01:38.628 SOCK] 192.168.1.7-51496: Socket connection disconnected.
+[2016-10-17 19:01:39.107 SOCK] 192.168.1.7-51507: New socket connection.
+[2016-10-17 19:01:40.123 SOCK] 192.168.1.7-51507: Socket connection disconnected.
+[2016-10-17 19:01:40.752 SOCK] 192.168.1.7-51519: New socket connection.
+[2016-10-17 19:01:42.679 GAME] Game State is 'waiting for full seats'
+[2016-10-17 19:01:42.680 MAIN] Pinging Clients.
+[2016-10-17 19:01:44.611 SOCK] 192.168.1.7-51519: Username accepted (Willas).
+[2016-10-17 19:01:47.975 SOCK] Willas sat in seat 2.
+[2016-10-17 19:01:47.975 GAME] Waiting for more players.
+[2016-10-17 19:01:57.136 SOCK] 192.168.1.7-51519: Socket connection disconnected.
+[2016-10-17 19:01:57.582 SOCK] 192.168.1.7-51530: New socket connection.
+[2016-10-17 19:02:01.098 SOCK] 192.168.1.7-51530: Username accepted (Drogo).
+[2016-10-17 19:02:01.188 SOCK] 192.168.1.7-51494: Socket connection disconnected.
+[2016-10-17 19:02:01.486 SOCK] 192.168.1.7-51547: New socket connection.
+[2016-10-17 19:02:01.882 SOCK] 192.168.1.7-51447: Socket connection disconnected.
+[2016-10-17 19:02:02.190 SOCK] 192.168.1.7-51556: New socket connection.
+[2016-10-17 19:02:04.788 SOCK] 192.168.1.7-51564: New socket connection.
+[2016-10-17 19:02:05.231 SOCK] Drogo sat in seat 1.
+[2016-10-17 19:02:05.232 GAME] Waiting for more players.
+[2016-10-17 19:02:06.251 SOCK] 192.168.1.7-51547: Username accepted (Lancel).
+[2016-10-17 19:02:08.817 SOCK] 192.168.1.7-51564: Username accepted (Willas).
+[2016-10-17 19:02:09.215 SOCK] 192.168.1.7-51556: Username request denied - exists (Willas).
+[2016-10-17 19:02:12.266 SOCK] Lancel sat in seat 2.
+[2016-10-17 19:02:12.266 GAME] Waiting for more players.
+[2016-10-17 19:02:12.689 GAME] Game State is 'waiting for full seats'
+[2016-10-17 19:02:12.689 MAIN] Pinging Clients.
+[2016-10-17 19:02:15.117 SOCK] Willas sat in seat 3.
+[2016-10-17 19:02:15.118 GAME] Waiting for more players.
+[2016-10-17 19:02:19.948 SOCK] 192.168.1.7-51556: Socket connection disconnected.
+[2016-10-17 19:02:20.385 SOCK] 192.168.1.7-51578: New socket connection.
+[2016-10-17 19:02:24.557 SOCK] 192.168.1.7-51578: Username accepted (Mace).
+[2016-10-17 19:02:31.483 SOCK] Mace: Seat 4 request denied - already taken.
+[2016-10-17 19:02:42.700 GAME] Game State is 'waiting for full seats'
+[2016-10-17 19:02:42.701 MAIN] Pinging Clients.
+[2016-10-17 19:03:08.283 SOCK] 192.168.1.7-51578: Socket connection disconnected.
+[2016-10-17 19:03:08.759 SOCK] 192.168.1.7-51592: New socket connection.
+[2016-10-17 19:03:12.703 GAME] Game State is 'waiting for full seats'
+[2016-10-17 19:03:12.704 MAIN] Pinging Clients.
+[2016-10-17 19:03:13.150 SOCK] 192.168.1.7-51592: Username accepted (Doran).
+[2016-10-17 19:03:19.026 SOCK] Doran: Seat 4 request denied - already taken.
+[2016-10-17 19:03:42.712 GAME] Game State is 'waiting for full seats'
+[2016-10-17 19:03:42.713 MAIN] Pinging Clients.
+[2016-10-17 19:04:12.726 GAME] Game State is 'waiting for full seats'
+[2016-10-17 19:04:12.727 MAIN] Pinging Clients.
+[2016-10-17 19:04:37.763 SOCK] 192.168.1.7-51592: Socket connection disconnected.
+[2016-10-17 19:04:38.250 SOCK] 192.168.1.7-51604: New socket connection.
+[2016-10-17 19:04:38.558 SOCK] 192.168.1.7-51530: Socket connection disconnected.
+[2016-10-17 19:04:39.100 SOCK] 192.168.1.7-51621: New socket connection.
+[2016-10-17 19:04:39.188 SOCK] 192.168.1.7-51564: Socket connection disconnected.
+[2016-10-17 19:04:39.462 SOCK] 192.168.1.7-51547: Socket connection disconnected.
+[2016-10-17 19:04:39.605 SOCK] 192.168.1.7-51634: New socket connection.
+[2016-10-17 19:04:39.686 SOCK] 192.168.1.7-51635: New socket connection.
+[2016-10-17 19:04:42.728 GAME] Game State is 'waiting for full seats'
+[2016-10-17 19:04:42.730 MAIN] Pinging Clients.
+[2016-10-17 19:04:43.157 SOCK] 192.168.1.7-51634: Username accepted (Missandei).
+[2016-10-17 19:04:43.310 SOCK] 192.168.1.7-51635: Username accepted (Aemon).
+[2016-10-17 19:04:43.389 SOCK] 192.168.1.7-51621: Username accepted (Mycah).
+[2016-10-17 19:04:43.472 SOCK] 192.168.1.7-51604: Username accepted (Robin).
+[2016-10-17 19:04:44.003 SOCK] Missandei sat in seat 1.
+[2016-10-17 19:04:44.004 GAME] Waiting for more players.
+[2016-10-17 19:04:45.539 SOCK] Robin sat in seat 2.
+[2016-10-17 19:04:45.539 GAME] Waiting for more players.
+[2016-10-17 19:04:48.253 SOCK] Aemon sat in seat 3.
+[2016-10-17 19:04:48.253 GAME] Four players are sitting.
+[2016-10-17 19:04:48.253 GAME] Emptying the player's hands.
+[2016-10-17 19:04:48.257 GAME] Initialising and shuffling the game deck.
+[2016-10-17 19:04:48.524 SOCK] Mycah: Seat 4 request denied - already taken.
+[2016-10-17 19:04:52.842 SOCK] Mycah: Seat 4 request denied - already taken.
+[2016-10-17 19:04:54.103 SOCK] Mycah: Seat 4 request denied - already taken.
+[2016-10-17 19:04:56.851 SOCK] Mycah: Seat 4 request denied - already taken.
+[2016-10-17 19:04:58.347 SOCK] Mycah: Seat 4 request denied - already taken.
+[2016-10-17 19:05:05.350 SOCK] Mycah: Seat 4 request denied - already taken.
+[2016-10-17 19:05:12.750 GAME] Game State is 'dealing to players'
+[2016-10-17 19:05:12.750 MAIN] Pinging Clients.
+[2016-10-17 19:05:42.759 GAME] Game State is 'dealing to players'
+[2016-10-17 19:05:42.759 MAIN] Pinging Clients.
+[2016-10-17 19:06:12.764 GAME] Game State is 'dealing to players'
+[2016-10-17 19:06:12.765 MAIN] Pinging Clients.
+[2016-10-17 19:06:42.769 GAME] Game State is 'dealing to players'
+[2016-10-17 19:06:42.769 MAIN] Pinging Clients.
+[2016-10-17 19:06:55.192 SOCK] 192.168.1.7-51621: Socket connection disconnected.
+[2016-10-17 19:06:55.702 SOCK] 192.168.1.7-51653: New socket connection.
+[2016-10-17 19:06:58.533 SOCK] 192.168.1.7-51604: Socket connection disconnected.
+[2016-10-17 19:06:59.102 SOCK] 192.168.1.7-51662: New socket connection.
+[2016-10-17 19:06:59.255 SOCK] 192.168.1.7-51634: Socket connection disconnected.
+[2016-10-17 19:06:59.577 SOCK] 192.168.1.7-51681: New socket connection.
+[2016-10-17 19:06:59.666 SOCK] 192.168.1.7-51635: Socket connection disconnected.
+[2016-10-17 19:06:59.963 SOCK] 192.168.1.7-51684: New socket connection.
+[2016-10-17 19:07:04.013 SOCK] 192.168.1.7-51662: Username accepted (Cersei).
+[2016-10-17 19:07:04.303 SOCK] 192.168.1.7-51653: Username accepted (Arianne).
+[2016-10-17 19:07:05.217 SOCK] 192.168.1.7-51681: Username accepted (Eddard).
+[2016-10-17 19:07:05.271 SOCK] 192.168.1.7-51684: Username accepted (Aemon).
+[2016-10-17 19:07:06.226 SOCK] Arianne sat in seat 1.
+[2016-10-17 19:07:06.227 GAME] Waiting for more players.
+[2016-10-17 19:07:07.727 SOCK] Eddard sat in seat 2.
+[2016-10-17 19:07:07.728 GAME] Waiting for more players.
+[2016-10-17 19:07:08.031 SOCK] Aemon sat in seat 3.
+[2016-10-17 19:07:08.032 GAME] Four players are sitting.
+[2016-10-17 19:07:08.032 GAME] Emptying the player's hands.
+[2016-10-17 19:07:08.033 GAME] Initialising and shuffling the game deck.
+[2016-10-17 19:07:08.106 SOCK] Cersei: Seat 4 request denied - already taken.
+[2016-10-17 19:07:12.775 GAME] Game State is 'dealing to players'
+[2016-10-17 19:07:12.776 MAIN] Pinging Clients.
+[2016-10-17 19:07:42.780 GAME] Game State is 'dealing to players'
+[2016-10-17 19:07:42.780 MAIN] Pinging Clients.
+[2016-10-17 19:08:10.152 SOCK] 192.168.1.7-51653: Socket connection disconnected.
+[2016-10-17 19:08:10.660 SOCK] 192.168.1.7-51697: New socket connection.
+[2016-10-17 19:08:11.386 SOCK] 192.168.1.7-51662: Socket connection disconnected.
+[2016-10-17 19:08:11.750 SOCK] 192.168.1.7-51707: New socket connection.
+[2016-10-17 19:08:11.877 SOCK] 192.168.1.7-51681: Socket connection disconnected.
+[2016-10-17 19:08:12.224 SOCK] 192.168.1.7-51719: New socket connection.
+[2016-10-17 19:08:12.330 SOCK] 192.168.1.7-51684: Socket connection disconnected.
+[2016-10-17 19:08:12.665 SOCK] 192.168.1.7-51728: New socket connection.
+[2016-10-17 19:08:12.783 GAME] Game State is 'waiting for full seats'
+[2016-10-17 19:08:12.783 MAIN] Pinging Clients.
+[2016-10-17 19:08:14.661 SOCK] 192.168.1.7-51697: Username accepted (Podrick).
+[2016-10-17 19:08:16.266 SOCK] 192.168.1.7-51728: Username accepted (Samwell).
+[2016-10-17 19:08:16.703 SOCK] 192.168.1.7-51707: Username accepted (Renly).
+[2016-10-17 19:08:18.392 SOCK] Podrick sat in seat 1.
+[2016-10-17 19:08:18.392 GAME] Waiting for more players.
+[2016-10-17 19:08:19.664 SOCK] 192.168.1.7-51719: Username accepted (Shae).
+[2016-10-17 19:08:19.950 SOCK] Renly sat in seat 2.
+[2016-10-17 19:08:19.950 GAME] Waiting for more players.
+[2016-10-17 19:08:23.055 SOCK] Samwell sat in seat 3.
+[2016-10-17 19:08:23.055 GAME] Four players are sitting.
+[2016-10-17 19:08:23.055 GAME] Emptying the player's hands.
+[2016-10-17 19:08:23.060 GAME] Initialising and shuffling the game deck.
+[2016-10-17 19:08:23.070 GAME] Dealing for Podrick to Renly.
+[2016-10-17 19:08:23.078 GAME] Just dealt to Renly.
+[2016-10-17 19:08:24.081 GAME] Just dealt to Renly.
+[2016-10-17 19:08:25.094 GAME] Just dealt to Renly.
+[2016-10-17 19:08:25.905 SOCK] Shae: Seat 4 request denied - already taken.
+[2016-10-17 19:08:26.099 GAME] Just dealt to Samwell.
+[2016-10-17 19:08:27.111 GAME] Just dealt to Samwell.
+[2016-10-17 19:08:28.115 GAME] Just dealt to Samwell.
+[2016-10-17 19:08:42.785 GAME] Game State is 'dealing to players'
+[2016-10-17 19:08:42.786 MAIN] Pinging Clients.
+[2016-10-17 19:08:50.578 SOCK] 192.168.1.7-51697: Socket connection disconnected.
+[2016-10-17 19:08:50.988 SOCK] 192.168.1.7-51750: New socket connection.
+[2016-10-17 19:08:51.065 SOCK] 192.168.1.7-51707: Socket connection disconnected.
+[2016-10-17 19:08:51.338 SOCK] 192.168.1.7-51759: New socket connection.
+[2016-10-17 19:08:51.502 SOCK] 192.168.1.7-51719: Socket connection disconnected.
+[2016-10-17 19:08:51.760 SOCK] 192.168.1.7-51768: New socket connection.
+[2016-10-17 19:08:51.938 SOCK] 192.168.1.7-51728: Socket connection disconnected.
+[2016-10-17 19:08:52.215 SOCK] 192.168.1.7-51777: New socket connection.
+[2016-10-17 19:08:55.710 SOCK] 192.168.1.7-51750: Username accepted (Hoster).
+[2016-10-17 19:08:58.500 SOCK] 192.168.1.7-51768: Username accepted (Khaleesi).
+[2016-10-17 19:08:59.495 SOCK] 192.168.1.7-51759: Username accepted (Margaery).
+[2016-10-17 19:09:00.477 SOCK] Khaleesi sat in seat 1.
+[2016-10-17 19:09:00.477 GAME] Waiting for more players.
+[2016-10-17 19:09:02.345 SOCK] Hoster sat in seat 2.
+[2016-10-17 19:09:02.345 GAME] Waiting for more players.
+[2016-10-17 19:09:02.900 SOCK] 192.168.1.7-51777: Username accepted (Loras).
+[2016-10-17 19:09:06.480 SOCK] Margaery sat in seat 3.
+[2016-10-17 19:09:06.480 GAME] Four players are sitting.
+[2016-10-17 19:09:06.481 GAME] Emptying the player's hands.
+[2016-10-17 19:09:06.482 GAME] Initialising and shuffling the game deck.
+[2016-10-17 19:09:09.402 SOCK] Loras: Seat 4 request denied - already taken.
+[2016-10-17 19:09:12.796 GAME] Game State is 'dealing to players'
+[2016-10-17 19:09:12.796 MAIN] Pinging Clients.
+[2016-10-17 19:09:25.874 MAIN] OzWeb500Server terminating.
+[2016-10-17 19:09:26.384 HTTP] HTTP Server stopped.
+[2016-10-17 19:09:26.384 SOCK] 192.168.1.7-51768: Socket connection disconnected.
+[2016-10-17 19:09:26.384 SOCK] 192.168.1.7-51759: Socket connection disconnected.
+[2016-10-17 19:09:26.384 SOCK] 192.168.1.7-51750: Socket connection disconnected.
+[2016-10-17 19:09:26.384 SOCK] 192.168.1.7-51777: Socket connection disconnected.
+[2016-10-17 19:09:26.384 SOCK] Web Socket Server stopped.

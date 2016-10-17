@@ -1,0 +1,362 @@
+[2016-10-17 17:33:32.354 MAIN] OzWeb500Server launched.
+[2016-10-17 17:33:32.354 MAIN] Client available at: http://JonSnow:8001
+[2016-10-17 17:33:32.354 SOCK] Web Socket Server started.
+[2016-10-17 17:33:32.354 HTTP] HTTP Server started.
+[2016-10-17 17:33:32.354 GAME] Game State is 'waiting for full seats'
+[2016-10-17 17:33:32.354 MAIN] Pinging Clients.
+[2016-10-17 17:33:38.182 SOCK] 192.168.1.7-50587: New socket connection.
+[2016-10-17 17:33:39.941 SOCK] 192.168.1.7-50590: New socket connection.
+[2016-10-17 17:33:41.025 SOCK] 192.168.1.7-50591: New socket connection.
+[2016-10-17 17:33:42.038 SOCK] 192.168.1.7-50592: New socket connection.
+[2016-10-17 17:33:43.480 SOCK] 192.168.1.7-50587: Username accepted (Robin).
+[2016-10-17 17:33:44.478 SOCK] Robin sat in seat 1.
+[2016-10-17 17:33:44.478 GAME] Waiting for more players.
+[2016-10-17 17:33:47.476 SOCK] 192.168.1.7-50591: Username accepted (Hoster).
+[2016-10-17 17:33:47.478 SOCK] Hoster: Seat 1 request denied - already taken.
+[2016-10-17 17:33:49.486 SOCK] 192.168.1.7-50590: Username accepted (Bronn).
+[2016-10-17 17:33:53.494 SOCK] 192.168.1.7-50592: Username accepted (Benjen).
+[2016-10-17 17:33:55.486 SOCK] Bronn sat in seat 2.
+[2016-10-17 17:33:55.486 GAME] Waiting for more players.
+[2016-10-17 17:33:59.483 SOCK] Benjen sat in seat 3.
+[2016-10-17 17:33:59.484 GAME] Waiting for more players.
+[2016-10-17 17:34:00.977 SOCK] Hoster sat in seat 4.
+[2016-10-17 17:34:00.977 GAME] Four players are sitting.
+[2016-10-17 17:34:00.978 GAME] Emptying the player's hands.
+[2016-10-17 17:34:00.978 GAME] Initialising and shuffling the game deck.
+[2016-10-17 17:34:00.982 GAME] Dealing for Bronn to Benjen.
+[2016-10-17 17:34:00.986 GAME] Just dealt to Benjen.
+[2016-10-17 17:34:01.994 GAME] Just dealt to Benjen.
+[2016-10-17 17:34:02.366 GAME] Game State is 'dealing to players'
+[2016-10-17 17:34:02.366 MAIN] Pinging Clients.
+[2016-10-17 17:34:02.999 GAME] Just dealt to Benjen.
+[2016-10-17 17:34:04.017 GAME] Just dealt to Hoster.
+[2016-10-17 17:34:05.027 GAME] Just dealt to Hoster.
+[2016-10-17 17:34:06.043 GAME] Just dealt to Hoster.
+[2016-10-17 17:34:07.063 GAME] Just dealt to Robin.
+[2016-10-17 17:34:08.080 GAME] Just dealt to Robin.
+[2016-10-17 17:34:09.095 GAME] Just dealt to Robin.
+[2016-10-17 17:34:10.111 GAME] Just dealt to Bronn.
+[2016-10-17 17:34:11.116 GAME] Just dealt to Bronn.
+[2016-10-17 17:34:12.138 GAME] Just dealt to Bronn.
+[2016-10-17 17:34:13.422 GAME] Just dealt to Benjen.
+[2016-10-17 17:34:14.441 GAME] Just dealt to Benjen.
+[2016-10-17 17:34:15.459 GAME] Just dealt to Benjen.
+[2016-10-17 17:34:16.468 GAME] Just dealt to Benjen.
+[2016-10-17 17:34:17.479 GAME] Just dealt to Hoster.
+[2016-10-17 17:34:18.491 GAME] Just dealt to Hoster.
+[2016-10-17 17:34:19.513 GAME] Just dealt to Hoster.
+[2016-10-17 17:34:20.525 GAME] Just dealt to Hoster.
+[2016-10-17 17:34:21.534 GAME] Just dealt to Robin.
+[2016-10-17 17:34:22.538 GAME] Just dealt to Robin.
+[2016-10-17 17:34:23.559 GAME] Just dealt to Robin.
+[2016-10-17 17:34:24.566 GAME] Just dealt to Robin.
+[2016-10-17 17:34:25.587 GAME] Just dealt to Bronn.
+[2016-10-17 17:34:26.606 GAME] Just dealt to Bronn.
+[2016-10-17 17:34:27.614 GAME] Just dealt to Bronn.
+[2016-10-17 17:34:28.637 GAME] Just dealt to Bronn.
+[2016-10-17 17:34:29.904 GAME] Just dealt to Benjen.
+[2016-10-17 17:34:30.922 GAME] Just dealt to Benjen.
+[2016-10-17 17:34:31.930 GAME] Just dealt to Benjen.
+[2016-10-17 17:34:32.377 GAME] Game State is 'dealing to players'
+[2016-10-17 17:34:32.377 MAIN] Pinging Clients.
+[2016-10-17 17:34:32.942 GAME] Just dealt to Hoster.
+[2016-10-17 17:34:33.953 GAME] Just dealt to Hoster.
+[2016-10-17 17:34:34.976 GAME] Just dealt to Hoster.
+[2016-10-17 17:34:35.984 GAME] Just dealt to Robin.
+[2016-10-17 17:34:36.997 GAME] Just dealt to Robin.
+[2016-10-17 17:34:38.018 GAME] Just dealt to Robin.
+[2016-10-17 17:34:39.035 GAME] Just dealt to Bronn.
+[2016-10-17 17:34:40.056 GAME] Just dealt to Bronn.
+[2016-10-17 17:34:41.079 GAME] Just dealt to Bronn.
+[2016-10-17 17:34:42.356 GAME] Benjen's bid.
+[2016-10-17 17:35:02.377 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:35:02.378 MAIN] Pinging Clients.
+[2016-10-17 17:35:32.389 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:35:32.389 MAIN] Pinging Clients.
+[2016-10-17 17:36:02.394 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:36:02.394 MAIN] Pinging Clients.
+[2016-10-17 17:36:32.403 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:36:32.404 MAIN] Pinging Clients.
+[2016-10-17 17:37:02.418 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:37:02.418 MAIN] Pinging Clients.
+[2016-10-17 17:37:32.429 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:37:32.429 MAIN] Pinging Clients.
+[2016-10-17 17:38:02.435 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:38:02.435 MAIN] Pinging Clients.
+[2016-10-17 17:38:32.436 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:38:32.436 MAIN] Pinging Clients.
+[2016-10-17 17:39:02.444 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:39:02.445 MAIN] Pinging Clients.
+[2016-10-17 17:39:32.448 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:39:32.449 MAIN] Pinging Clients.
+[2016-10-17 17:40:02.454 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:40:02.454 MAIN] Pinging Clients.
+[2016-10-17 17:40:32.460 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:40:32.460 MAIN] Pinging Clients.
+[2016-10-17 17:40:55.812 SOCK] 192.168.1.7-50587: Socket connection disconnected.
+[2016-10-17 17:40:56.316 SOCK] 192.168.1.7-50672: New socket connection.
+[2016-10-17 17:41:02.469 GAME] Game State is 'waiting for full seats'
+[2016-10-17 17:41:02.469 MAIN] Pinging Clients.
+[2016-10-17 17:41:03.334 SOCK] 192.168.1.7-50672: Username accepted (Eddard).
+[2016-10-17 17:41:04.837 SOCK] Eddard sat in seat 1.
+[2016-10-17 17:41:04.838 GAME] Four players are sitting.
+[2016-10-17 17:41:04.839 GAME] Emptying the player's hands.
+[2016-10-17 17:41:04.839 GAME] Initialising and shuffling the game deck.
+[2016-10-17 17:41:04.844 GAME] Dealing for Benjen to Hoster.
+[2016-10-17 17:41:04.851 GAME] Just dealt to Hoster.
+[2016-10-17 17:41:05.855 GAME] Just dealt to Hoster.
+[2016-10-17 17:41:06.872 GAME] Just dealt to Hoster.
+[2016-10-17 17:41:07.885 GAME] Just dealt to Eddard.
+[2016-10-17 17:41:08.898 GAME] Just dealt to Eddard.
+[2016-10-17 17:41:09.913 GAME] Just dealt to Eddard.
+[2016-10-17 17:41:10.922 GAME] Just dealt to Bronn.
+[2016-10-17 17:41:11.931 GAME] Just dealt to Bronn.
+[2016-10-17 17:41:12.937 GAME] Just dealt to Bronn.
+[2016-10-17 17:41:13.954 GAME] Just dealt to Benjen.
+[2016-10-17 17:41:14.972 GAME] Just dealt to Benjen.
+[2016-10-17 17:41:15.991 GAME] Just dealt to Benjen.
+[2016-10-17 17:41:17.266 GAME] Just dealt to Hoster.
+[2016-10-17 17:41:18.277 GAME] Just dealt to Hoster.
+[2016-10-17 17:41:19.284 GAME] Just dealt to Hoster.
+[2016-10-17 17:41:20.298 GAME] Just dealt to Hoster.
+[2016-10-17 17:41:21.317 GAME] Just dealt to Eddard.
+[2016-10-17 17:41:22.337 GAME] Just dealt to Eddard.
+[2016-10-17 17:41:23.354 GAME] Just dealt to Eddard.
+[2016-10-17 17:41:24.373 GAME] Just dealt to Eddard.
+[2016-10-17 17:41:25.392 GAME] Just dealt to Bronn.
+[2016-10-17 17:41:26.410 GAME] Just dealt to Bronn.
+[2016-10-17 17:41:27.433 GAME] Just dealt to Bronn.
+[2016-10-17 17:41:28.450 GAME] Just dealt to Bronn.
+[2016-10-17 17:41:29.463 GAME] Just dealt to Benjen.
+[2016-10-17 17:41:30.481 GAME] Just dealt to Benjen.
+[2016-10-17 17:41:30.664 SOCK] 192.168.1.7-50672: Socket connection disconnected.
+[2016-10-17 17:41:31.138 SOCK] 192.168.1.7-50683: New socket connection.
+[2016-10-17 17:41:31.483 GAME] Just dealt to Benjen.
+[2016-10-17 17:41:32.478 GAME] Game State is 'waiting for full seats'
+[2016-10-17 17:41:32.478 MAIN] Pinging Clients.
+[2016-10-17 17:41:32.487 GAME] Just dealt to Benjen.
+[2016-10-17 17:41:33.751 GAME] Just dealt to Hoster.
+[2016-10-17 17:41:34.756 GAME] Just dealt to Hoster.
+[2016-10-17 17:41:35.762 GAME] Just dealt to Hoster.
+[2016-10-17 17:41:40.387 SOCK] 192.168.1.7-50683: Username accepted (Varys).
+[2016-10-17 17:41:46.500 SOCK] Varys sat in seat 1.
+[2016-10-17 17:41:46.501 GAME] Four players are sitting.
+[2016-10-17 17:41:46.502 GAME] Emptying the player's hands.
+[2016-10-17 17:41:46.503 GAME] Initialising and shuffling the game deck.
+[2016-10-17 17:41:46.507 GAME] Dealing for Benjen to Hoster.
+[2016-10-17 17:41:46.512 GAME] Just dealt to Hoster.
+[2016-10-17 17:41:47.517 GAME] Just dealt to Hoster.
+[2016-10-17 17:41:48.522 GAME] Just dealt to Hoster.
+[2016-10-17 17:41:49.534 GAME] Just dealt to Varys.
+[2016-10-17 17:41:50.549 GAME] Just dealt to Varys.
+[2016-10-17 17:41:51.564 GAME] Just dealt to Varys.
+[2016-10-17 17:41:52.582 GAME] Just dealt to Bronn.
+[2016-10-17 17:41:53.587 GAME] Just dealt to Bronn.
+[2016-10-17 17:41:54.600 GAME] Just dealt to Bronn.
+[2016-10-17 17:41:55.617 GAME] Just dealt to Benjen.
+[2016-10-17 17:41:56.633 GAME] Just dealt to Benjen.
+[2016-10-17 17:41:57.645 GAME] Just dealt to Benjen.
+[2016-10-17 17:41:58.918 GAME] Just dealt to Hoster.
+[2016-10-17 17:41:59.935 GAME] Just dealt to Hoster.
+[2016-10-17 17:42:00.942 GAME] Just dealt to Hoster.
+[2016-10-17 17:42:01.964 GAME] Just dealt to Hoster.
+[2016-10-17 17:42:02.490 GAME] Game State is 'dealing to players'
+[2016-10-17 17:42:02.490 MAIN] Pinging Clients.
+[2016-10-17 17:42:02.980 GAME] Just dealt to Varys.
+[2016-10-17 17:42:04.000 GAME] Just dealt to Varys.
+[2016-10-17 17:42:05.009 GAME] Just dealt to Varys.
+[2016-10-17 17:42:06.023 GAME] Just dealt to Varys.
+[2016-10-17 17:42:07.045 GAME] Just dealt to Bronn.
+[2016-10-17 17:42:08.057 GAME] Just dealt to Bronn.
+[2016-10-17 17:42:09.069 GAME] Just dealt to Bronn.
+[2016-10-17 17:42:10.076 GAME] Just dealt to Bronn.
+[2016-10-17 17:42:11.097 GAME] Just dealt to Benjen.
+[2016-10-17 17:42:12.105 GAME] Just dealt to Benjen.
+[2016-10-17 17:42:13.124 GAME] Just dealt to Benjen.
+[2016-10-17 17:42:14.135 GAME] Just dealt to Benjen.
+[2016-10-17 17:42:15.416 GAME] Just dealt to Hoster.
+[2016-10-17 17:42:16.435 GAME] Just dealt to Hoster.
+[2016-10-17 17:42:17.446 GAME] Just dealt to Hoster.
+[2016-10-17 17:42:18.467 GAME] Just dealt to Varys.
+[2016-10-17 17:42:19.483 GAME] Just dealt to Varys.
+[2016-10-17 17:42:20.494 GAME] Just dealt to Varys.
+[2016-10-17 17:42:21.503 GAME] Just dealt to Bronn.
+[2016-10-17 17:42:22.512 GAME] Just dealt to Bronn.
+[2016-10-17 17:42:23.534 GAME] Just dealt to Bronn.
+[2016-10-17 17:42:24.560 GAME] Just dealt to Benjen.
+[2016-10-17 17:42:25.576 GAME] Just dealt to Benjen.
+[2016-10-17 17:42:26.586 GAME] Just dealt to Benjen.
+[2016-10-17 17:42:27.850 GAME] Hoster's bid.
+[2016-10-17 17:42:32.503 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:42:32.504 MAIN] Pinging Clients.
+[2016-10-17 17:43:02.523 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:43:02.523 MAIN] Pinging Clients.
+[2016-10-17 17:43:32.526 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:43:32.526 MAIN] Pinging Clients.
+[2016-10-17 17:44:02.538 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:44:02.539 MAIN] Pinging Clients.
+[2016-10-17 17:44:32.546 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:44:32.546 MAIN] Pinging Clients.
+[2016-10-17 17:45:02.547 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:45:02.547 MAIN] Pinging Clients.
+[2016-10-17 17:45:32.547 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:45:32.548 MAIN] Pinging Clients.
+[2016-10-17 17:46:02.559 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:46:02.559 MAIN] Pinging Clients.
+[2016-10-17 17:46:32.566 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:46:32.566 MAIN] Pinging Clients.
+[2016-10-17 17:47:02.567 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:47:02.568 MAIN] Pinging Clients.
+[2016-10-17 17:47:12.970 SOCK] 192.168.1.7-50591: Socket connection disconnected.
+[2016-10-17 17:47:13.318 SOCK] 192.168.1.7-50592: Socket connection disconnected.
+[2016-10-17 17:47:13.407 SOCK] 192.168.1.7-50708: New socket connection.
+[2016-10-17 17:47:13.476 SOCK] 192.168.1.7-50709: New socket connection.
+[2016-10-17 17:47:13.743 SOCK] 192.168.1.7-50590: Socket connection disconnected.
+[2016-10-17 17:47:13.995 SOCK] 192.168.1.7-50714: New socket connection.
+[2016-10-17 17:47:14.188 SOCK] 192.168.1.7-50683: Socket connection disconnected.
+[2016-10-17 17:47:14.456 SOCK] 192.168.1.7-50723: New socket connection.
+[2016-10-17 17:47:17.538 SOCK] 192.168.1.7-50708: Username accepted (Cersei).
+[2016-10-17 17:47:18.918 SOCK] 192.168.1.7-50723: Username accepted (Joffrey).
+[2016-10-17 17:47:19.650 SOCK] Cersei sat in seat 1.
+[2016-10-17 17:47:19.651 GAME] Waiting for more players.
+[2016-10-17 17:47:21.388 SOCK] Joffrey sat in seat 2.
+[2016-10-17 17:47:21.388 GAME] Waiting for more players.
+[2016-10-17 17:47:24.116 SOCK] 192.168.1.7-50709: Username accepted (Lysa).
+[2016-10-17 17:47:24.552 SOCK] 192.168.1.7-50714: Username accepted (Gregor).
+[2016-10-17 17:47:25.489 SOCK] Lysa sat in seat 3.
+[2016-10-17 17:47:25.490 GAME] Waiting for more players.
+[2016-10-17 17:47:30.797 SOCK] Gregor sat in seat 4.
+[2016-10-17 17:47:30.798 GAME] Four players are sitting.
+[2016-10-17 17:47:30.798 GAME] Emptying the player's hands.
+[2016-10-17 17:47:30.799 GAME] Initialising and shuffling the game deck.
+[2016-10-17 17:47:30.802 GAME] Dealing for Joffrey to Lysa.
+[2016-10-17 17:47:30.810 GAME] Just dealt to Lysa.
+[2016-10-17 17:47:31.824 GAME] Just dealt to Lysa.
+[2016-10-17 17:47:32.574 GAME] Game State is 'dealing to players'
+[2016-10-17 17:47:32.574 MAIN] Pinging Clients.
+[2016-10-17 17:47:32.833 GAME] Just dealt to Lysa.
+[2016-10-17 17:47:33.843 GAME] Just dealt to Gregor.
+[2016-10-17 17:47:34.859 GAME] Just dealt to Gregor.
+[2016-10-17 17:47:35.878 GAME] Just dealt to Gregor.
+[2016-10-17 17:47:36.886 GAME] Just dealt to Cersei.
+[2016-10-17 17:47:37.904 GAME] Just dealt to Cersei.
+[2016-10-17 17:47:38.923 GAME] Just dealt to Cersei.
+[2016-10-17 17:47:39.933 GAME] Just dealt to Joffrey.
+[2016-10-17 17:47:40.937 GAME] Just dealt to Joffrey.
+[2016-10-17 17:47:41.949 GAME] Just dealt to Joffrey.
+[2016-10-17 17:47:43.244 GAME] Just dealt to Lysa.
+[2016-10-17 17:47:44.258 GAME] Just dealt to Lysa.
+[2016-10-17 17:47:45.267 GAME] Just dealt to Lysa.
+[2016-10-17 17:47:46.284 GAME] Just dealt to Lysa.
+[2016-10-17 17:47:47.303 GAME] Just dealt to Gregor.
+[2016-10-17 17:47:48.324 GAME] Just dealt to Gregor.
+[2016-10-17 17:47:49.342 GAME] Just dealt to Gregor.
+[2016-10-17 17:47:50.356 GAME] Just dealt to Gregor.
+[2016-10-17 17:47:51.378 GAME] Just dealt to Cersei.
+[2016-10-17 17:47:52.392 GAME] Just dealt to Cersei.
+[2016-10-17 17:47:53.404 GAME] Just dealt to Cersei.
+[2016-10-17 17:47:54.411 GAME] Just dealt to Cersei.
+[2016-10-17 17:47:55.435 GAME] Just dealt to Joffrey.
+[2016-10-17 17:47:56.449 GAME] Just dealt to Joffrey.
+[2016-10-17 17:47:57.471 GAME] Just dealt to Joffrey.
+[2016-10-17 17:47:58.492 GAME] Just dealt to Joffrey.
+[2016-10-17 17:47:59.763 GAME] Just dealt to Lysa.
+[2016-10-17 17:48:00.774 GAME] Just dealt to Lysa.
+[2016-10-17 17:48:01.787 GAME] Just dealt to Lysa.
+[2016-10-17 17:48:02.588 GAME] Game State is 'dealing to players'
+[2016-10-17 17:48:02.588 MAIN] Pinging Clients.
+[2016-10-17 17:48:02.805 GAME] Just dealt to Gregor.
+[2016-10-17 17:48:03.830 GAME] Just dealt to Gregor.
+[2016-10-17 17:48:04.842 GAME] Just dealt to Gregor.
+[2016-10-17 17:48:05.855 GAME] Just dealt to Cersei.
+[2016-10-17 17:48:06.874 GAME] Just dealt to Cersei.
+[2016-10-17 17:48:07.897 GAME] Just dealt to Cersei.
+[2016-10-17 17:48:08.917 GAME] Just dealt to Joffrey.
+[2016-10-17 17:48:09.932 GAME] Just dealt to Joffrey.
+[2016-10-17 17:48:10.950 GAME] Just dealt to Joffrey.
+[2016-10-17 17:48:12.232 GAME] Lysa's bid.
+[2016-10-17 17:48:32.603 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:48:32.604 MAIN] Pinging Clients.
+[2016-10-17 17:49:02.616 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:49:02.616 MAIN] Pinging Clients.
+[2016-10-17 17:49:32.629 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:49:32.629 MAIN] Pinging Clients.
+[2016-10-17 17:50:02.630 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:50:02.630 MAIN] Pinging Clients.
+[2016-10-17 17:50:32.642 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:50:32.643 MAIN] Pinging Clients.
+[2016-10-17 17:51:02.658 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:51:02.658 MAIN] Pinging Clients.
+[2016-10-17 17:51:32.659 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:51:32.660 MAIN] Pinging Clients.
+[2016-10-17 17:52:02.660 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:52:02.660 MAIN] Pinging Clients.
+[2016-10-17 17:52:32.661 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:52:32.662 MAIN] Pinging Clients.
+[2016-10-17 17:53:02.666 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:53:02.666 MAIN] Pinging Clients.
+[2016-10-17 17:53:32.671 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:53:32.671 MAIN] Pinging Clients.
+[2016-10-17 17:54:02.675 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:54:02.675 MAIN] Pinging Clients.
+[2016-10-17 17:54:32.676 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:54:32.676 MAIN] Pinging Clients.
+[2016-10-17 17:55:02.677 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:55:02.677 MAIN] Pinging Clients.
+[2016-10-17 17:55:32.688 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:55:32.690 MAIN] Pinging Clients.
+[2016-10-17 17:56:02.695 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:56:02.696 MAIN] Pinging Clients.
+[2016-10-17 17:56:32.698 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:56:32.699 MAIN] Pinging Clients.
+[2016-10-17 17:57:02.714 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:57:02.714 MAIN] Pinging Clients.
+[2016-10-17 17:57:32.719 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:57:32.719 MAIN] Pinging Clients.
+[2016-10-17 17:58:02.734 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:58:02.734 MAIN] Pinging Clients.
+[2016-10-17 17:58:32.747 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:58:32.747 MAIN] Pinging Clients.
+[2016-10-17 17:59:02.754 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:59:02.754 MAIN] Pinging Clients.
+[2016-10-17 17:59:32.768 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 17:59:32.769 MAIN] Pinging Clients.
+[2016-10-17 18:00:02.780 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 18:00:02.780 MAIN] Pinging Clients.
+[2016-10-17 18:00:32.796 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 18:00:32.797 MAIN] Pinging Clients.
+[2016-10-17 18:01:02.800 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 18:01:02.800 MAIN] Pinging Clients.
+[2016-10-17 18:01:32.801 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 18:01:32.801 MAIN] Pinging Clients.
+[2016-10-17 18:02:02.812 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 18:02:02.812 MAIN] Pinging Clients.
+[2016-10-17 18:02:32.817 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 18:02:32.818 MAIN] Pinging Clients.
+[2016-10-17 18:03:02.825 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 18:03:02.825 MAIN] Pinging Clients.
+[2016-10-17 18:03:32.832 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 18:03:32.832 MAIN] Pinging Clients.
+[2016-10-17 18:04:02.846 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 18:04:02.847 MAIN] Pinging Clients.
+[2016-10-17 18:04:32.856 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 18:04:32.857 MAIN] Pinging Clients.
+[2016-10-17 18:05:02.871 GAME] Game State is 'waiting for winning bid'
+[2016-10-17 18:05:02.871 MAIN] Pinging Clients.
+[2016-10-17 18:05:21.526 SOCK] 192.168.1.7-50709: Socket connection disconnected.
+[2016-10-17 18:05:21.526 SOCK] 192.168.1.7-50708: Socket connection disconnected.
+[2016-10-17 18:05:21.526 SOCK] 192.168.1.7-50714: Socket connection disconnected.
+[2016-10-17 18:05:21.526 SOCK] 192.168.1.7-50723: Socket connection disconnected.
+[2016-10-17 18:05:21.526 SOCK] 192.168.1.7-50759: New socket connection.
+[2016-10-17 18:05:21.549 SOCK] 192.168.1.7-50786: New socket connection.
+[2016-10-17 18:05:21.560 SOCK] 192.168.1.7-50787: New socket connection.
+[2016-10-17 18:05:21.572 SOCK] 192.168.1.7-50788: New socket connection.
+[2016-10-17 18:05:22.098 SOCK] 192.168.1.7-50786: Username accepted (Daenerys).
+[2016-10-17 18:05:23.654 SOCK] 192.168.1.7-50788: Username accepted (Rhaenys).
+[2016-10-17 18:05:23.989 MAIN] OzWeb500Server terminating.
+[2016-10-17 18:05:24.020 HTTP] HTTP Server stopped.
+[2016-10-17 18:05:24.020 SOCK] 192.168.1.7-50787: Socket connection disconnected.
+[2016-10-17 18:05:24.020 SOCK] 192.168.1.7-50786: Socket connection disconnected.
+[2016-10-17 18:05:24.020 SOCK] 192.168.1.7-50759: Socket connection disconnected.
+[2016-10-17 18:05:24.020 SOCK] 192.168.1.7-50788: Socket connection disconnected.
+[2016-10-17 18:05:24.020 SOCK] Web Socket Server stopped.
