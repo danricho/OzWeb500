@@ -233,28 +233,50 @@ class Deck(object):
 # https://github.com/tyarkoni/transitions
 # pip install transitions
 class GameMachine(Machine):
+
+  # DEFINITIONS
+  # hand: one game (10 tricks), at the end of which the score is awarded
+  # bids: the potential contract that the player is agreeing to achieve (eg: 6 Hearts)
+  # kitty: three cards, the contract winner receives before the hand starts
+  # trick: a round of the game, where each player places a card on the table
+
   dealerButton = 0 # player index who is the current 'dealer'. Initially random.
   dealerFocus = 0 # this is the player the dealer is waiting on or is dealing to.
   game_deck = Deck(FULL_DECK)
   kitty = Deck(NO_CARDS)
-  states = ['waiting for full seats','dealing to players', 'waiting for winning bid', 'waiting for kitty throw off', 'waiting for cards to be played']
-  transitions = [
-    {'trigger':'deal', 'source':'waiting for full seats', 'dest':'dealing to players', 'conditions':'fourPlayers', 'after': 'deal_cards'},
-    {'trigger':'getBids', 'source':'dealing to players', 'dest':'waiting for winning bid', 'after': 'ask_for_bid'},
-    {'trigger':'throwKitty','source':'waiting for winning bid','dest':'waiting for kitty throw off','conditions':'winningBid'},
-    {'trigger':'winnersLead','source':'waiting for kitty throw off','dest':'waiting for cards to be played','conditions':'kittyThrown'},
-    {'trigger':'gameOver','source':'waiting for cards to be played','dest':'waiting for full seats','conditions':'scoreOver500'},
-    {'trigger':'playerLeft', 'source':'*', 'dest':'waiting for full seats'}
+
+  states = [
+    'accepting players',
+    'accepting bids',
+    'winners lead',
+    'finishing trick',
+    'assessing the trick',
+    'scoring the hand'
   ]
-  def incrementDealerFocus(self):
-    self.dealerFocus = ((self.dealerFocus) % 4) + 1
-  def fourPlayers(self):
+  transitions = [
+    {'trigger':'deal', 'source':'accepting players', 'dest':'accepting bids', 'conditions':'four_players_seated', 'before': 'deal_cards', 'after': 'ask_for_bid'},
+    {'trigger':'award_kitty', 'source':'accepting bids', 'dest':'winners lead', 'conditions':'winning_bid', 'before': 'award_kitty', 'after': 'ask_for_discard'},
+  ]
+
+  ## Conditions ##
+  def four_players_seated(self):
     if seat2client(1) and seat2client(2) and seat2client(3) and seat2client(4):
       logger.gameEntry("Four players are sitting.")
       return True
     else:
       logger.gameEntry("Waiting for more players.")
       return False
+  def winning_bid(self): return self.transit
+  def kittyThrown(self): return self.transit
+  def scoreOver500(self): return self.transit
+
+  ## Utilities ##
+  def incrementDealerFocus(self):
+    self.dealerFocus = ((self.dealerFocus) % 4) + 1
+
+  ## Doers ##
+  def ask_for_discard(self):
+      None
   def stop_playing(self):
     logger.gameEntry("A player left :(")
   def deal_cards(self):
@@ -263,23 +285,25 @@ class GameMachine(Machine):
     def deal_thread():
       # if a player drops during this, it hurts.
 
-      logger.gameEntry("Emptying the player's hands.")
+      logger.gameEntry("Emptying the player's hands and kitty.")
       for seat in xrange(1, 5):
         seat2client(seat).hand = Deck(NO_CARDS)
+      self.kitty = Deck(NO_CARDS)
 
       logger.gameEntry("Initialising and shuffling the game deck.")
-      self.kitty = Deck(NO_CARDS)
       self.game_deck = Deck(FULL_DECK)
       sendCardUpdate()
       self.game_deck.shuffle()
 
-      self.dealerButton = random.randint(1, 4)
+      # if the first deal, randomise the dealer
+      if self.dealerButton == 0:
+        self.dealerButton = random.randint(1, 4)
+
+      # dealer focus is next player for deal
       self.dealerFocus = self.dealerButton
       self.incrementDealerFocus()
-      
       sendDealerNotification("Dealing for " + seat2client(self.dealerButton).username + " to " + seat2client(self.dealerFocus).username + ".")
-      logger.gameEntry("Dealing for " + seat2client(self.dealerButton).username + " to " + seat2client(self.dealerFocus).username + ".")
-      
+
       sendCardUpdate()
       for cards_to_deal in [3, 4, 3]:
         for i in range(4):
@@ -289,7 +313,7 @@ class GameMachine(Machine):
             sendCardUpdate()
             logger.gameEntry("Just dealt to " + seat2client(self.dealerFocus).username + ".")
             time.sleep(0.25)
-            
+
           self.incrementDealerFocus()
         self.game_deck.moveCards(self.kitty, 1)
         sendCardUpdate()
@@ -298,17 +322,13 @@ class GameMachine(Machine):
       self.getBids()
     t = threading.Thread(target=deal_thread, args=[])
     t.start()
-
   def ask_for_bid(self):
     sendDealerNotification(seat2client(self.dealerFocus).username +"'s bid.")
-    logger.gameEntry(seat2client(self.dealerFocus).username +"'s bid.")
-    
+
     # Need to rearrange the table depending on player position
     # Need to check the order of dealing
-    
-  def winningBid(self): return self.transit
-  def kittyThrown(self): return self.transit
-  def scoreOver500(self): return self.transit
+
+
   def __init__(self):
     dealerButton = random.randint(1, 4)
     self.transit = False
@@ -455,7 +475,8 @@ def sendDealerNotification(msg):
   notificationObject.str = msg
   for client in allClients():
     client.connection.sendData("notification",notificationObject)
-      
+  logger.gameEntry("Dealer: " + msg)
+
 ws_handler = WS_Handler
 ws_server = SimpleWebSocketServer('', ws_port, ws_handler)
 ws_thread = threading.Thread(target = ws_server.serveforever)
