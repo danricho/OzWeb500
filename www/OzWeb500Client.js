@@ -1,25 +1,8 @@
-function getUrlVars() {
-  var vars = {};
-  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-    vars[key] = value;
-  });
-  return vars;
-}
-
 /* SETTINGS */
 client_version = 0.1
 WebSocket_Add = window.location.hostname
 WebSocket_Port = "8000"
 var clientData;
-
-autoTest = true;
-// DISABLE autoTest (press m at refresh)
-$(document).keypress(function(e) {
-  if(e.which == 109) {
-    autoTest = false;
-    myLogger.line("TEST","red","Auto Test disabled.");
-  }
-});
 
 /* CARD RELATED CONSTANTS */
 /// SUIT index ranges from 1 to 5.
@@ -75,12 +58,6 @@ function doWsConnect() {
   websocket.onerror = function(evt) {
     onWebSockError(evt)
   };
-  setTimeout(function() { // allow for disable (escape key) of the tester.
-    if (autoTest){
-      AutoTester.start();
-    }
-  }, 2000);
-
 }
 function doWsDisconnect() {
   websocket.close();
@@ -303,10 +280,13 @@ function doInputSeatAvailable(players){
       }
     }
   }
-  if ($(".Hand .upright input:enabled").length){
-    $(".Hand .upright input").show();
+  // hide the sit buttons if all taken
+  if ($(".Hand input.sit:enabled").length){
+    $(".Hand input.sit").show();
+    $(".Hand .upright").hide();
   }else{
-    $(".Hand .upright input").hide();
+    $(".Hand input.sit").hide();
+    $(".Hand .upright").show();
   }
   console.log("players", players);
 }
@@ -357,6 +337,7 @@ function onWebSockClose(evt) {
   doInputChatAvailable(false);
   console.log("Close Event Data", evt)
   myLogger.groupEnd();
+  doDisplayHideCard("card")
 
   setTimeout(function() {
       doWsConnect();
@@ -554,16 +535,12 @@ $(document).ready(function() {
   $("#nextSeatButton").click(function(){doSendSeatRequest(2);});
   $("#partnerSeatButton").click(function(){doSendSeatRequest(3);});
   $("#previousSeatButton").click(function(){doSendSeatRequest(4);});
-  $(document).keyup(function(e) {
-    if (e.keyCode == 27) {
-      event.preventDefault();
-      autoTest = false;
-      myLogger.line("TEST","red","Auto Test Disabled using <esc>.")
-    }
-  });
+  $("#enableAuto").click(function(){AutoTester.start();});
   // Start the Fun
   doLayoutVerticalCentre();
   doWsConnect();
+  
+
 
 });
 

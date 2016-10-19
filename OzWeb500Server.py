@@ -125,7 +125,7 @@ class WS_Handler(WebSocket):
     logger.sockEntry(str(self.address[0]) + '-' + str(self.address[1]) + ': Socket connection disconnected.')
     sendLeftNotification(self)
     if self.getClient().seat != None:
-      thisGame.playerLeft()
+      self.getClient().seat = None
     clients.remove(self.getClient())
     for client in allClients():
       sendSeatsAvailability(client.connection)
@@ -224,8 +224,9 @@ class Deck(object):
     return JSONobj
   def countCards(self):
     return len(self.cards)
-  def sortHand():
+  def sortHand(self, suit):
     None
+                
 # This is the game state machine.
 # It will be updated as each element of the game is implemented.
 # Not currently integrated with the WS logic.
@@ -233,18 +234,15 @@ class Deck(object):
 # https://github.com/tyarkoni/transitions
 # pip install transitions
 class GameMachine(Machine):
-
   # DEFINITIONS
   # hand: one game (10 tricks), at the end of which the score is awarded
   # bids: the potential contract that the player is agreeing to achieve (eg: 6 Hearts)
   # kitty: three cards, the contract winner receives before the hand starts
   # trick: a round of the game, where each player places a card on the table
-
   dealerButton = 0 # player index who is the current 'dealer'. Initially random.
   dealerFocus = 0 # this is the player the dealer is waiting on or is dealing to.
   game_deck = Deck(FULL_DECK)
   kitty = Deck(NO_CARDS)
-
   states = [
     'accepting players',
     'accepting bids',
@@ -254,10 +252,10 @@ class GameMachine(Machine):
     'scoring the hand'
   ]
   transitions = [
-    {'trigger':'deal', 'source':'accepting players', 'dest':'accepting bids', 'conditions':'four_players_seated', 'before': 'deal_cards', 'after': 'ask_for_bid'},
+    
+    {'trigger':'deal', 'source':['accepting players','accepting bids'], 'dest':'accepting bids', 'conditions':'four_players_seated', 'before': 'deal_cards', 'after': 'ask_for_bid'},
     {'trigger':'award_kitty', 'source':'accepting bids', 'dest':'winners lead', 'conditions':'winning_bid', 'before': 'award_kitty', 'after': 'ask_for_discard'},
   ]
-
   ## Conditions ##
   def four_players_seated(self):
     if seat2client(1) and seat2client(2) and seat2client(3) and seat2client(4):
@@ -309,7 +307,6 @@ class GameMachine(Machine):
         for i in range(4):
           for j in range(cards_to_deal):
             self.game_deck.moveCards(seat2client(self.dealerFocus).hand, 1)
-            seat2client(self.dealerFocus).hand.sort()
             sendCardUpdate()
             logger.gameEntry("Just dealt to " + seat2client(self.dealerFocus).username + ".")
             time.sleep(0.25)
@@ -319,7 +316,12 @@ class GameMachine(Machine):
         sendCardUpdate()
         time.sleep(0.25)
 
-      self.getBids()
+      for i in range(1,5):
+        seat2client(i).hand.sortHand(5)
+      sendCardUpdate()
+
+      self.ask_for_bid()
+        
     t = threading.Thread(target=deal_thread, args=[])
     t.start()
   def ask_for_bid(self):

@@ -87,7 +87,12 @@ card > face#front .big p {
   margin-left: -239px;
   margin-bottom: -50px;
 }
-#partnerHand .upright{}
+#myHand .upright{
+  transform: rotateZ( 0deg ) translate( 125px, -5px );
+}
+#myHand input.sit{
+  transform: rotateZ( 0deg );
+}
 #partnerHand{
   top: 0px;
   left: 50%;
@@ -96,6 +101,9 @@ card > face#front .big p {
   transform: rotateZ( 180deg );
 }
 #partnerHand .upright{
+  transform: rotateZ( -180deg ) translate( -125px, 0px );
+}
+#partnerHand input.sit{
   transform: rotateZ( -180deg );
 }
 #nextHand{
@@ -104,6 +112,9 @@ card > face#front .big p {
   transform: rotateZ( 90deg );
 }
 #nextHand .upright{
+  transform: rotateZ( -90deg ) translate( 40px, 80px );
+}
+#nextHand input.sit{
   transform: rotateZ( -90deg );
 }
 #previousHand{
@@ -112,6 +123,9 @@ card > face#front .big p {
   transform: rotateZ( -90deg );
 }
 #previousHand .upright{
+  transform: rotateZ( 90deg ) translate( -40px, -80px );
+}
+#previousHand input.sit{
   transform: rotateZ( 90deg );
 }
 

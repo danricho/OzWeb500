@@ -11,7 +11,8 @@ CLEAR="\033[0m"
 
 import datetime
 
-serverLog = open("logs/"+datetime.datetime.now().strftime('%Y%m%d.%H%M%S')+"_ozWeb500_server.log",'w')
+# serverLog = open("logs/"+datetime.datetime.now().strftime('%Y%m%d.%H%M%S')+"_ozWeb500_server.log",'w')
+serverLog = open("logs/last_log.log",'w')
 
 def time_str():
   return datetime.datetime.now().strftime('%H:%M:%S.%f')[:-3]

@@ -106,6 +106,7 @@
     </div>
   </div>
   <div class="Hand" id="partnerHand">
+    <input type="button" class="sit" name="partnerSeatButton" id="partnerSeatButton" value="Sit in Seat 3" tabindex="3" disabled>
     <!-- kitty cards -->
     <card class="kitty" id="card_11">
         <face id="front">
@@ -304,14 +305,14 @@
         </face>
     </card>
     <div class="upright">
-      <input type="button" name="partnerSeatButton" id="partnerSeatButton" value="Sit in Seat 3" tabindex="3" disabled>
       <div>
         <p><span id="unPartner">Empty</span></p>
         <p><span id="bidPartner">No Bid</span></p>
       </div>
     </div>
   </div>
-    <div class="Hand" id="nextHand">
+  <div class="Hand" id="nextHand">
+    <input type="button" class="sit" name="nextSeatButton" id="nextSeatButton" value="Sit in Seat 2" tabindex="2" disabled>
     <!-- kitty cards -->
     <card class="kitty" id="card_11">
         <face id="front">
@@ -510,7 +511,6 @@
         </face>
     </card>
     <div class="upright">
-      <input type="button" name="nextSeatButton" id="nextSeatButton" value="Sit in Seat 2" tabindex="2" disabled>
       <div>
         <p><span id="unNext">Empty</span></p>
         <p><span id="bidNext">No Bid</span></p>
@@ -518,6 +518,7 @@
     </div>
   </div>
   <div class="Hand" id="previousHand">
+    <input type="button" class="sit" name="previousSeatButton" id="previousSeatButton" value="Sit in Seat 4" tabindex="4" disabled>
     <!-- kitty cards -->
     <card class="kitty" id="card_11">
         <face id="front">
@@ -716,7 +717,6 @@
         </face>
     </card>
     <div class="upright">
-      <input type="button" name="previousSeatButton" id="previousSeatButton" value="Sit in Seat 4" tabindex="4" disabled>
       <div>
         <p><span id="unPrevious">Empty</span></p>
         <p><span id="bidPrevious">No Bid</span></p>
@@ -724,6 +724,7 @@
     </div>
   </div>
   <div class="Hand" id="myHand">
+    <input type="button" class="sit" name="mySeatButton" id="mySeatButton" value="Sit in Seat 1" tabindex="1" disabled>
     <!-- kitty cards -->
     <card class="kitty" id="card_11">
         <face id="front">
@@ -922,7 +923,6 @@
         </face>
     </card>
     <div class="upright">
-      <input type="button" name="mySeatButton" id="mySeatButton" value="Sit in Seat 1" tabindex="1" disabled>
       <div>
         <p><span id="unMy">Empty</span></p>
         <p><span id="bidMy">No Bid</span></p>
@@ -939,6 +939,7 @@
   </div>
   <div id="loginmodal" style="display:none;">
     <p class="bigger">Welcome to OzWeb500!</p>
+    <p><input type="button" name="enableAuto" id="enableAuto" value="Enable Auto" tabindex="0"></p>
     <p>Enter your desired username.</p>
     <input type="text" name="inputUsername" id="inputUsername" tabindex="1" value="" class="grey">
     <input type="button" name="buttonLogin" id="buttonLogin" value="Log In" tabindex="2">

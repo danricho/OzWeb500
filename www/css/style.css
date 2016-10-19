@@ -124,3 +124,14 @@ input:disabled {
 #loginmodal p {
   margin: 8px 0px;
 }
+.upright{
+  width: 150px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #CCC;
+  padding: 8px 8px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: none;
+  margin: 8px 8px; 
+}
