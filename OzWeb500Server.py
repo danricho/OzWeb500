@@ -29,7 +29,7 @@ server_hostname = socket.gethostname()
 
 """ CARD RELATED CONSTANTS """
 # SUIT index ranges from 1 to 5.
-SUIT_str  = [None,"Spades","Clubs","Diamonds","Hearts","No Trumps"]
+SUIT_str  = ["Misere","Spades","Clubs","Diamonds","Hearts","No Trumps"]
 SUIT_disp = [None,"♠","♣","♦","♥",""] # not displayable for python output.
 SUIT_leftBower = [None,2,1,4,3,None] # left bower's suit
 # RANK index ranges from 3 to 15.
@@ -199,8 +199,6 @@ class Deck(object):
   def moveCards(self, otherDeck, num):
     for i in range(num):
       otherDeck.addCard(self.popCard())
-  def sort(self):
-    self.cards.sort()
   def shuffle(self):
     random.shuffle(self.cards)
   def getIndex(self, findcard):
@@ -220,13 +218,167 @@ class Deck(object):
     JSONobj = Object()
     JSONobj.cards = []
     for card in self.cards:
-      JSONobj.cards.append(card.toJSONobj())
+      JSONobj.cards.insert(0,card.toJSONobj())
     return JSONobj
   def countCards(self):
     return len(self.cards)
-  def sortHand(self, suit):
-    None
-                
+  def sort(self, trumps):
+
+    debug = 0
+    
+    if debug: print "'" + SUIT_str[trumps] + "' is trumps.\n"
+    
+    for reducing_range in range(len(self.cards)):
+      for card_index in range(len(self.cards)-1-reducing_range):
+        c1 = self.cards[card_index]
+        c2 = self.cards[card_index + 1]
+        if debug: print "card " + str(card_index) + ": " + str(c1) + " vs. card " + str(card_index+1) + ": " + str(c2)
+        
+        if trumps == 5: # No trumps
+          if c2.rank == 15: # Joker needs bumping up
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Joker wins)."
+          elif c1.rank == 15:
+            None # keep the Joker safe
+          elif c2.suit > c1.suit: # second card's suit is larger, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Suit wins)."
+          elif c2.suit == c1.suit and c2.rank > c1.rank: # second card's suit is same but rank is higher, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Rank wins)."
+            
+        elif trumps == 4: # Hearts is trumps. 
+          if c2.rank == 15: # Joker needs bumping up
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Joker wins)."
+          elif c1.rank == 15:
+            None # keep the Joker safe
+          elif c2.rank == 11 and c2.suit == trumps:  # second card is the right bower, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Right Bower wins)."
+          elif c1.rank == 11 and c1.suit == trumps:
+            None
+          elif c2.rank == 11 and c2.suit == 3:  # second card is the left bower, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Left Bower wins)."
+          elif c1.rank == 11 and c1.suit == 3:
+            None
+          elif c2.suit == trumps and c1.suit != trumps: # second card's suit is a trump, but first's isn't, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Trumps Suit wins)."   
+          elif c2.suit > c1.suit and c1.suit != trumps: # second card's suit is larger, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Suit wins)."         
+          elif c2.suit == c1.suit and c2.rank > c1.rank: # second card's suit is same but rank is higher, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Rank wins)."
+            
+        elif trumps == 3: # Diamonds is trumps. 
+          if c2.rank == 15: # Joker needs bumping up
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Joker wins)."
+          elif c1.rank == 15:
+            None # keep the Joker safe
+          elif c2.rank == 11 and c2.suit == trumps:  # second card is the right bower, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Right Bower wins)."
+          elif c1.rank == 11 and c1.suit == trumps:
+            None
+          elif c2.rank == 11 and c2.suit == 4:  # second card is the left bower, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Left Bower wins)."
+          elif c1.rank == 11 and c1.suit == 4:
+            None
+          elif c2.suit == trumps and c1.suit != trumps: # second card's suit is a trump, but first's isn't, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Trumps Suit wins)."   
+          elif c2.suit > c1.suit and c1.suit != trumps: # second card's suit is larger, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Suit wins)."         
+          elif c2.suit == c1.suit and c2.rank > c1.rank: # second card's suit is same but rank is higher, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Rank wins)."
+            
+        elif trumps == 2: # Clubs is trumps. 
+          if c2.rank == 15: # Joker needs bumping up
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Joker wins)."
+          elif c1.rank == 15:
+            None # keep the Joker safe
+          elif c2.rank == 11 and c2.suit == trumps:  # second card is the right bower, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Right Bower wins)."
+          elif c1.rank == 11 and c1.suit == trumps:
+            None ## keep the 
+          elif c2.rank == 11 and c2.suit == 1:  # second card is the left bower, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Left Bower wins)."
+          elif c1.rank == 11 and c1.suit == 1:
+            None
+          elif c2.suit == trumps and c1.suit != trumps: # second card's suit is a trump, but first's isn't, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Trumps Suit wins)."   
+          elif c2.suit > c1.suit and c1.suit != trumps: # second card's suit is larger, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Suit wins)."         
+          elif c2.suit == c1.suit and c2.rank > c1.rank: # second card's suit is same but rank is higher, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Rank wins)."
+            
+        elif trumps == 1: # Spades is trumps. 
+          if c2.rank == 15: # Joker needs bumping up
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Joker wins)."
+          elif c1.rank == 15:
+            None # keep the Joker safe
+          elif c2.rank == 11 and c2.suit == trumps:  # second card is the right bower, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Right Bower wins)."
+          elif c1.rank == 11 and c1.suit == trumps:
+            None
+          elif c2.rank == 11 and c2.suit == 2:  # second card is the left bower, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Left Bower wins)."
+          elif c1.rank == 11 and c1.suit == 2:
+            None
+          elif c2.suit == trumps and c1.suit != trumps: # second card's suit is a trump, but first's isn't, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Trumps Suit wins)."   
+          elif c2.suit > c1.suit and c1.suit != trumps: # second card's suit is larger, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Suit wins)."         
+          elif c2.suit == c1.suit and c2.rank > c1.rank: # second card's suit is same but rank is higher, push first down
+            self.cards[card_index], self.cards[card_index + 1] = self.cards[card_index + 1], self.cards[card_index]
+            if debug: print str(c1) + " pushed down (Rank wins)."
+            
+          elif trumps == 0: # Misere
+            None
+            # TO BE IMPLEMENTED
+
+      if debug: print " "
+
+
+# ## TEST ##
+
+# trumps = 0
+
+# deck_1 = Deck(FULL_DECK)
+# deck_1.shuffle()
+
+# deck_2 = Deck(NO_CARDS)
+# deck_1.moveCards(deck_2, 43)
+
+# # print " "
+# # print deck_2
+# print " "
+# deck_2.sort(trumps)
+
+# print deck_2
+
+# ## END TEST ##
+
+
+
 # This is the game state machine.
 # It will be updated as each element of the game is implemented.
 # Not currently integrated with the WS logic.
@@ -253,7 +405,7 @@ class GameMachine(Machine):
   ]
   transitions = [
     
-    {'trigger':'deal', 'source':['accepting players','accepting bids'], 'dest':'accepting bids', 'conditions':'four_players_seated', 'before': 'deal_cards', 'after': 'ask_for_bid'},
+    {'trigger':'deal', 'source':['accepting players','accepting bids'], 'dest':'accepting bids', 'conditions':'four_players_seated', 'before': 'deal_cards'},
     {'trigger':'award_kitty', 'source':'accepting bids', 'dest':'winners lead', 'conditions':'winning_bid', 'before': 'award_kitty', 'after': 'ask_for_discard'},
   ]
   ## Conditions ##
@@ -317,13 +469,14 @@ class GameMachine(Machine):
         time.sleep(0.25)
 
       for i in range(1,5):
-        seat2client(i).hand.sortHand(5)
+        seat2client(i).hand.sort(trumps)
       sendCardUpdate()
 
       self.ask_for_bid()
         
     t = threading.Thread(target=deal_thread, args=[])
     t.start()
+  
   def ask_for_bid(self):
     sendDealerNotification(seat2client(self.dealerFocus).username +"'s bid.")
 
@@ -494,6 +647,7 @@ trumps = 5 # no trumps
 clients = []
 thisGame = GameMachine()
 
+
 if __name__ == "__main__":
 
   logger.mainEntry("OzWeb500Server launched.")
@@ -522,3 +676,4 @@ if __name__ == "__main__":
       client.connection.sendData("ping", logger.datetime_str())
 
     time.sleep(300)
+
